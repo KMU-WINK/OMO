@@ -3,6 +3,7 @@ const cors = require('cors');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const db = require('./models');
+const passportConfig = require('./passport');
 const app = express();
 
 db.sequelize.sync()
@@ -10,6 +11,8 @@ db.sequelize.sync()
         console.log('db connect')
     })
     .catch(console.error)
+
+passportConfig();
 
 app.use(cors({
     // 보안상의 이유로 추후 바꿔줘야함.
