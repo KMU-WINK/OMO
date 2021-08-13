@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         charset: 'utf8mb4',
         collate: 'utf8mb4_general_ci'
     });
-    Post.association = (db) => {};
+    Post.association = (db) => {
+        db.Post.belongsTo(db.User);
+        db.Post.hasMany(db.Image);
+        db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
+    };
     return Post;
 }
