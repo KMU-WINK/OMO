@@ -27,4 +27,16 @@ router.post('/', isLoggedIn, async (req, res, next) => {
     }
 });
 
+router.delete('/:postId', async (req, res, next) => {
+    try {
+        await Post.destroy({
+           where: { id: req.params.postId }
+        });
+        res.json({ PostId: req.params.postId });
+    } catch(error) {
+        console.error(error);
+        next(error);
+    }
+});
+
 module.exports = router;
