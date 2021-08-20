@@ -27,12 +27,15 @@ router.post('/', isLoggedIn, async (req, res, next) => {
     }
 });
 
-router.delete('/:postId', async (req, res, next) => {
+router.delete('/:postId', isLoggedIn, async (req, res, next) => {
     try {
         await Post.destroy({
-           where: { id: req.params.postId }
+           where: {
+               id: req.params.postId,
+               UserId: req.user.id,
+           }
         });
-        res.json({ PostId: req.params.postId });
+        res.json({ PostId: parseInt(req.params.postId, 10) });
     } catch(error) {
         console.error(error);
         next(error);
