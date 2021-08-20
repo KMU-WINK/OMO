@@ -21,9 +21,8 @@ passportConfig();
 dotenv.config();
 
 app.use(cors({
-    // 보안상의 이유로 추후 바꿔줘야함.
-    origin: '*',
-    credential: false,
+    origin: 'http://localhost:3060',
+    credential: true,
 }));
 
 app.use(express.json());
