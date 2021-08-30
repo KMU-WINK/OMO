@@ -6,7 +6,7 @@ import home from '../../images/home_icon.png';
 import search from '../../images/search_icon.png';
 import list from '../../images/list_icon.png';
 import more from '../../images/more_icon.png';
-import plus from '../../images/plus.png';
+import plus from '../../images/plus_icon.png';
 
 const Footer = (props) => {
     const history = useHistory();
@@ -22,7 +22,9 @@ const Footer = (props) => {
                 <p>검색</p>
             </SearchWrap>
             <PlusWrap>
-                <div onClick={() => console.log("행성 추가")}/>
+                <div className={"circle"}>
+                    <div className={"plus"} onClick={() => console.log("행성 추가")}/>
+                </div>
             </PlusWrap>
             <ListWrap>
                 <div onClick={() => history.push('/list')}/>
@@ -40,9 +42,10 @@ export default Footer;
 
 const Wrap = styled.div`
   width: 100%;
-  height: 72px;
-  border-radius: 20px 20px 0 0;
-  background-color: #343139;
+  height: 84px;
+  background: #343139;
+  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 20px 20px 0px 0px;
   //position: fixed;
   //left: 0;
   //bottom: 0;
@@ -140,10 +143,22 @@ const PlusWrap = styled.div`
   //left: 41%;
   //bottom: 2%;
   padding-bottom: 40px;
-  > div {
+  > .circle {
     width: 66px;
     height: 66px;
-    background: url(${plus}) no-repeat;
-    background-size: contain;
-  }
+    text-align: center;
+    margin: 0 auto;
+    background: #553C75;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    
+    > .plus {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      margin-top: 8px;
+      background: url(${plus}) no-repeat;
+      background-size: contain;
+    }
+  }  
 `;

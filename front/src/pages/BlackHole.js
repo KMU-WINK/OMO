@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 import Header from "../components/common/header";
 
-const Create = (props) => {
+const BlackHole = (props) => {
     return (
         <div>
-            <Header state={"Cancel"} next={"다음"}/>
-            행성 생성 페이지
+            <Header state={"Back"} title={"블랙홀"}/>
+            블랙홀 페이지
         </div>
     )
 }
 
-export default Create;
+export default BlackHole;

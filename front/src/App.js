@@ -7,6 +7,7 @@ import Main from "./pages/Main";
 import Write from "./pages/Write";
 import Create from "./pages/Create";
 import List from "./pages/List";
+import BlackHole from "./pages/BlackHole";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Route path="/write" component={Write} />
             <Route path="/create" component={Create} />
             <Route path="/list" component={List} />
+            <Route path="/blackHole" component={BlackHole} />
           </div>
         </Router>
     );
