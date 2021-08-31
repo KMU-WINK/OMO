@@ -9,7 +9,7 @@ module.exports = () => {
         passwordField: 'password',
     }, async (email, password, done) => {
         try {
-            const user = await User.findOne({ // 이메일 중복 체크
+            const user = await User.findOne({
                 where: { email }
             });
 
