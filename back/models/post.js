@@ -21,5 +21,7 @@ module.exports = class Post extends Model {
         db.Post.belongsTo(db.User);
         db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
         db.Post.hasMany(db.Image);
+        //TODO: 행성선택
+
     }
 };

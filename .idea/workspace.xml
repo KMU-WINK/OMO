@@ -19,11 +19,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fe890e4-1691-41b1-ba82-1e4848a341f5" name="Default Changelist" comment="Refactoring: Model" />
+    <list default="true" id="5fe890e4-1691-41b1-ba82-1e4848a341f5" name="Default Changelist" comment="Refactoring: Model">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/pages/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -57,6 +67,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\04fla\WebstormProjects\OMO\front\src\images" />
       <recent name="C:\Users\04fla\WebstormProjects\OMO\back" />
     </key>
   </component>
@@ -116,6 +127,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="Refactoring: Model" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1630401147597">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1630401147597" />
+    <state x="278" y="101" key="MultipleFileMergeDialog" timestamp="1630398522373">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="278" y="101" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1630398522373" />
     <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1630397139816">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
