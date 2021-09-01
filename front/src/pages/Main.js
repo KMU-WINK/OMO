@@ -43,7 +43,6 @@ const bbuyoCSS = {
     position: 'absolute',
     marginLeft: '55%',
     marginTop: '200px'
-
 }
 const bbuyoStyle = {
     width: '44px',
