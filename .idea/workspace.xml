@@ -19,30 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fe890e4-1691-41b1-ba82-1e4848a341f5" name="Default Changelist" comment="commit lim">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-08-31__1_30__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-08-31__1_30__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/pages/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Main.js" afterDir="false" />
-    </list>
+    <list default="true" id="dac13a83-d8b5-4da9-a961-59d237766bf0" name="Default Changelist" comment="commit lim" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="Kim-tang2 &lt;rlaxogns4504@gmail.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -50,76 +33,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1wqpav28beRn2tGQvSBiocLT2r0" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor.code.editing" />
-    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\04fla\WebstormProjects\OMO\front\src\images" />
-      <recent name="C:\Users\04fla\WebstormProjects\OMO\back" />
-    </key>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="5fe890e4-1691-41b1-ba82-1e4848a341f5" name="Default Changelist" comment="" />
-      <created>1629196041335</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1629196041335</updated>
-      <workItem from="1629196043509" duration="354000" />
-      <workItem from="1630157446462" duration="8000" />
-      <workItem from="1630331771771" duration="3056000" />
-      <workItem from="1630482535297" duration="16000000" />
-    </task>
-    <task id="LOCAL-00001" summary="Refactoring: Model">
-      <created>1630396627327</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1630396627328</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Refactoring: Model">
-      <created>1630396635478</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1630396635478</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Refactoring: Model">
-      <created>1630396640949</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1630396640949</updated>
-    </task>
-    <task id="LOCAL-00004" summary="commit lim">
-      <created>1630422881182</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1630422881183</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -133,28 +52,18 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit" />
-    <MESSAGE value="Refactoring: Model" />
-    <MESSAGE value="commit lim" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit lim" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1630401147597">
+    <state x="121" y="51" key="MergeDialog" timestamp="1630505793904">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1630401147597" />
-    <state x="278" y="101" key="MultipleFileMergeDialog" timestamp="1630398522373">
+    <state x="121" y="51" key="MergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1630505793904" />
+    <state x="278" y="101" key="MultipleFileMergeDialog" timestamp="1630505795707">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="278" y="101" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1630398522373" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1630500731999">
+    <state x="278" y="101" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1630505795707" />
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1630505719184">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1630500731999" />
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1630397139816">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1630397139816" />
+    <state x="455" y="254" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1630505719184" />
   </component>
 </project>
