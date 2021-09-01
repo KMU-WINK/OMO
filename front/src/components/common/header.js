@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import cancel from '../../images/cancel.png';
 import back from '../../images/back.png';
+import I_icon from "../blackhole/i_icon";
 
 const Header = (props) => {
     const history = useHistory();
