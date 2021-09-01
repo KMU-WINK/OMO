@@ -14,6 +14,7 @@ class App extends Component {
   render() {
     return (
         <Router>
+
           <div>
             <Route exact path="/main" component={Main} />
             <Route path="/write" component={Write} />
