@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Footer from "../components/common/footer";
-import Planet from "../components/main/planet";
 
 const Main = (props) => {
     return (
