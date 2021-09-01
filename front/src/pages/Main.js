@@ -6,19 +6,56 @@ import BlackholeImg from '../images/main_Blackhole.png';
 import ListButtonImg from '../images/main_ListButton.png';
 import PrevDate from '../images/main_prevDateButton.png'
 import NextDate from '../images/main_nextDateButton.png'
+import blurPlanet from '../images/main_blurPlanet.png'
+import planetLine from '../images/main_planetLine.png'
+import bbuyo from '../images/main_bbuyo.png'
+import planet1 from '../images/main_planet1.png'
+import planet2 from '../images/main_planet2.png'
+import planet3 from '../images/main_planet3.png'
+import planet4 from '../images/main_planet4.png'
+import planet5 from '../images/main_planet5.png'
+import planet6 from '../images/main_planet6.png'
+
+
 import {useHistory} from "react-router-dom";
 
-const mainAll = {
-    backgroundColor: 'black',
-    background: "url("+BackgroundStarImg+") no-repeat",
-    height: '100%',
+const mainContents = {
+    background: "url("+BackgroundStarImg+")",
+    color: 'white',
+    overflow: 'hidden',
+    position: 'relative',
+    height: '680px',
+}
+const blurPlanetImg = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+}
+const blurPlanetCSS = {
+    width: '70px',
+    height: '70px',
+    marginBottom: '-20px',
+}
+const planetLineCSS = {
+    width: '1px',
+}
+const bbuyoCSS = {
+    position: 'absolute',
+    marginLeft: '55%',
+    marginTop: '200px'
+
+}
+const bbuyoStyle = {
+    width: '44px',
+    height: '44px',
+    cursor: 'pointer',
 }
 const dateCSS = {
-    margin: '0 2%',
+    margin: '0 7px',
     opacity: '0.6',
     border: '1px solid white',
     borderRadius:'3px',
-    padding:'0.5% 2%',
+    padding:'3px 10px',
 }
 const HeaderCSS = {
     display: 'flex',
@@ -44,16 +81,43 @@ const NextDateButton = {
     border: '0',
     cursor: 'pointer',
 }
+const planetCSS1 = {
+    width: '400px',
+    position: 'absolute',
+}
+const planetCSS2 = {
+    width: '300px',
+    position: 'absolute',
+}
+const planetCSS3 = {
+    width: '360px',
+    position: 'absolute',
+    marginTop: '-50px',
+    marginLeft: '-80px',
+}
+const planetCSS4 = {
+    width: '200px',
+    position: 'absolute',
+}
+const planetCSS5 = {
+    width: '400px',
+    position: 'absolute',
+}
+const planetCSS6 = {
+    width: '220px',
+    position: 'absolute',
+}
 
 const FooterButtons = {
     display: 'flex',
     justifyContent: 'space-evenly',
     backgroundColor: 'black',
     alignItems: 'center',
+    paddingBottom: '50px',
 }
 
 const Blackhole = {
-    width: '40px',
+    width: '50px',
     height: '40px',
     background: "url("+BlackholeImg+") no-repeat",
     backgroundSize: 'contain',
@@ -106,15 +170,32 @@ const Main = (props) => {
                 </div>
                 <button style={NextDateButton} onclick={changeNextDate}/>
             </div>
-            <div style={mainAll}>
-                여기 풍선
+            <div style={{backgroundColor:'black'}}>
+                <div style={mainContents}>
+                    <div style={{marginTop: '400px'}}>
+                        <div style={blurPlanetImg} >
+                            <img src={blurPlanet} style={blurPlanetCSS}/>
+                            <img src={planetLine} style={planetLineCSS}/>
+                            <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
+                                <img src={bbuyo} style={bbuyoStyle} />
+                            </div>
+                        </div>
+
+                    </div>
+                    {/*<img src={planet1} style={planetCSS1}/>
+                    <img src={planet2} style={planetCSS2}/>
+                    <img src={planet3} style={planetCSS3}/>
+                    <img src={planet4} style={planetCSS4}/>
+                    <img src={planet5} style={planetCSS5}/>
+                    <img src={planet6} style={planetCSS6}/>*/
+                    }
+                </div>
             </div>
             <div style={FooterButtons}>
                 <div style={Blackhole} onClick={() => history.push('/blackhole')}> </div>
                 <div style={AddButton}> </div>
                 <div style={ListButton}> </div>
             </div>
-
         </div>
     )
 }
