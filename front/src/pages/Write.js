@@ -12,7 +12,7 @@ const Write = (props) => {
     return (
         <div>
             <Header state={"Back"} title={year+"/"+month+"/"+day} next={"저장"}/>
-            기록 페이지
+            기록 페이지 test
             <Footer />
         </div>
     )
