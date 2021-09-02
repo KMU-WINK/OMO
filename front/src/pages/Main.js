@@ -168,7 +168,6 @@ function Main(props) {
     const [checkMonth, setCheckMonth] = useState(monthNames[now.getMonth()])
 
     const ChangePrevDate = () => {
-
         console.log('prevButton clicked!')
         setCheckMonth(monthNames[now.getMonth()-1])
     }
