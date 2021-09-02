@@ -2,11 +2,11 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 
-import home from '../../images/home_icon.png';
-import search from '../../images/search_icon.png';
-import list from '../../images/list_icon.png';
-import more from '../../images/more_icon.png';
-import plus from '../../images/plus_icon.png';
+import home from '../../images/common/home_icon.png';
+import search from '../../images/common/search_icon.png';
+import list from '../../images/common/list_icon.png';
+import more from '../../images/common/more_icon.png';
+import plus from '../../images/common/plus_icon.png';
 
 const Footer = (props) => {
     const history = useHistory();
