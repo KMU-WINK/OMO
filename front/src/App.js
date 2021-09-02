@@ -8,6 +8,7 @@ import Write from "./pages/Write";
 import Create from "./pages/Create";
 import List from "./pages/List";
 import BlackHole from "./pages/BlackHole";
+import Statistics from "./pages/Statistics"
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/create" component={Create} />
             <Route path="/list" component={List} />
             <Route path="/blackHole" component={BlackHole} />
+            <Route path="/statistics" component={Statistics} />
           </div>
         </Router>
     );
