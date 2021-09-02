@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 
-import cancel from '../../images/cancel.png';
-import back from '../../images/back.png';
+import cancel from '../../images/common/cancel.png';
+import back from '../../images/common/back.png';
 
 const Header = (props) => {
     const history = useHistory();
