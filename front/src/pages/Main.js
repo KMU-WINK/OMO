@@ -7,15 +7,16 @@ import BlackholeImg from '../images/main/main_Blackhole.png';
 import ListButtonImg from '../images/main/main_ListButton.png';
 import PrevDate from '../images/main/main_prevDateButton.png'
 import NextDate from '../images/main/main_nextDateButton.png'
-import blurPlanet from '../images/main/main_blurPlanet.png'
-import planetLine from '../images/main/main_planetLine.png'
-import bbuyo from '../images/main/main_bbuyo.png'
-import planet1 from '../images/main/main_planet1.png'
-import planet2 from '../images/main/main_planet2.png'
-import planet3 from '../images/main/main_planet3.png'
-import planet4 from '../images/main/main_planet4.png'
-import planet5 from '../images/main/main_planet5.png'
-import planet6 from '../images/main/main_planet6.png'
+
+import Planet from "../components/main/planet";
+import Default from "../components/main/default";
+
+import planet1 from "../images/main/main_planet1.png";
+import planet2 from "../images/main/main_planet2.png";
+import planet3 from "../images/main/main_planet3.png";
+import planet4 from "../images/main/main_planet4.png";
+import planet5 from "../images/main/main_planet5.png";
+import planet6 from "../images/main/main_planet6.png";
 
 import {useHistory} from "react-router-dom";
 
@@ -44,6 +45,7 @@ const blurPlanetCSS = {
 }
 const planetLineCSS = {
     width: '1px',
+    height: '730px',
 }
 const bbuyoCSS = {
     position: 'absolute',
@@ -66,7 +68,7 @@ const dateCSS = {
 const HeaderCSS = {
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: 'black',
+    background: 'transparent',
     color: 'white',
     height: '50px',
     alignItems: 'center',
@@ -89,41 +91,6 @@ const NextDateButton = {
     cursor: 'pointer',
     zIndex: '1',
 }
-const planetCSS1 = {
-    width: '400px',
-    position: 'absolute',
-    marginTop: '170px',
-    marginLeft: '30px',
-}
-const planetCSS2 = {
-    width: '220px',
-    position: 'absolute',
-    marginLeft: '200px',
-}
-const planetCSS3 = {
-    width: '360px',
-    position: 'absolute',
-    marginTop: '-70px',
-    marginLeft: '-80px',
-}
-const planetCSS4 = {
-    width: '150px',
-    position: 'absolute',
-    marginTop: '490px',
-    marginLeft: '100px',
-}
-const planetCSS5 = {
-    width: '300px',
-    position: 'absolute',
-    marginTop: '360px',
-    marginLeft: '-40px',
-}
-const planetCSS6 = {
-    width: '160px',
-    position: 'absolute',
-    marginLeft: '220px',
-    marginTop: '430px',
-}
 
 const FooterButtons = {
     display: 'flex',
@@ -133,7 +100,7 @@ const FooterButtons = {
     paddingBottom: '50px',
 }
 
-const Blackhole = {
+const BlackHole = {
     width: '50px',
     height: '40px',
     background: "url("+BlackholeImg+") no-repeat",
@@ -148,7 +115,6 @@ const AddButton = {
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
-
 
 const ListButton = {
     width: '50px',
@@ -217,8 +183,29 @@ function Main(props) {
         setShowModal(!showModal);
     }
 
+
+    // const planets = []; //빈배열
+    const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
+
     return (
         <div style={{backgroundColor: 'black'}}>
+            <div>
+                <div style={mainContents}>
+                    <div style={HeaderCSS}>
+                        <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
+                        <div style={dateCSS}>
+                            {checkMonth + " / " + year}
+                        </div>
+                        <button style={NextDateButton} onClick={ChangeNextDate}/>
+                    </div>
+                    <div>
+                        {planets.length === 0?
+                            // 행성이 없을 때
+                            <Default />
+                            :
+                             // 행성이 있을 때
+                            <Planet planets={planets}/>
+                        }
             <div style={HeaderCSS}>
                 <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
                 <div style={dateCSS} onClick={checkModal}>
@@ -257,18 +244,12 @@ function Main(props) {
                             </div>
                         </div>
                     </div>
-                    {/*행성이 있을 때*/}
-                    {/*<div>
-                        <img src={planet3} style={planetCSS3}/>
-                        <img src={planet2} style={planetCSS2}/>
-                        <img src={planet1} style={planetCSS1}/>
-                        <img src={planet4} style={planetCSS4}/>
-                        <img src={planet5} style={planetCSS5}/>
-                        <img src={planet6} style={planetCSS6}/>
-                    </div>*/}
                 </div>
             </div>
             <div style={FooterButtons}>
+                <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
+                <div style={AddButton}> </div>
+                <div style={ListButton} onClick={() => history.push('/list')}> </div>
                 <div style={Blackhole} onClick={() => history.push('/blackhole')}> </div>
                 <div style={AddButton} onClick={() => history.push('/write')}> </div>
                 <div style={ListButton}> </div>
