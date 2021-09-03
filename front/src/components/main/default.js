@@ -20,15 +20,25 @@ const blurPlanetCSS = {
     height: '70px',
     marginBottom: '-20px',
 }
+const planetLineCSS = {
+    width: '1px',
+}
 const bbuyoCSS = {
     position: 'absolute',
-    marginLeft: '55%',
-    marginTop: '200px'
+    marginLeft: '58%',
+    marginTop: '205px',
+    textAlign: 'center',
 }
 const bbuyoStyle = {
     width: '44px',
     height: '44px',
     cursor: 'pointer',
+}
+const txtCSS = {
+    fontSize: '10px',
+    lineHeight: '1.3',
+    margin: 0,
+    paddingBottom:'6px',
 }
 
 const Default = (props) => {
@@ -41,10 +51,9 @@ const Default = (props) => {
             </div>
             <div style={{marginTop: '40px'}}>
                 <div style={blurPlanetImg} >
-                    <div>
-                        <img src={blurPlanet} style={blurPlanetCSS}/>
-                    </div>
+                    <img src={blurPlanet} style={blurPlanetCSS}/>
                     <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
+                        <p style={txtCSS}>뿌요</p>
                         <img src={bbuyo} style={bbuyoStyle} />
                     </div>
                 </div>

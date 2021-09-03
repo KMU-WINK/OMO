@@ -5,6 +5,7 @@ import AddButtonImg from '../images/main/main_AddButton.png';
 import BackgroundStarImg from '../images/main/main_BackgroundStar.png';
 import BlackholeImg from '../images/main/main_Blackhole.png';
 import ListButtonImg from '../images/main/main_ListButton.png';
+
 import PrevDate from '../images/main/main_prevDateButton.png';
 import NextDate from '../images/main/main_nextDateButton.png';
 
@@ -21,19 +22,50 @@ import planet6 from "../images/main/main_planet6.png";
 import {useHistory} from "react-router-dom";
 
 const mainContents = {
-    background: "url("+BackgroundStarImg+") no-repeat",
+    background: "url("+BackgroundStarImg+")",
     color: 'white',
     overflow: 'hidden',
     position: 'relative',
+    height: '720px',
+}
+const textCSS = {
+    textAlign: 'center',
+    fontSize: '14px',
+    lineHeight: '1.7',
+    marginTop: '300px',
+}
+const blurPlanetImg = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+}
+const blurPlanetCSS = {
+    width: '70px',
+    height: '70px',
+    marginBottom: '-20px',
+}
+const planetLineCSS = {
+    width: '1px',
     height: '730px',
 }
-
+const bbuyoCSS = {
+    position: 'absolute',
+    marginLeft: '55%',
+    marginTop: '200px'
+}
+const bbuyoStyle = {
+    width: '44px',
+    height: '44px',
+    cursor: 'pointer',
+}
 const dateCSS = {
     margin: '0 7px',
     opacity: '0.6',
     border: '1px solid white',
     borderRadius:'3px',
     padding:'3px 10px',
+    zIndex: '1',
+    cursor: 'pointer',
 }
 const HeaderCSS = {
     display: 'flex',
@@ -50,6 +82,7 @@ const PrevDateButton = {
     backgroundSize: 'contain',
     border: '0',
     cursor: 'pointer',
+    zIndex: '1',
 }
 const NextDateButton = {
     width: '25px',
@@ -58,6 +91,7 @@ const NextDateButton = {
     backgroundSize: 'contain',
     border: '0',
     cursor: 'pointer',
+    zIndex: '1',
 }
 
 const FooterButtons = {
@@ -69,48 +103,124 @@ const FooterButtons = {
 }
 
 const BlackHole = {
-    width: '50px',
-    height: '40px',
+    width: '32px',
+    height: '24px',
     background: "url("+BlackholeImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
 
 const AddButton = {
-    width: '50px',
-    height: '50px',
+    width: '58px',
+    height: '58px',
     background: "url("+AddButtonImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
 
 const ListButton = {
-    width: '50px',
-    height: '50px',
+    width: '32px',
+    height: '32px',
     background: "url("+ListButtonImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
+const modalCSS = {
+    paddingBottom: '16px',
+}
+const monthDays = {
+    overflow: 'scroll',
+    scrollBehavior: 'smooth',
+    "&::-webkit-scrollbar": {
+        display : 'none',
+    },
+}
+
+const Background = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.50);
+    z-index: 1;
+`;
+
+const ModalContainer = styled.div`
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    padding: 16px;
+    background: rgba(124, 124, 124, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media only screen and (max-width: 300px) {
+        width: 220px;
+        height: 220px;
+    }
+`;
 
 function Main(props) {
     const history = useHistory();
 
     const now = new Date();
     const year = now.getFullYear();
+    const [nowGetYear, setnowGetYear] = useState(now.getFullYear())
+    const [checkYear, setCheckYear] = useState(now.getFullYear())
 
     var monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
     ];
+    var monthLongNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+        "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+    ];
+    const [checkLongMonth, setCheckLongMonth] = useState(monthLongNames[now.getMonth()])
 
+    {/*날짜체크코드*/}
     const [checkMonth, setCheckMonth] = useState(monthNames[now.getMonth()])
-
-    const ChangePrevDate = () => {
-        console.log('prevButton clicked!')
-        setCheckMonth(monthNames[now.getMonth()-1])
+    const [nowGetMonth, setNowGetMonth] = useState(now.getMonth())
+    const ChangePrevDate = (e) => {
+        e.preventDefault()
+        if (nowGetMonth === 0) {        //1월이면 이전 월은 12월
+            setNowGetMonth(11)
+            setCheckMonth(monthNames[11])
+            setCheckLongMonth(monthLongNames[11])
+            setCheckYear(checkYear-1)
+            setnowGetYear(checkYear-1)
+        }
+        else {
+            setNowGetMonth(nowGetMonth - 1)
+            setCheckMonth(monthNames[nowGetMonth -1])
+            setCheckLongMonth(monthLongNames[nowGetMonth-1])
+        }
     }
-    const ChangeNextDate = () => {
-        console.log('nextButton clicked!')
-        setCheckMonth(monthNames[now.getMonth()+1])
+    const ChangeNextDate = (e) => {
+        e.preventDefault()
+        if (nowGetMonth === 11) {       //12월이면 다음 월은 1월
+            setNowGetMonth(0)
+            setCheckMonth(monthNames[0])
+            setCheckLongMonth(monthLongNames[0])
+            setCheckYear(checkYear+1)
+            setnowGetYear(checkYear+1)
+        }
+        else {
+            setNowGetMonth(nowGetMonth + 1)
+            setCheckMonth(monthNames[nowGetMonth + 1])
+            setCheckLongMonth(monthLongNames[nowGetMonth + 1])
+        }
+
+    }
+    {/*모달체크코드*/}
+    const [showModal, setShowModal] = useState(false);
+    const checkModal = () => {
+        setShowModal(!showModal);
     }
 
     // const planets = []; //빈배열
@@ -120,28 +230,41 @@ function Main(props) {
         <div style={{backgroundColor: 'black'}}>
             <div>
                 <div style={mainContents}>
+                    {/* 하드코딩으로 넣어놓은 modal, 나중에 일.월로 띄워야함 */}
+                    {showModal === true ?
+                        <Background>
+                            <ModalContainer>
+                                <div style={monthDays}>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                </div>
+                            </ModalContainer>
+                        </Background>
+                        : null
+                    }
                     <div style={HeaderCSS}>
                         <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
-                        <div style={dateCSS}>
-                            {checkMonth + " / " + year}
+                        <div style={dateCSS} onClick={checkModal}>
+                            {checkMonth + " / " + nowGetYear }
                         </div>
                         <button style={NextDateButton} onClick={ChangeNextDate}/>
                     </div>
                     <div>
                         {planets.length === 0?
-                            // 행성이 없을 때
-                            <Default />
+                            <Default />     // 행성이 없을 때
                             :
-                             // 행성이 있을 때
-                            <Planet planets={planets}/>
+                            <Planet planets={planets}/>  // 행성이 있을 때
                         }
                     </div>
                 </div>
-            </div>
-            <div style={FooterButtons}>
-                <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
-                <div style={AddButton}> </div>
-                <div style={ListButton} onClick={() => history.push('/list')}> </div>
+                <div style={FooterButtons}>
+                    <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
+                    <div style={AddButton} onClick={() => history.push('/write')}> </div>
+                    <div style={ListButton} onClick={() => history.push('/list')}> </div>
+                </div>
             </div>
         </div>
     );
