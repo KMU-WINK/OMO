@@ -22,11 +22,11 @@ export default Content;
 const Wrap = styled.div`
   display: flex;
   flex-flow: column;
-  width: 323px;
+  width: 319px;
   height: 84px;
-  background-color: black;
+  background: rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.9);
-  padding: 10px;
+  padding: 12px;
   border-radius: 10px;
 `;
 const Dday = styled.div`
