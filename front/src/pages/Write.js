@@ -36,7 +36,7 @@ const Write = (props) => {
         console.log(title, contents)
     }
     return (
-        <div>
+        <BackGround>
             <Header state={"Back"} title={year+"/"+month+"/"+day} next={"저장"} onClick={saveBtn}/>
             <Wrap>
                 <button onClick={saveBtn} className="save-button">저장</button>
@@ -55,15 +55,18 @@ const Write = (props) => {
                 <div className={"tag_alert"} style={{display : `${isToggled?"block":"none"}`}} >리마인더 설정 완료! {month+1}월 {day}일에 알림 드릴게요.</div>
             </Wrap>
             <Footer />
-        </div>
+        </BackGround>
     )
 }
 
 export default Write;
 
+const BackGround = styled.div`
+  background: #000000;
+`;
+
 const Wrap = styled.div`
-    position: relative;
-    background: #000000;
+    position: relative;    
     height:678px;
   > .planet{
     text-align: center;
