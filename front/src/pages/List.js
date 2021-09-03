@@ -20,7 +20,8 @@ import recover from '../images/list/recover.png';
 import checkpupple from '../images/list/checkpupple.png';
 
 const List = (props) => {
-    let test = [{title: "개웃기네", num: 3, Dday: 30, image:star2}, {title: "배고파", num: 18, Dday: 28, image:star4}, {title: "지치는날", num: 5, Dday: 12, image:star3}];
+    // let test = [{title: "개웃기네", num: 3, Dday: 30, image:star2}, {title: "배고파", num: 18, Dday: 28, image:star4}, {title: "지치는날", num: 5, Dday: 12, image:star3}];
+    let test = []
 
     const [isClicked,setClicked] = useState(Array(test.length).fill(false));
     const [isActive, setActive] = useState(true);
@@ -32,7 +33,9 @@ const List = (props) => {
     }
 
     const StartEdit = () => {
-        setActive(false);
+        if (test.length != 0) {
+            setActive(false);
+        }
     };
 
     const checkAll = () => {
@@ -45,18 +48,9 @@ const List = (props) => {
         setSelect(!selectAll);
     }
 
-    const checkOne = (index) => {
-        let temp = []
-        for (let i = 0; i < isClicked.length; i++) {
-            if (index === i) {
-                temp.push(!isClicked[i]);
-            }
-            else{
-                temp.push(isClicked[i]);
-            }
-        }
-        setClicked(temp);
-    }
+    // const checkOne = (index) => {
+    //     setClicked(...index, !isClicked);
+    // }
 
     return (
         <Background>
