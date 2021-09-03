@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Component} from 'react';
 import {useHistory} from "react-router-dom";
 
+import bbuyo from '../../images/main/main_bbuyo.png'
 // import planet1 from "../../images/main/main_planet1.png";
 // import planet2 from "../../images/main/main_planet2.png";
 // import planet3 from "../../images/main/main_planet3.png";
@@ -43,17 +44,31 @@ const planetCSS6 = {
     marginLeft: '220px',
     marginTop: '430px',
 }
+const bbuyoCSS = {
+    position: 'absolute',
+    marginLeft: '73%',
+    marginTop: '600px'
+}
+const bbuyoStyle = {
+    width: '44px',
+    height: '44px',
+    cursor: 'pointer',
+}
 
 const Planet = (props) => {
+    const history = useHistory();
+
     const View = () => {
         const css = [planetCSS1, planetCSS2, planetCSS3, planetCSS4, planetCSS5, planetCSS6];
         let idx = 0;
-        console.log(props.planets)
         return props.planets.map((planet)=> <img src={planet} style={css[idx++]}/>)
     }
     return (
         <div>
             <View/>
+            <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
+                <img src={bbuyo} style={bbuyoStyle} />
+            </div>
         </div>
     )
 }
