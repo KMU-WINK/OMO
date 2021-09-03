@@ -33,7 +33,7 @@ const List = (props) => {
     }
 
     const StartEdit = () => {
-        if (test.length != 0) {
+        if ( test.length !== 0 ) {
             setActive(false);
         }
     };
