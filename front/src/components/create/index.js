@@ -34,7 +34,6 @@ const CreateComponent = ()=>{
 
     return (
         <Background>
-            <Button src={close}/>
             {planets.length === 0?<div>
                 <EmptyCircle onClick={()=>{setPlanetVisible(true)}}>
                     <Plus src={plus}></Plus>
@@ -64,10 +63,8 @@ export default CreateComponent;
 
 const Background = styled.div`
   background: black;
-  //position:absolute;
-  //left:0%;
   width: 100%;
-  height: 812px;
+  height: 762px;
   position: relative;
 `;
 

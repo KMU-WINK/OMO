@@ -89,6 +89,8 @@ export default PlanetCreate;
 
 const Background = styled.div`
     position: relative;
+    left: 0;
+    top:-50px;
     width: 375px;
     height: 812px;
     display: flex;
