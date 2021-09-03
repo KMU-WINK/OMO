@@ -1,19 +1,22 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 
-const Planet = (props) => {
+const star1CSS = {width : 96.01, height: 74.08, margin: "0 0 0 36px"}
+
+const Planet = ({planet, checked, active}) => {
     return(
-        <PlanetBase>
-            <Dday>D-{props.props.Dday}</Dday>
-            <img src={props.props.image} style = {{width : 96.01, height: 74.08, margin: "0 0 0 36px"}}/>
-            <Title>{props.props.title}</Title>
-            <SubTitle>{props.props.num}개의 기록</SubTitle>
+        <PlanetBase check = {checked}>
+            <Dday>D-{planet.Dday}</Dday>
+            <img src={planet.image} style = {star1CSS}/>
+            <Title>{planet.title}</Title>
+            <SubTitle>{planet.num}개의 기록</SubTitle>
         </PlanetBase>
     )
 }
 
 export default Planet;
+
+
 
 const PlanetBase = styled.div`
   width: 167px;
@@ -21,8 +24,18 @@ const PlanetBase = styled.div`
   border-radius: 15px;
   margin: 8px 0 0 9px;
   padding: 0;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(60px);
+  background: ${({ check }) => {
+    if (check) {
+      return "rgba(255, 255, 255, 0.35)";
+    }
+    return "rgba(255, 255, 255, 0.12)";
+  }};
+  backdrop-filter: ${({ check }) => {
+    if (check) {
+      return "blur(60px)";
+    }
+    return "blur(4px)";
+  }};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
 
