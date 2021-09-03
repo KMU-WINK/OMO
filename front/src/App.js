@@ -8,6 +8,7 @@ import Write from "./pages/Write";
 import Create from "./pages/Create";
 import List from "./pages/List";
 import BlackHole from "./pages/BlackHole";
+import Statistics from "./pages/Statistics"
 
 class App extends Component {
   render() {
@@ -26,4 +27,3 @@ class App extends Component {
 }
 
 export default App;
-
