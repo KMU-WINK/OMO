@@ -3,13 +3,12 @@ import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 
 const Planet = (props) => {
-    console.log(props);
     return(
         <PlanetBase>
-            <Dday>D-{props.Dday}</Dday>
-            <img src={props.image} style = {{width : 96.01, height: 74.08, margin: "0 0 0 36px"}}/>
-            <Title>{props.title}</Title>
-            <SubTitle>{props.num}개의 기록</SubTitle>
+            <Dday>D-{props.props.Dday}</Dday>
+            <img src={props.props.image} style = {{width : 96.01, height: 74.08, margin: "0 0 0 36px"}}/>
+            <Title>{props.props.title}</Title>
+            <SubTitle>{props.props.num}개의 기록</SubTitle>
         </PlanetBase>
     )
 }
