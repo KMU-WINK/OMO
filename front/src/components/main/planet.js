@@ -1,0 +1,61 @@
+import React, { useState, useEffect, Component} from 'react';
+import {useHistory} from "react-router-dom";
+
+// import planet1 from "../../images/main/main_planet1.png";
+// import planet2 from "../../images/main/main_planet2.png";
+// import planet3 from "../../images/main/main_planet3.png";
+// import planet4 from "../../images/main/main_planet4.png";
+// import planet5 from "../../images/main/main_planet5.png";
+// import planet6 from "../../images/main/main_planet6.png";
+
+const planetCSS1 = {
+    width: '400px',
+    position: 'absolute',
+    marginTop: '170px',
+    marginLeft: '30px',
+}
+const planetCSS2 = {
+    width: '220px',
+    position: 'absolute',
+    marginLeft: '200px',
+}
+const planetCSS3 = {
+    width: '360px',
+    position: 'absolute',
+    marginTop: '-70px',
+    marginLeft: '-80px',
+}
+const planetCSS4 = {
+    width: '150px',
+    position: 'absolute',
+    marginTop: '490px',
+    marginLeft: '100px',
+}
+const planetCSS5 = {
+    width: '300px',
+    position: 'absolute',
+    marginTop: '360px',
+    marginLeft: '-40px',
+}
+const planetCSS6 = {
+    width: '160px',
+    position: 'absolute',
+    marginLeft: '220px',
+    marginTop: '430px',
+}
+
+const Planet = (props) => {
+    const View = () => {
+        const css = [planetCSS1, planetCSS2, planetCSS3, planetCSS4, planetCSS5, planetCSS6];
+        let idx = 0;
+        console.log(props.planets)
+        return props.planets.map((planet)=> <img src={planet} style={css[idx++]}/>)
+    }
+    return (
+        <div>
+            <View/>
+        </div>
+    )
+}
+
+export default Planet;
