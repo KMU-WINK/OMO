@@ -124,7 +124,14 @@ const ListButton = {
     cursor: 'pointer',
 }
 const modalCSS = {
-    padding: '5% 0',
+    paddingBottom: '16px',
+}
+const monthDays = {
+    overflow: 'scroll',
+    scrollBehavior: 'smooth',
+    "&::-webkit-scrollbar": {
+        display : 'none',
+    },
 }
 
 const Background = styled.div`
@@ -183,6 +190,8 @@ function Main(props) {
             setNowGetMonth(11)
             setCheckMonth(monthNames[11])
             setCheckLongMonth(monthLongNames[11])
+            setCheckYear(checkYear-1)
+            setnowGetYear(checkYear-1)
         }
         else {
             setNowGetMonth(nowGetMonth - 1)
@@ -196,6 +205,8 @@ function Main(props) {
             setNowGetMonth(0)
             setCheckMonth(monthNames[0])
             setCheckLongMonth(monthLongNames[0])
+            setCheckYear(checkYear+1)
+            setnowGetYear(checkYear+1)
         }
         else {
             setNowGetMonth(nowGetMonth + 1)
@@ -221,11 +232,13 @@ function Main(props) {
                     {showModal === true ?
                         <Background>
                             <ModalContainer>
-                                <div style={modalCSS}>{checkLongMonth}</div>
-                                <div style={modalCSS}>{checkLongMonth}</div>
-                                <div style={modalCSS}>{checkLongMonth}</div>
-                                <div style={modalCSS}>{checkLongMonth}</div>
-                                <div style={modalCSS}>{checkLongMonth}</div>
+                                <div style={monthDays}>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                </div>
                             </ModalContainer>
                         </Background>
                         : null
