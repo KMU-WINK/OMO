@@ -133,7 +133,7 @@ const Background = styled.div`
     bottom: 0;
     right: 0;
     background-color: rgba(0,0,0,0.50);
-    z-index: 0;
+    z-index: 1;
 `;
 
 const ModalContainer = styled.div`
@@ -166,14 +166,29 @@ function Main(props) {
     var monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
     ];
+    var monthLongNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+        "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+    ];
+    const [checkLongMonth, setCheckLongMonth] = useState(monthLongNames[now.getMonth()])
 
     {/*날짜체크코드*/}
     const [checkMonth, setCheckMonth] = useState(monthNames[now.getMonth()])
+    const [nowGetmMonth, setNowGetmMonth] = useState(now.getMonth())
     const ChangePrevDate = () => {
-        setCheckMonth(monthNames[now.getMonth()-1])
+        if (nowGetmMonth === 0)         //1월이면 이전 월은 12월
+            setNowGetmMonth(11)
+        else
+            setNowGetmMonth(nowGetmMonth-1)
+        setCheckMonth(monthNames[nowGetmMonth])
+        setCheckLongMonth(monthLongNames[nowGetmMonth])
     }
     const ChangeNextDate = () => {
-        setCheckMonth(monthNames[now.getMonth()+1])
+        if (nowGetmMonth === 11)        //12월이면 다음 월은 1월
+            setNowGetmMonth(0)
+        else
+            setNowGetmMonth(nowGetmMonth+1)
+        setCheckMonth(monthNames[nowGetmMonth])
+        setCheckLongMonth(monthLongNames[nowGetmMonth])
     }
 
     {/*모달체크코드*/}
@@ -182,7 +197,6 @@ function Main(props) {
         setShowModal(!showModal);
     }
 
-
     // const planets = []; //빈배열
     const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
 
@@ -190,14 +204,15 @@ function Main(props) {
         <div style={{backgroundColor: 'black'}}>
             <div>
                 <div style={mainContents}>
+                    {/* 하드코딩으로 넣어놓은 modal, 나중에 일.월로 띄워야함 */}
                     {showModal === true ?
                         <Background>
                             <ModalContainer>
-                                <div style={modalCSS}>1.DECEMBER</div>
-                                <div style={modalCSS}>2.DECEMBER</div>
-                                <div style={modalCSS}>3.DECEMBER</div>
-                                <div style={modalCSS}>4.DECEMBER</div>
-                                <div style={modalCSS}>5.DECEMBER</div>
+                                <div style={modalCSS}>{checkLongMonth}</div>
+                                <div style={modalCSS}>{checkLongMonth}</div>
+                                <div style={modalCSS}>{checkLongMonth}</div>
+                                <div style={modalCSS}>{checkLongMonth}</div>
+                                <div style={modalCSS}>{checkLongMonth}</div>
                             </ModalContainer>
                         </Background>
                         : null
