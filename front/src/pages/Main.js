@@ -7,7 +7,6 @@ import BlackholeImg from '../images/main/main_Blackhole.png';
 import ListButtonImg from '../images/main/main_ListButton.png';
 import PrevDate from '../images/main/main_prevDateButton.png'
 import NextDate from '../images/main/main_nextDateButton.png'
-
 import Planet from "../components/main/planet";
 import Default from "../components/main/default";
 
@@ -25,7 +24,7 @@ const mainContents = {
     color: 'white',
     overflow: 'hidden',
     position: 'relative',
-    height: '665px',
+    height: '720px',
 }
 const textCSS = {
     textAlign: 'center',
@@ -191,30 +190,6 @@ function Main(props) {
         <div style={{backgroundColor: 'black'}}>
             <div>
                 <div style={mainContents}>
-                    <div style={HeaderCSS}>
-                        <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
-                        <div style={dateCSS}>
-                            {checkMonth + " / " + year}
-                        </div>
-                        <button style={NextDateButton} onClick={ChangeNextDate}/>
-                    </div>
-                    <div>
-                        {planets.length === 0?
-                            // 행성이 없을 때
-                            <Default />
-                            :
-                             // 행성이 있을 때
-                            <Planet planets={planets}/>
-                        }
-            <div style={HeaderCSS}>
-                <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
-                <div style={dateCSS} onClick={checkModal}>
-                    {checkMonth+" / "+year}
-                </div>
-                <button style={NextDateButton} onClick={ChangeNextDate}/>
-            </div>
-            <div style={{backgroundColor:'black'}}>
-                <div style={mainContents}>
                     {showModal === true ?
                         <Background>
                             <ModalContainer>
@@ -225,34 +200,28 @@ function Main(props) {
                                 <div style={modalCSS}>5.DECEMBER</div>
                             </ModalContainer>
                         </Background>
-                    : null
+                        : null
                     }
-                    {/*행성이 없을 때*/}
+                    <div style={HeaderCSS}>
+                        <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
+                        <div style={dateCSS} onClick={checkModal}>
+                            {checkMonth + " / " + year}
+                        </div>
+                        <button style={NextDateButton} onClick={ChangeNextDate}/>
+                    </div>
                     <div>
-                        <div style={textCSS}>
-                            아래 + 버튼을 눌러<br/>새 감정을 기록해주세요
-                        </div>
-                        <div style={{marginTop: '40px'}}>
-                            <div style={blurPlanetImg} >
-                                <div>
-                                    <img src={blurPlanet} style={blurPlanetCSS}/>
-                                </div>
-                                <img src={planetLine} style={planetLineCSS}/>
-                                <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
-                                    <img src={bbuyo} style={bbuyoStyle} />
-                                </div>
-                            </div>
-                        </div>
+                        {planets.length === 0?
+                            <Default />     // 행성이 없을 때
+                            :
+                            <Planet planets={planets}/>  // 행성이 있을 때
+                        }
                     </div>
                 </div>
-            </div>
-            <div style={FooterButtons}>
-                <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
-                <div style={AddButton}> </div>
-                <div style={ListButton} onClick={() => history.push('/list')}> </div>
-                <div style={Blackhole} onClick={() => history.push('/blackhole')}> </div>
-                <div style={AddButton} onClick={() => history.push('/write')}> </div>
-                <div style={ListButton}> </div>
+                <div style={FooterButtons}>
+                    <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
+                    <div style={AddButton} onClick={() => history.push('/write')}> </div>
+                    <div style={ListButton} onClick={() => history.push('/list')}> </div>
+                </div>
             </div>
         </div>
     );
