@@ -12,33 +12,39 @@ const Footer = (props) => {
     const history = useHistory();
 
     return (
-        <Wrap>
-            <HomeWrap>
-                <div onClick={() => history.push('/main')}/>
-                <p>홈</p>
-            </HomeWrap>
-            <SearchWrap>
-                <div onClick={() => console.log("검색 페이지")}/>
-                <p>검색</p>
-            </SearchWrap>
-            <PlusWrap>
-                <div className={"circle"}>
-                    <div className={"plus"} onClick={() => console.log("행성 추가")}/>
-                </div>
-            </PlusWrap>
-            <ListWrap>
-                <div onClick={() => history.push('/list')}/>
-                <p>목록</p>
-            </ListWrap>
-            <MoreWrap>
-                <div onClick={() => console.log("더보기 페이지")}/>
-                <p>더보기</p>
-            </MoreWrap>
-        </Wrap>
+        <BackGround>
+            <Wrap>
+                <HomeWrap>
+                    <div onClick={() => history.push('/main')}/>
+                    <p>홈</p>
+                </HomeWrap>
+                <SearchWrap>
+                    <div onClick={() => console.log("검색 페이지")}/>
+                    <p>검색</p>
+                </SearchWrap>
+                <PlusWrap>
+                    <div className={"circle"}>
+                        <div className={"plus"} onClick={() => console.log("행성 추가")}/>
+                    </div>
+                </PlusWrap>
+                <ListWrap>
+                    <div onClick={() => history.push('/list')}/>
+                    <p>목록</p>
+                </ListWrap>
+                <MoreWrap>
+                    <div onClick={() => console.log("더보기 페이지")}/>
+                    <p>더보기</p>
+                </MoreWrap>
+            </Wrap>
+        </BackGround>
     )
 }
 
 export default Footer;
+
+const BackGround = styled.div`
+  background: transparent;
+`;
 
 const Wrap = styled.div`
   width: 100%;
@@ -71,7 +77,8 @@ const HomeWrap = styled.div`
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
-    color: white;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.9);
   }
 `;
 
@@ -92,7 +99,8 @@ const SearchWrap = styled.div`
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
-    color: white;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.9);
   }
 `;
 
@@ -113,7 +121,8 @@ const ListWrap = styled.div`
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
-    color: white;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.9);
   }
 `;
 
@@ -134,7 +143,8 @@ const MoreWrap = styled.div`
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
-    color: white;
+    letter-spacing: -0.025em;
+    color: rgba(255, 255, 255, 0.9);
   }
 `;
 
