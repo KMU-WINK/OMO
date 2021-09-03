@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
+import Planet from "../components/list/planet";
 import styled from "styled-components";
 
 import plus from '../images/list/plusplanet.png';
@@ -12,7 +13,8 @@ import main from '../images/list/mainpage.png';
 
 
 const List = (props) => {
-    let test = true;
+    let test = [{title: "개웃기네", num: 3, Dday: 30, image:star}, {title: "배고파", num: 18, Dday: 28, image:star1}, {title: "지치는날", num: 5, Dday: 12, image:star2}];
+    // let test = []
 
     const ChangeTest = () => {
         console.log(test);
@@ -21,45 +23,28 @@ const List = (props) => {
 
     return (
         <Background>
-            {test ? <>a</>: <>b</>}
             <Header state={"Back"} title={"목록"}/>
             <Middle>
-                <Headbar>
-                    <HeadLeft>
-                        캘린더
-                    </HeadLeft>
+                <Headbar active={test.length}>
                     <HeadRight>
                         행성
                     </HeadRight>
                 </Headbar>
-                <HeadWord>행성목록 편집</HeadWord>
+                <HeadWord active={test.length}>행성목록 편집</HeadWord>
                 <Neckbar>
-                    <Blank/>
-                    <ListName>감정 행성</ListName>
-                    <EditButton onclick = {ChangeTest}>편집</EditButton>
+                    <Blank active={test.length}/>
+                    <ListName active={test.length}>감정 행성</ListName>
+                    <EditButton>편집</EditButton>
                 </Neckbar>
                 <PlanetBackground>
-                    <PlusPlanet>
+                    <PlusPlanet active={test.length}>
                         <div className={"plus"} />
                     </PlusPlanet>
-                    <Planet>
-                        <Dday>D-30</Dday>
-                        <img src={star} style = {{width : 96.01, height: 74.08, margin: "0 0 0 36px"}}/>
-                        <Title>개웃기네</Title>
-                        <SubTitle>5개의 기록</SubTitle>
-                    </Planet>
-                    <Planet>
-                        <Dday>D-20</Dday>
-                        <img src={star1} style = {{width : 96.01, height: 54.08, margin: "0 0 0 36px"}}/>
-                        <Title>배고파</Title>
-                        <SubTitle>5개의 기록</SubTitle>
-                    </Planet>
-                    <Planet>
-                        <Dday>D-12</Dday>
-                        <img src={star2} style = {{width : 96.01, height: 74.08, margin: "0 0 0 36px"}}/>
-                        <Title>지치는날</Title>
-                        <SubTitle>5개의 기록</SubTitle>
-                    </Planet>
+                    {test.map((test)=> {
+                        return (
+                            <Planet props = {test} />
+                                )
+                        })}
                 </PlanetBackground>
             </Middle>
             <div style={{background:"black"}}>
@@ -89,9 +74,14 @@ const Middle = styled.div`
 const Headbar = styled.div`
   width: 375px;
   height: 48px;
-  background: #000000;
-  display: none;
-  justify-content: space-between;
+  display: ${({ active }) => {
+    if (active) {
+      return "none";
+    }
+    return "flex";
+  }};
+  align-items: center;
+  justify-content: center;
 `;
 
 const HeadLeft = styled.div`
@@ -116,7 +106,12 @@ const HeadWord = styled.div`
   width: 100%;
   height: 48px;
   background: #000000;
-  display: flex;
+  display: ${({ active }) => {
+    if (active) {
+      return "flex";
+    }
+    return "none";
+  }};
   align-items: center;
   justify-content: center;
   color: #676767;
@@ -136,7 +131,12 @@ const Neckbar = styled.div`
 `
 
 const Blank = styled.div`
-    display: none;
+    display: ${({ active }) => {
+      if (active) {
+        return "none";
+      }
+      return "flex";
+    }};
 `
 
 const ListName = styled.div`
@@ -150,6 +150,12 @@ const ListName = styled.div`
   letter-spacing: -0.025em;
   color: rgba(255, 255, 255, 0.6);
   margin-left: 2px;
+  display: ${({ active }) => {
+    if (active) {
+      return "flex";
+    }
+    return "none";
+  }};
 `
 
 const EditButton = styled.button`
@@ -167,10 +173,10 @@ const EditButton = styled.button`
 `
 
 const PlanetBackground = styled.div`
-  width: 352px;
-  margin-left: 7px;
+  width: 375px;
   display: flex;
   flex-wrap: wrap;
+  margin: 8px 0 0 7px;
 `
 
 const PlusPlanet = styled.div`
@@ -178,9 +184,14 @@ const PlusPlanet = styled.div`
   height: 166px;
   border-radius: 15px;
   border: solid 2px;
-  margin: 0 0 0 0;
+  margin: 24px 0 0 16px;
   color: #A661FF;
-  display: none;
+  display: ${({ active }) => {
+    if (active) {
+      return "none";
+    }
+    return "flex";
+  }};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -195,49 +206,4 @@ const PlusPlanet = styled.div`
   }
 `
 
-const Planet = styled.div`
-  width: 167px;
-  height: 166px;
-  border-radius: 15px;
-  margin: 8px 0 0 9px;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(60px);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  
-`
 
-const Dday = styled.div`
-  width: 154px;
-  height: 13px;
-  color: #A661FF;
-  margin: 16px 0 0 0;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 10px;
-`
-
-const Title = styled.div`
-  color: rgba(255, 255, 255, 0.9);
-  width: 100%;
-  height: 14px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 112px;
-  
-`
-
-const SubTitle = styled.div`
-  width: 50px;
-  height: 13px;
-  font-size: 10px;
-  display: flex;
-  justify-content: center;
-  color: gray;
-  margin: 8px 0 0 0;
-  position: absolute;
-  top: 130px;
-  left: 60px;
-`
