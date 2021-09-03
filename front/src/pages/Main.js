@@ -63,6 +63,7 @@ const dateCSS = {
     borderRadius:'3px',
     padding:'3px 10px',
     zIndex: '1',
+    cursor: 'pointer',
 }
 const HeaderCSS = {
     display: 'flex',
@@ -100,24 +101,24 @@ const FooterButtons = {
 }
 
 const BlackHole = {
-    width: '50px',
-    height: '40px',
+    width: '32px',
+    height: '24px',
     background: "url("+BlackholeImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
 
 const AddButton = {
-    width: '50px',
-    height: '50px',
+    width: '58px',
+    height: '58px',
     background: "url("+AddButtonImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
 
 const ListButton = {
-    width: '50px',
-    height: '50px',
+    width: '32px',
+    height: '32px',
     background: "url("+ListButtonImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
@@ -162,6 +163,8 @@ function Main(props) {
 
     const now = new Date();
     const year = now.getFullYear();
+    const [nowGetYear, setnowGetYear] = useState(now.getFullYear())
+    const [checkYear, setCheckYear] = useState(now.getFullYear())
 
     var monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
@@ -173,24 +176,34 @@ function Main(props) {
 
     {/*날짜체크코드*/}
     const [checkMonth, setCheckMonth] = useState(monthNames[now.getMonth()])
-    const [nowGetmMonth, setNowGetmMonth] = useState(now.getMonth())
-    const ChangePrevDate = () => {
-        if (nowGetmMonth === 0)         //1월이면 이전 월은 12월
-            setNowGetmMonth(11)
-        else
-            setNowGetmMonth(nowGetmMonth-1)
-        setCheckMonth(monthNames[nowGetmMonth])
-        setCheckLongMonth(monthLongNames[nowGetmMonth])
+    const [nowGetMonth, setNowGetMonth] = useState(now.getMonth())
+    const ChangePrevDate = (e) => {
+        e.preventDefault()
+        if (nowGetMonth === 0) {        //1월이면 이전 월은 12월
+            setNowGetMonth(11)
+            setCheckMonth(monthNames[11])
+            setCheckLongMonth(monthLongNames[11])
+        }
+        else {
+            setNowGetMonth(nowGetMonth - 1)
+            setCheckMonth(monthNames[nowGetMonth -1])
+            setCheckLongMonth(monthLongNames[nowGetMonth-1])
+        }
     }
-    const ChangeNextDate = () => {
-        if (nowGetmMonth === 11)        //12월이면 다음 월은 1월
-            setNowGetmMonth(0)
-        else
-            setNowGetmMonth(nowGetmMonth+1)
-        setCheckMonth(monthNames[nowGetmMonth])
-        setCheckLongMonth(monthLongNames[nowGetmMonth])
-    }
+    const ChangeNextDate = (e) => {
+        e.preventDefault()
+        if (nowGetMonth === 11) {       //12월이면 다음 월은 1월
+            setNowGetMonth(0)
+            setCheckMonth(monthNames[0])
+            setCheckLongMonth(monthLongNames[0])
+        }
+        else {
+            setNowGetMonth(nowGetMonth + 1)
+            setCheckMonth(monthNames[nowGetMonth + 1])
+            setCheckLongMonth(monthLongNames[nowGetMonth + 1])
+        }
 
+    }
     {/*모달체크코드*/}
     const [showModal, setShowModal] = useState(false);
     const checkModal = () => {
@@ -220,7 +233,7 @@ function Main(props) {
                     <div style={HeaderCSS}>
                         <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
                         <div style={dateCSS} onClick={checkModal}>
-                            {checkMonth + " / " + year}
+                            {checkMonth + " / " + nowGetYear }
                         </div>
                         <button style={NextDateButton} onClick={ChangeNextDate}/>
                     </div>
