@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Component} from 'react';
 import {useHistory} from "react-router-dom";
 
-import blurPlanet from '../../images/main/main_blurPlanet.png'
-import bbuyo from '../../images/main/main_bbuyo.png'
+import blurPlanet from '../../images/main/main_blurPlanet.png';
+import bbuyo from '../../images/main/main_bbuyo.png';
 
 const textCSS = {
     textAlign: 'center',

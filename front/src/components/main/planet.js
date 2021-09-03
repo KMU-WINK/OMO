@@ -68,7 +68,8 @@ const Planet = (props) => {
     const View = () => {
         const css = [planetCSS1, planetCSS2, planetCSS3, planetCSS4, planetCSS5, planetCSS6];
         let idx = 0;
-        return props.planets.map((planet)=> <img src={planet} style={css[idx++]}/>)
+        // console.log(props.planets);
+        return props.planets.map((planet)=> <img key={planet} src={planet} style={css[idx++]}/>)
     }
     return (
         <div>

@@ -5,8 +5,10 @@ import AddButtonImg from '../images/main/main_AddButton.png';
 import BackgroundStarImg from '../images/main/main_BackgroundStar.png';
 import BlackholeImg from '../images/main/main_Blackhole.png';
 import ListButtonImg from '../images/main/main_ListButton.png';
-import PrevDate from '../images/main/main_prevDateButton.png'
-import NextDate from '../images/main/main_nextDateButton.png'
+
+import PrevDate from '../images/main/main_prevDateButton.png';
+import NextDate from '../images/main/main_nextDateButton.png';
+
 import Planet from "../components/main/planet";
 import Default from "../components/main/default";
 
