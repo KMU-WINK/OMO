@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component} from 'react';
 import {useHistory} from "react-router-dom";
 
 import blurPlanet from '../../images/main/main_blurPlanet.png'
+import planetLine from '../../images/main/main_planetLine.png'
 import bbuyo from '../../images/main/main_bbuyo.png'
 
 const textCSS = {
@@ -19,6 +20,9 @@ const blurPlanetCSS = {
     width: '70px',
     height: '70px',
     marginBottom: '-20px',
+}
+const planetLineCSS = {
+    width: '1px',
 }
 const bbuyoCSS = {
     position: 'absolute',
@@ -44,6 +48,7 @@ const Default = (props) => {
                     <div>
                         <img src={blurPlanet} style={blurPlanetCSS}/>
                     </div>
+                    <img src={planetLine} style={planetLineCSS}/>
                     <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
                         <img src={bbuyo} style={bbuyoStyle} />
                     </div>
