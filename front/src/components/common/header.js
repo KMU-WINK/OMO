@@ -54,6 +54,7 @@ const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 50;
 `;
 
 const CancelButton = styled.div`
@@ -79,12 +80,11 @@ const BackButton = styled.div`
 `;
 
 const Title = styled.div`
-  font-family: S-Core Dream;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  color: #FFFFFF;
+  font-family: AvertaStd-Semibold;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0.025em;
+  color: #E7E7E7;
 `;
 
 const Next = styled.div`
@@ -93,9 +93,10 @@ const Next = styled.div`
   > div {
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
-    font-weight: 500;
+    font-weight: normal;
     font-size: 16px;
     line-height: 20px;
-    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: -0.025em;
+    color: #A661FF;
   }
 `;

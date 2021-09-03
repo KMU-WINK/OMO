@@ -65,7 +65,7 @@ const FooterButtons = {
     justifyContent: 'space-evenly',
     backgroundColor: 'black',
     alignItems: 'center',
-    paddingBottom: '50px',
+    paddingBottom: '32px',
 }
 
 const BlackHole = {
