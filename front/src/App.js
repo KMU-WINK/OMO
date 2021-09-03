@@ -12,7 +12,7 @@ import Statistics from "./pages/Statistics";
 class App extends Component {
   render() {
     return (
-        <Router>
+      <Router>
           <Wrap>
             <Route exact path="/main" component={Main} />
             <Route path="/write" component={Write} />
@@ -21,7 +21,7 @@ class App extends Component {
             <Route path="/blackHole" component={BlackHole} />
             <Route path="/statistics" component={Statistics} />
           </Wrap>
-        </Router>
+      </Router>
     );
   }
 }
