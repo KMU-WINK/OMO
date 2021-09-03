@@ -63,9 +63,12 @@ const CreateComponent = ()=>{
 export default CreateComponent;
 
 const Background = styled.div`
-    background: black;
-    width: 375px;
-    height: 812px;
+  background: black;
+  //position:absolute;
+  //left:0%;
+  width: 100%;
+  height: 812px;
+  position: relative;
 `;
 
 const Button = styled.img`
@@ -241,8 +244,6 @@ const Item = ({planetId, colorId, name, count})=>{
         <ItemBlock>
             <PlanetBlock ref={planetRef}>
                 {
-                    console.log("hi"),
-                    console.log(planetId),
                    planets.map(({Planet, isclick, id})=>(id===planetId?
                     <Planet ref={planetRef} key={planetId}></Planet>:<></>))
                 }

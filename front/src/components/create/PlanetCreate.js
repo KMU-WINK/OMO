@@ -88,9 +88,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
 export default PlanetCreate;
 
 const Background = styled.div`
-    position: fixed;
-    left: 0;
-    top: 0;
+    position: relative;
     width: 375px;
     height: 812px;
     display: flex;
