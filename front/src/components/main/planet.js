@@ -47,12 +47,19 @@ const planetCSS6 = {
 const bbuyoCSS = {
     position: 'absolute',
     marginLeft: '73%',
-    marginTop: '600px'
+    marginTop: '590px',
+    textAlign:'center',
 }
 const bbuyoStyle = {
     width: '44px',
     height: '44px',
     cursor: 'pointer',
+}
+const txtCSS = {
+    fontSize: '10px',
+    lineHeight: '1.3',
+    margin: 0,
+    paddingBottom:'6px',
 }
 
 const Planet = (props) => {
@@ -61,12 +68,14 @@ const Planet = (props) => {
     const View = () => {
         const css = [planetCSS1, planetCSS2, planetCSS3, planetCSS4, planetCSS5, planetCSS6];
         let idx = 0;
-        return props.planets.map((planet)=> <img src={planet} style={css[idx++]}/>)
+        // console.log(props.planets);
+        return props.planets.map((planet)=> <img key={planet} src={planet} style={css[idx++]}/>)
     }
     return (
         <div>
             <View/>
             <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
+                <p style={txtCSS}>뿌요</p>   {/*뿌요 대신 이름 들어가는 듯*/}
                 <img src={bbuyo} style={bbuyoStyle} />
             </div>
         </div>
