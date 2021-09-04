@@ -44,6 +44,7 @@ export default Footer;
 
 const BackGround = styled.div`
   background: transparent;
+  z-index: 100;
 `;
 
 const Wrap = styled.div`
