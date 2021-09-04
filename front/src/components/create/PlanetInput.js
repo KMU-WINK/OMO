@@ -38,8 +38,10 @@ const Input = styled.input`
     align-items: center;
     letter-spacing: -0.025em;
     color: rgba(255, 255, 255, 0.2);
-    border-right: 0px;
-    border-bottom: 0px;
+    border-right:0;
+    border-bottom:0;
+    border-left:0;
+    border-top:0;
     outline:none;
 `;
 
