@@ -43,6 +43,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
             offset3.setAttribute("offset", color[0]["offset3"]["offset"])
             offset3.setAttribute("stop-color", color[0]["offset3"]["stopColor"])
         }
+        return id;
     }
     {
         if (!visible) return null;
@@ -66,7 +67,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
                         ))}
                     </ItemBlock>
                     <Text left="141px" top="151px">컬러</Text>
-                    <ItemBlock top="167px">
+                    <ItemBlock top="172px">
                         {    
                             planetColors.map(co=>(
                                 <CircleDiv onClick={()=>{colorClick(co.id)}} key={co.id}>
@@ -164,8 +165,8 @@ const MainPlanetDiv = styled.div`
     display:inline;
     >svg{
         position:absolute;
-        width:30%;
-        height:30%;
+        width:100px;
+        height:100px;
         left:18px;
         top:90px;
         transform: rotate(-20deg);
@@ -177,6 +178,17 @@ const PlanetDiv = styled.div`
         width: 32px;
         height: 32px;
         margin-right:5px;
+        transform: translate(-50%, -50%);
+        transform: rotate(-20deg);
+    }
+    >#planet4{
+        width:25px;
+        height:25px;
+        padding-left: 3.5px;
+        padding-top: 3.5px;
+        padding-bottom: 3.5px;
+        padding-right: 3.5px;
+        top:-5px;
     }
 
     >svg>path{
@@ -196,7 +208,7 @@ const Circle = styled.div`
     display:inline-block;
     width: 20px;
     height: 20px;
-    margin-right:8px;
+    margin-right:11px;
     background: ${props=>props.color};
     border-radius: 50%;
 `;

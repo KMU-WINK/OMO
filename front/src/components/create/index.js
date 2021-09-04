@@ -48,7 +48,7 @@ const CreateComponent = ()=>{
                     {
                         Array.isArray(planets)?
                         planets.map(p=>(
-                            <Item key={p.key} planetId={p.planet} colorId={p.color} name={p.name} count={0}/>
+                            <Item pKey={p.key} key={p.key} planetId={p.planet} colorId={p.color} name={p.name} count={0}/>
                         )):<></>
                     }
                     <AddItem onClick={()=>{setPlanetVisible(true)}}/>
@@ -81,7 +81,7 @@ const EmptyCircle = styled.div`
     width: 247px;
     height: 247px;
     left: 64px;
-    top: 242px;
+    top: 152px;
 
     border: 2px dashed #918D99;
     border-radius: 50%;
@@ -90,8 +90,8 @@ const EmptyCircle = styled.div`
 
 const Plus = styled.img`
     position: absolute;
-    left: 46.13%;
-    right: 46.4%;
+    left: 118px;
+    transform: translate(-50%, 0%);
     top: 43.35%;
     bottom: 53.2%;
 `;
@@ -101,7 +101,7 @@ const MainText = styled.p`
     width: 80px;
     height: 23px;
     left: 187.5px;
-    top: 517px;
+    top: 427px;
     transform: translate(-50%, 0%);
 
     font-family: Spoqa Han Sans Neo;
@@ -117,9 +117,9 @@ const SubText = styled.p`
     position: absolute;
     width: 300px;
     height: 20px;
-    left: 187.5px;
-    top: 550px;
+    left: 202px;
     transform: translate(-50%, 0%);
+    top: 460px;
 
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
@@ -230,16 +230,33 @@ const PlanetBlock = styled.div`
         transform: rotate(-18deg)
     }
 `;
-const Item = ({planetId, colorId, name, count})=>{
+const Item = ({planetId, colorId, name, count, pKey})=>{
     const planetRef = React.useRef();
     const chnageColor = ()=>{
         setTimeout(()=>{
-        }, 100);
+            const color = planetColors.filter(color=>color.id === colorId);
+            console.log("hihihi: ", color);
+            const queryId = "planetBlock"+pKey;
+            const offset1 = document.querySelector("#" + queryId + ">svg>defs>linearGradient>#offset1");
+            const offset2 = document.querySelector("#" + queryId + ">svg>defs>linearGradient>#offset2");
+            offset1.setAttribute('offset', color[0]["offset1"]["offset"]);
+            offset1.setAttribute("stop-color", color[0]["offset1"]["stopColor"]);
+            offset2.setAttribute("offset", color[0]["offset2"]["offset"]);
+            offset2.setAttribute("stop-color", color[0]["offset2"]["stopColor"]);
+
+            
+            const offset3 = document.querySelector("#" + queryId + ">svg>defs>linearGradient>#offset3");
+            if (color[0]["offset3"] != null)
+            {
+                offset3.setAttribute("offset", color[0]["offset3"]["offset"]);
+                offset3.setAttribute("stop-color", color[0]["offset3"]["stopColor"]);
+            }
+            }, 100);
     };
 
     return (
         <ItemBlock>
-            <PlanetBlock ref={planetRef}>
+            <PlanetBlock ref={planetRef} id={"planetBlock" + pKey}>
                 {
                    planets.map(({Planet, isclick, id})=>(id===planetId?
                     <Planet ref={planetRef} key={planetId}></Planet>:<></>))
