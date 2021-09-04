@@ -20,16 +20,16 @@ import recover from '../images/list/recover.png';
 import checkpupple from '../images/list/checkpupple.png';
 
 const List = (props) => {
-    // let test = [{title: "개웃기네", num: 3, Dday: 30, image:star2}, {title: "배고파", num: 18, Dday: 28, image:star4}, {title: "지치는날", num: 5, Dday: 12, image:star3}];
-    let test = []
+    let test = [{title: "개웃기네", num: 3, Dday: 30, image:star2}, {title: "배고파", num: 18, Dday: 28, image:star4}, {title: "지치는날", num: 5, Dday: 12, image:star3}];
+    // let test = []
 
-    const [isClicked,setClicked] = useState(Array(test.length).fill(false));
+    const isClickedList = Array(test.length).fill(false);
     const [isActive, setActive] = useState(true);
     const [selectAll, setSelect] = useState(false);
 
     const FinishEdit = () => {
         setActive(true);
-        setClicked(Array(test.length).fill(false));
+        isClickedList.fill(0,0, isClickedList.length);
     }
 
     const StartEdit = () => {
@@ -39,18 +39,16 @@ const List = (props) => {
     };
 
     const checkAll = () => {
-        setClicked(Array(test.length).fill(true));
-        setSelect(!selectAll);
+        isClickedList.fill(1, 0, isClickedList.length);
+        setSelect(2);
+        console.log(isClickedList)
     }
 
     const cancelAll = () => {
-        setClicked(Array(test.length).fill(false));
-        setSelect(!selectAll);
+        isClickedList.fill(0, 0, isClickedList.length);
+        setSelect(0);
+        console.log(isClickedList);
     }
-
-    // const checkOne = (index) => {
-    //     setClicked(...index, !isClicked);
-    // }
 
     return (
         <Background>
@@ -103,9 +101,10 @@ const List = (props) => {
                     </PlusPlanet>
                     {test.map((test, index)=> {
                         return (
-                            <Planet planet = {test} checked={isClicked[index]} />
+                            <Planet planet = {test} checked={isClickedList[index]} active = {isActive} />
                                 )
                         })};
+                    {/*{setSelect(0)};*/}
                 </PlanetBackground>
             </Middle>
             {

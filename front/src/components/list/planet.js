@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const star1CSS = {width : 96.01, height: 74.08, margin: "0 0 0 36px"}
 
 const Planet = ({planet, checked, active}) => {
+
+    const [isClicked,setClicked] = useState(checked);
+
+    const checkOne = () => {
+        if (!active){
+            setClicked(!isClicked);
+        }
+    }
+
     return(
-        <PlanetBase check = {checked}>
+        <PlanetBase check = {isClicked} onClick = {checkOne}>
             <Dday>D-{planet.Dday}</Dday>
             <img src={planet.image} style = {star1CSS}/>
             <Title>{planet.title}</Title>
