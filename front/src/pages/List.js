@@ -131,7 +131,7 @@ const HeaderDiv = styled.div`
   width: 375px;
   background: ${({ active }) => {
     if (active) {
-      return "black";
+      return "#141317";
     }
     return "transparent";
   }};;
@@ -153,7 +153,7 @@ const Middle = styled.div`
 `;
 
 const Headbar = styled.div`
-  background: black;
+  background: #141317;
   width: 375px;
   height: 48px;
   display: flex;
