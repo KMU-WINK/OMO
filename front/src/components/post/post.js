@@ -19,14 +19,14 @@ const Post = (props) => {
                     <img src={props.planet}/>
                 </Planet>
                 <Title>{props.title}</Title>
-                <Content>{props.content}</Content>
+                <Body>{props.content}</Body>
                 <Line />
                 <Tag>
                     <HashTag hashtag={"교수님"}/>
                     <HashTag hashtag={"ㅋㅋㅋㅋㅋ"}/>
                     <HashTag hashtag={"ㄹㄱㄴ"}/>
                     <HashTag hashtag={"에바임"}/>
-                </Tag>                
+                </Tag>
                 <Buttons>
                     <Edit />
                     <Delete />
@@ -87,7 +87,7 @@ const Title = styled.div`
   color: #E2E2E2;
 `;
 
-const Content = styled.div`
+const Body = styled.div`
   position: absolute;
   width: 290px;
   height: 79.89px;

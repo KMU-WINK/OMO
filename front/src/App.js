@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import Write from "./pages/Write";
 import Create from "./pages/Create";
 import List from "./pages/List";
+import Menu from "./pages/Menu"
 import Posts from "./pages/Posts";
 import BlackHole from "./pages/BlackHole";
 import Statistics from "./pages/Statistics";
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/write" component={Write} />
             <Route path="/create" component={Create} />
             <Route path="/list" component={List} />
+            <Route path="/menu" component={Menu} />
             <Route path="/post" component={Posts} />
             <Route path="/blackHole" component={BlackHole} />
             <Route path="/statistics" component={Statistics} />
