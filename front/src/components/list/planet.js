@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const star1CSS = {width : 96.01, height: 74.08, margin: "0 0 0 36px"}
 
-const Planet = ({planet, checked, active}) => {
+const Planet = ({planet, checked, active, select}) => {
 
     const [isClicked,setClicked] = useState(checked);
 
@@ -12,6 +12,19 @@ const Planet = ({planet, checked, active}) => {
             setClicked(!isClicked);
         }
     }
+
+    const checkEdit = () => {
+        if (active && isClicked){
+            setClicked(false);
+        }
+    }
+
+    checkEdit();
+
+    // 전체 선택, 하지만 이렇게 하면 하나씩 선택이 불가능.
+    // const selectAll = () => {
+    //     setClicked(isClicked * select);
+    // }
 
 
     return(
