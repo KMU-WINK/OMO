@@ -100,7 +100,7 @@ const List = (props) => {
                     </PlusPlanet>
                     {test.map((test, index)=> {
                         return (
-                            <Planet planet = {test} checked={isClickedList[index]} active = {isActive} />
+                            <Planet planet = {test} checked={isClickedList[index]} active = {isActive} select={selectAll}/>
                                 )
                         })};
                     {/*{setSelect(0)};*/}
