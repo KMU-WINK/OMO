@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-const star1CSS = {width : 96.01, height: 74.08, margin: "0 0 0 36px"}
+const star1CSS = {height : 60,  margin: "0 0 0 0"}
 
 const Planet = ({planet, checked, active, select}) => {
 
@@ -59,13 +59,16 @@ const PlanetBase = styled.div`
     return "blur(4px)";
   }};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const Dday = styled.div`
   width: 154px;
   height: 13px;
   color: #A661FF;
-  margin: 16px 0 0 0;
+  margin: 16px 8px 0 0;
   display: flex;
   justify-content: flex-end;
   font-size: 10px;
@@ -90,5 +93,6 @@ const SubTitle = styled.div`
   justify-content: center;
   align-items: center;
   color: gray;
-  margin: 28px 0 0 0;
+  position: absolute;
+  top: 138px;
 `
