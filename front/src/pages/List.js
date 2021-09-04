@@ -131,7 +131,7 @@ const HeaderDiv = styled.div`
   width: 375px;
   background: ${({ active }) => {
     if (active) {
-      return "black";
+      return "#141317";
     }
     return "transparent";
   }};;
@@ -153,7 +153,7 @@ const Middle = styled.div`
 `;
 
 const Headbar = styled.div`
-  background: black;
+  background: #141317;
   width: 375px;
   height: 48px;
   display: flex;
@@ -192,7 +192,7 @@ const HeadWord = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #676767;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -262,13 +262,12 @@ const EditButton = styled.button`
   height: 24px;
   border-radius: 20px 20px 20px 20px;
   border: solid 1px;
-  color: #C4C4C4;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: smaller;
   background: rgba(255, 255, 255, 0);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
 `
 
 const PlanetBackground = styled.div`
