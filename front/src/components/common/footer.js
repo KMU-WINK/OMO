@@ -24,7 +24,7 @@ const Footer = (props) => {
                 </SearchWrap>
                 <PlusWrap>
                     <div className={"circle"}>
-                        <div className={"plus"} onClick={() => console.log("행성 추가")}/>
+                        <div className={"plus"} onClick={() => history.push('/create')}/>
                     </div>
                 </PlusWrap>
                 <ListWrap>
@@ -53,98 +53,144 @@ const Wrap = styled.div`
   background: #343139;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 20px 20px 0px 0px;
-  //position: fixed;
-  //left: 0;
-  //bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  position: relative;
 `;
 
 const HomeWrap = styled.div`
-  //position: fixed;
-  //left: 5%;
+  position: absolute;
+  width: 64px;
+  height: 79px;
+  left: 17px;
+  top: 0px;
   > div {
+    position: absolute;
     width: 32px;
     height: 32px;
+    left: calc(50% - 32px/2);
+    top: calc(50% - 32px/2 - 14.5px);
     background: url(${home}) no-repeat;
     background-size: contain;
   }
   > p {
-    margin: 0;
-    text-align: center;
+    position: absolute;
+    width: 10px;
+    height: 12px;
+    left: calc(50% - 10px/2);
+    top: calc(50% - 12px/2 + 8.5px);
+    margin-top: 1px;
+
     font-family: S-Core Dream;
     font-style: normal;
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
+
     letter-spacing: -0.025em;
+
     color: rgba(255, 255, 255, 0.9);
   }
 `;
 
 const SearchWrap = styled.div`
-  //position: fixed;
-  //left: 24%;
+  position: absolute;
+  width: 64px;
+  height: 79px;
+  left: 87px;
+  top: 0px;
   > div {
+    position: absolute;
     width: 32px;
     height: 32px;
+    left: calc(50% - 32px/2);
+    top: calc(50% - 32px/2 - 14.5px);
     background: url(${search}) no-repeat;
     background-size: contain;
   }
   > p {
-    margin: 0;
-    text-align: center;
+    position: absolute;
+    height: 12px;
+    left: calc(50% - 19px/2 + 0.5px);
+    top: calc(50% - 12px/2 + 8.5px);
+    margin-top: 1px;
+
     font-family: S-Core Dream;
     font-style: normal;
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
     letter-spacing: -0.025em;
+
     color: rgba(255, 255, 255, 0.9);
+
   }
 `;
 
 const ListWrap = styled.div`
-  //position: fixed;
-  //right: 24%;
+  position: absolute;
+  width: 64px;
+  height: 79px;
+  left: 224px;
+  top: 0px;
   > div {
+    position: absolute;
     width: 32px;
     height: 32px;
+    left: calc(50% - 32px/2);
+    top: calc(50% - 32px/2 - 14.5px);
     background: url(${list}) no-repeat;
     background-size: contain;
   }
   > p {
-    margin: 0;
-    text-align: center;
+    position: absolute;
+    height: 12px;
+    left: calc(50% - 19px/2 + 0.5px);
+    top: calc(50% - 12px/2 + 8.5px);
+    margin-top: 1px;
+
     font-family: S-Core Dream;
     font-style: normal;
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
+
+    text-align: center;
     letter-spacing: -0.025em;
+
     color: rgba(255, 255, 255, 0.9);
   }
 `;
 
 const MoreWrap = styled.div`
-  //position: fixed;
-  //right: 5%;
+  position: absolute;
+  width: 64px;
+  height: 79px;
+  left: 294px;
+  top: 0px;
   > div {
+    position: absolute;
     width: 32px;
     height: 32px;
+    left: calc(50% - 32px/2);
+    top: calc(50% - 32px/2 - 14.5px);
     background: url(${more}) no-repeat;
     background-size: contain;
   }
   > p {
-    margin: 0;
-    text-align: center;
-    font-family: S-Core Dream;
+    position: absolute;
+    height: 13px;
+    left: calc(50% - 28px/2);
+    top: calc(50% - 13px/2 + 8px);
+    margin-top: 1px;
+
+    font-family: Spoqa Han Sans Neo;
     font-style: normal;
-    font-weight: 600;
+    font-weight: bold;
     font-size: 10px;
-    line-height: 12px;
+    line-height: 13px;
+
+    text-align: center;
     letter-spacing: -0.025em;
+
     color: rgba(255, 255, 255, 0.9);
   }
 `;
@@ -153,13 +199,17 @@ const PlusWrap = styled.div`
   //position: fixed;
   //left: 41%;
   //bottom: 2%;
-  padding-bottom: 40px;
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  left: calc(50% - 66px/2 - 0.5px);
+  top: calc(50% - 66px/2 - 26px);
   > .circle {
     width: 66px;
     height: 66px;
     text-align: center;
     margin: 0 auto;
-    background: #553C75;
+    background: #A661FF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 100px;
     
