@@ -38,15 +38,15 @@ const BackGround = styled.div`
 
 const Wrap = styled.div`
   position: static;
-  height: 14px;
+  height: 13px;
   left: calc(50% - 36px/2);
   top: calc(50% - 14px/2);
 
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: normal;
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 10px;
+  line-height: 13px;
 
   display: flex;
   align-items: center;
