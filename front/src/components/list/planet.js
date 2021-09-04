@@ -13,6 +13,7 @@ const Planet = ({planet, checked, active}) => {
         }
     }
 
+
     return(
         <PlanetBase check = {isClicked} onClick = {checkOne}>
             <Dday>D-{planet.Dday}</Dday>
@@ -24,7 +25,6 @@ const Planet = ({planet, checked, active}) => {
 }
 
 export default Planet;
-
 
 
 const PlanetBase = styled.div`

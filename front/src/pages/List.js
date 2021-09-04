@@ -16,7 +16,6 @@ import star6 from '../images/list/star6.png';
 import main from '../images/list/mainpage.png';
 import check from '../images/list/check.png';
 import deleted from '../images/list/delete.png';
-import recover from '../images/list/recover.png';
 import checkpupple from '../images/list/checkpupple.png';
 
 const List = (props) => {
@@ -113,9 +112,6 @@ const List = (props) => {
                 <Footer />
                 :
                 <DeleteBar>
-                    <Deletediv>
-                        <Recover/>
-                    </Deletediv>
                     <Deletediv>
                         <Deleted/>
                     </Deletediv>
@@ -338,7 +334,7 @@ const DeleteBar = styled.div`
 `
 
 const Deletediv = styled.div`
-  width: 50%;
+  width: 100%;
   height: 84px;
   background: #553C75;
   display: flex;
@@ -346,15 +342,6 @@ const Deletediv = styled.div`
   justify-content: center;
 `
 
-const Recover = styled.div`
-    width: 42px;
-    height: 42px;
-    display: inline-block;
-    margin: 0 0 6px 0;
-    background: transparent;
-    background: url(${recover}) no-repeat;
-    background-size: contain;
-`
 
 const Deleted = styled.div`
     width: 48px;
