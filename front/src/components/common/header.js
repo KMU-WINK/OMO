@@ -52,7 +52,7 @@ const Wrap = styled.div`
   height: 50px;
   position: sticky;
   top: 0;
-  background: #000000;
+  background: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
