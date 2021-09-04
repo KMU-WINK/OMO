@@ -29,6 +29,7 @@ const List = (props) => {
     const FinishEdit = () => {
         setActive(true);
         isClickedList.fill(0,0, isClickedList.length);
+        setSelect(false);
     }
 
     const StartEdit = () => {
@@ -51,7 +52,9 @@ const List = (props) => {
 
     return (
         <Background>
-            <Header state={"Back"} title={"목록"}/>
+            <HeaderDiv active = {isActive}>
+                <Header state={"Back"} title={"목록"}/>
+            </HeaderDiv>
             <Middle>
                 {
                     isActive
@@ -123,13 +126,24 @@ const List = (props) => {
 
 export default List;
 
+
+const HeaderDiv = styled.div`
+  width: 375px;
+  background: ${({ active }) => {
+    if (active) {
+      return "black";
+    }
+    return "transparent";
+  }};;
+`
+
 const Background = styled.div`
   width: 375px;
   height: 812px;
   background: url(${main}) no-repeat;
   font-family: Spoqa Han Sans Neo;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 20px 20px 0 0;
+  border-radius: 0 0 0 0;
 `;
 
 const Middle = styled.div`
