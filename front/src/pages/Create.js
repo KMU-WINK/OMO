@@ -8,7 +8,7 @@ const Create = (props) => {
     return (
         <Background>
             <Header state={"Cancel"} next={"다음"}/>
-            <CreateComponent/>
+            <CreateComponent planets = {props.planets}/>
         </Background>
     )
 }

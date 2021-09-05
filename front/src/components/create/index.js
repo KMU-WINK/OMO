@@ -9,13 +9,15 @@ import planetColors from './Colors'
 import PlanetCreate from './PlanetCreate'
 import planets from './planets';
 
-const CreateComponent = ()=>{
+const CreateComponent = (props)=>{
     const subText = "나의 기록이 보관될 행성을 만들어 보세요.";
     const [planets, setPlanets] = React.useState([]);
     const [idKey, setIdKey] = React.useState(0);
     const [planetVisible, setPlanetVisible] = React.useState(false);
     const [isCreateClick, setIsCreateClick] = React.useState(false);
+
     const savePlanet = (mainPlanet, mainColor, name)=>{
+
         setPlanets([
             ...planets,
             {
