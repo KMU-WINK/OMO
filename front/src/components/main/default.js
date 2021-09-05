@@ -1,0 +1,65 @@
+import React, { useState, useEffect, Component} from 'react';
+import {useHistory} from "react-router-dom";
+
+import blurPlanet from '../../images/main/main_blurPlanet.png';
+import bbuyo from '../../images/main/main_bbuyo.png';
+
+const textCSS = {
+    textAlign: 'center',
+    fontSize: '14px',
+    lineHeight: '1.7',
+    marginTop: '300px',
+}
+const blurPlanetImg = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+}
+const blurPlanetCSS = {
+    width: '70px',
+    height: '70px',
+    marginBottom: '-20px',
+}
+const planetLineCSS = {
+    width: '1px',
+}
+const bbuyoCSS = {
+    position: 'absolute',
+    marginLeft: '58%',
+    marginTop: '205px',
+    textAlign: 'center',
+}
+const bbuyoStyle = {
+    width: '44px',
+    height: '44px',
+    cursor: 'pointer',
+}
+const txtCSS = {
+    fontSize: '10px',
+    lineHeight: '1.3',
+    margin: 0,
+    paddingBottom:'6px',
+}
+
+const Default = (props) => {
+    const history = useHistory();
+
+    return (
+        <div>
+            <div style={textCSS}>
+                아래 + 버튼을 눌러<br/>새 감정을 기록해주세요
+            </div>
+            <div style={{marginTop: '40px'}}>
+                <div style={blurPlanetImg} >
+                    <img src={blurPlanet} style={blurPlanetCSS}/>
+                    <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
+                        <p style={txtCSS}>뿌요</p>
+                        <img src={bbuyo} style={bbuyoStyle} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Default;

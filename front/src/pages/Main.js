@@ -5,17 +5,19 @@ import AddButtonImg from '../images/main/main_AddButton.png';
 import BackgroundStarImg from '../images/main/main_BackgroundStar.png';
 import BlackholeImg from '../images/main/main_Blackhole.png';
 import ListButtonImg from '../images/main/main_ListButton.png';
-import PrevDate from '../images/main/main_prevDateButton.png'
-import NextDate from '../images/main/main_nextDateButton.png'
-import blurPlanet from '../images/main/main_blurPlanet.png'
-import planetLine from '../images/main/main_planetLine.png'
-import bbuyo from '../images/main/main_bbuyo.png'
-import planet1 from '../images/main/main_planet1.png'
-import planet2 from '../images/main/main_planet2.png'
-import planet3 from '../images/main/main_planet3.png'
-import planet4 from '../images/main/main_planet4.png'
-import planet5 from '../images/main/main_planet5.png'
-import planet6 from '../images/main/main_planet6.png'
+
+import PrevDate from '../images/main/main_prevDateButton.png';
+import NextDate from '../images/main/main_nextDateButton.png';
+
+import Planet from "../components/main/planet";
+import Default from "../components/main/default";
+
+import planet1 from "../images/main/main_planet1.png";
+import planet2 from "../images/main/main_planet2.png";
+import planet3 from "../images/main/main_planet3.png";
+import planet4 from "../images/main/main_planet4.png";
+import planet5 from "../images/main/main_planet5.png";
+import planet6 from "../images/main/main_planet6.png";
 
 import {useHistory} from "react-router-dom";
 
@@ -24,7 +26,7 @@ const mainContents = {
     color: 'white',
     overflow: 'hidden',
     position: 'relative',
-    height: '680px',
+    height: '720px',
 }
 const textCSS = {
     textAlign: 'center',
@@ -44,6 +46,7 @@ const blurPlanetCSS = {
 }
 const planetLineCSS = {
     width: '1px',
+    height: '730px',
 }
 const bbuyoCSS = {
     position: 'absolute',
@@ -61,11 +64,13 @@ const dateCSS = {
     border: '1px solid white',
     borderRadius:'3px',
     padding:'3px 10px',
+    zIndex: '1',
+    cursor: 'pointer',
 }
 const HeaderCSS = {
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: 'black',
+    background: 'transparent',
     color: 'white',
     height: '50px',
     alignItems: 'center',
@@ -77,6 +82,7 @@ const PrevDateButton = {
     backgroundSize: 'contain',
     border: '0',
     cursor: 'pointer',
+    zIndex: '1',
 }
 const NextDateButton = {
     width: '25px',
@@ -85,41 +91,7 @@ const NextDateButton = {
     backgroundSize: 'contain',
     border: '0',
     cursor: 'pointer',
-}
-const planetCSS1 = {
-    width: '400px',
-    position: 'absolute',
-    marginTop: '170px',
-    marginLeft: '30px',
-}
-const planetCSS2 = {
-    width: '220px',
-    position: 'absolute',
-    marginLeft: '200px',
-}
-const planetCSS3 = {
-    width: '360px',
-    position: 'absolute',
-    marginTop: '-70px',
-    marginLeft: '-80px',
-}
-const planetCSS4 = {
-    width: '150px',
-    position: 'absolute',
-    marginTop: '490px',
-    marginLeft: '100px',
-}
-const planetCSS5 = {
-    width: '300px',
-    position: 'absolute',
-    marginTop: '360px',
-    marginLeft: '-40px',
-}
-const planetCSS6 = {
-    width: '160px',
-    position: 'absolute',
-    marginLeft: '220px',
-    marginTop: '430px',
+    zIndex: '1',
 }
 
 const FooterButtons = {
@@ -127,97 +99,172 @@ const FooterButtons = {
     justifyContent: 'space-evenly',
     backgroundColor: 'black',
     alignItems: 'center',
-    paddingBottom: '50px',
+    paddingBottom: '32px',
 }
 
-const Blackhole = {
-    width: '50px',
-    height: '40px',
+const BlackHole = {
+    width: '32px',
+    height: '24px',
     background: "url("+BlackholeImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
 
 const AddButton = {
-    width: '50px',
-    height: '50px',
+    width: '58px',
+    height: '58px',
     background: "url("+AddButtonImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
 
-
 const ListButton = {
-    width: '50px',
-    height: '50px',
+    width: '32px',
+    height: '32px',
     background: "url("+ListButtonImg+") no-repeat",
     backgroundSize: 'contain',
     cursor: 'pointer',
 }
+const modalCSS = {
+    paddingBottom: '16px',
+}
+const monthDays = {
+    overflow: 'scroll',
+    scrollBehavior: 'smooth',
+    "&::-webkit-scrollbar": {
+        display : 'none',
+    },
+}
+
+const Background = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.50);
+    z-index: 1;
+`;
+
+const ModalContainer = styled.div`
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    padding: 16px;
+    background: rgba(124, 124, 124, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media only screen and (max-width: 300px) {
+        width: 220px;
+        height: 220px;
+    }
+`;
 
 function Main(props) {
     const history = useHistory();
 
     const now = new Date();
     const year = now.getFullYear();
+    const [nowGetYear, setnowGetYear] = useState(now.getFullYear())
+    const [checkYear, setCheckYear] = useState(now.getFullYear())
 
     var monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
     ];
+    var monthLongNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+        "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+    ];
+    const [checkLongMonth, setCheckLongMonth] = useState(monthLongNames[now.getMonth()])
 
+    {/*날짜체크코드*/}
     const [checkMonth, setCheckMonth] = useState(monthNames[now.getMonth()])
+    const [nowGetMonth, setNowGetMonth] = useState(now.getMonth())
+    const ChangePrevDate = (e) => {
+        e.preventDefault()
+        if (nowGetMonth === 0) {        //1월이면 이전 월은 12월
+            setNowGetMonth(11)
+            setCheckMonth(monthNames[11])
+            setCheckLongMonth(monthLongNames[11])
+            setCheckYear(checkYear-1)
+            setnowGetYear(checkYear-1)
+        }
+        else {
+            setNowGetMonth(nowGetMonth - 1)
+            setCheckMonth(monthNames[nowGetMonth -1])
+            setCheckLongMonth(monthLongNames[nowGetMonth-1])
+        }
+    }
+    const ChangeNextDate = (e) => {
+        e.preventDefault()
+        if (nowGetMonth === 11) {       //12월이면 다음 월은 1월
+            setNowGetMonth(0)
+            setCheckMonth(monthNames[0])
+            setCheckLongMonth(monthLongNames[0])
+            setCheckYear(checkYear+1)
+            setnowGetYear(checkYear+1)
+        }
+        else {
+            setNowGetMonth(nowGetMonth + 1)
+            setCheckMonth(monthNames[nowGetMonth + 1])
+            setCheckLongMonth(monthLongNames[nowGetMonth + 1])
+        }
 
-    const ChangePrevDate = () => {
-        console.log('prevButton clicked!')
-        setCheckMonth(monthNames[now.getMonth()-1])
     }
-    const ChangeNextDate = () => {
-        console.log('nextButton clicked!')
-        setCheckMonth(monthNames[now.getMonth()+1])
+    {/*모달체크코드*/}
+    const [showModal, setShowModal] = useState(false);
+    const checkModal = () => {
+        setShowModal(!showModal);
     }
+
+    // const planets = []; //빈배열
+    const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
+
     return (
         <div style={{backgroundColor: 'black'}}>
-            <div style={HeaderCSS}>
-                <button type="button" style={PrevDateButton} onclick={ChangePrevDate}/>
-                <div style={dateCSS}>
-                    {checkMonth+" / "+year}
-                </div>
-                <button style={NextDateButton} onclick={ChangeNextDate}/>
-            </div>
-            <div style={{backgroundColor:'black'}}>
+            <div>
                 <div style={mainContents}>
-                    {/*행성이 없을 때*/}
-                    <div>
-                        <div style={textCSS}>
-                            아래 + 버튼을 눌러<br/>새 감정을 기록해주세요
-                        </div>
-                        <div style={{marginTop: '40px'}}>
-                            <div style={blurPlanetImg} >
-                                <div>
-                                    <img src={blurPlanet} style={blurPlanetCSS}/>
+                    {/* 하드코딩으로 넣어놓은 modal, 나중에 일.월로 띄워야함 */}
+                    {showModal === true ?
+                        <Background>
+                            <ModalContainer>
+                                <div style={monthDays}>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
+                                    <div style={modalCSS}>{checkLongMonth}</div>
                                 </div>
-                                <img src={planetLine} style={planetLineCSS}/>
-                                <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
-                                    <img src={bbuyo} style={bbuyoStyle} />
-                                </div>
-                            </div>
+                            </ModalContainer>
+                        </Background>
+                        : null
+                    }
+                    <div style={HeaderCSS}>
+                        <button type="button" style={PrevDateButton} onClick={ChangePrevDate}/>
+                        <div style={dateCSS} onClick={checkModal}>
+                            {checkMonth + " / " + nowGetYear }
                         </div>
+                        <button style={NextDateButton} onClick={ChangeNextDate}/>
                     </div>
-                    {/*행성이 있을 때*/}
-                    {/*<div>
-                        <img src={planet3} style={planetCSS3}/>
-                        <img src={planet2} style={planetCSS2}/>
-                        <img src={planet1} style={planetCSS1}/>
-                        <img src={planet4} style={planetCSS4}/>
-                        <img src={planet5} style={planetCSS5}/>
-                        <img src={planet6} style={planetCSS6}/>
-                    </div>*/}
+                    <div>
+                        {planets.length === 0?
+                            <Default />     // 행성이 없을 때
+                            :
+                            <Planet planets={planets}/>  // 행성이 있을 때
+                        }
+                    </div>
                 </div>
-            </div>
-            <div style={FooterButtons}>
-                <div style={Blackhole} onClick={() => history.push('/blackhole')}> </div>
-                <div style={AddButton}> </div>
-                <div style={ListButton}> </div>
+                <div style={FooterButtons}>
+                    <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
+                    <div style={AddButton} onClick={() => history.push('/write')}> </div>
+                    <div style={ListButton} onClick={() => history.push('/list')}> </div>
+                </div>
             </div>
         </div>
     );
