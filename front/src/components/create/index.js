@@ -64,10 +64,10 @@ const CreateComponent = ()=>{
 export default CreateComponent;
 
 const Background = styled.div`
-  background: black;
-  width: 100%;
-  height: 762px;
+  background: transparent;
   position: relative;
+  width: 100%;
+  height: 812px;
 `;
 
 const Button = styled.img`
