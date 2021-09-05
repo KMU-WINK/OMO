@@ -1,13 +1,11 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import close from '../../images/create/close.png'
-import Planets from './planets';
-import planetColors from './Colors'
+import {planets as Planets, loadPlanet} from './planets';
+import colors from './Colors'
 
 import PlanetInput from './PlanetInput';
 import Button from './Button';
-
-import loadPlanet from './planets2';
 
 const PlanetCreate = ({onClick, visible, setVisible})=>{
     const [mainPlanet, setMainPlanet] = React.useState(0);
@@ -19,7 +17,6 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
         setName(e.target.value);
     }
 
-
     const planetClick = (id)=>{
         setPlanets(
            planets.map(planet=>planet.id===id?{
@@ -29,25 +26,12 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
 
         setMainPlanet(id);
     }
+
     const colorClick = (id)=>{
         setMainColor(id);
-        const color = planetColors.filter(color=>color.id === id);
-        const offset1 = document.getElementById("offset1")
-        const offset2 = document.getElementById("offset2")
-        offset1.setAttribute('offset', color[0]["offset1"]["offset"])
-        offset1.setAttribute("stop-color", color[0]["offset1"]["stopColor"])
-        offset2.setAttribute("offset", color[0]["offset2"]["offset"])
-        offset2.setAttribute("stop-color", color[0]["offset2"]["stopColor"])
-
-        
-        const offset3 = document.getElementById("offset3")
-        if (color[0]["offset3"] != null)
-        {
-            offset3.setAttribute("offset", color[0]["offset3"]["offset"])
-            offset3.setAttribute("stop-color", color[0]["offset3"]["stopColor"])
-        }
         return id;
     }
+
     {
         if (!visible) return null;
     return(
@@ -70,10 +54,10 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
                     </ItemBlock>
                     <Text left="141px" top="151px">컬러</Text>
                     <ItemBlock top="172px">
-                        {    
-                            planetColors.map(co=>(
-                                <CircleDiv onClick={()=>{colorClick(co.id)}} key={co.id}>
-                                    <Circle color={co.color}/>
+                        {
+                            colors.map(c=>(
+                                <CircleDiv onClick={()=>{colorClick(c.id)}} key={c.id}>
+                                    <Circle src={c.color}/>
                                 </CircleDiv>
                             ))
                         }
@@ -206,14 +190,11 @@ const PlanetDiv = styled.div`
 const CircleDiv = styled.div`
     display:inline;
 `;
-const Circle = styled.div`
+const Circle = styled.img`
     display:inline-block;
     width: 20px;
     height: 20px;
     margin-right:11px;
-    background: ${props=>props.color};
-    border-radius: 50%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const MainPlanet = styled.div`

@@ -1,10 +1,7 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
-import close from '../../images/create/close.png'
+import styled from 'styled-components';
 import plus0 from '../../images/create/plus0.png'
 import plus from '../../images/create/plus.png'
-import Planets from './planets';
-import planetColors from './Colors'
 import PlanetBlock from './PlanetBlock'
 
 import PlanetCreate from './PlanetCreate'
@@ -63,14 +60,6 @@ const Background = styled.div`
   position: relative;
   width: 100%;
   height: 812px;
-`;
-
-const Button = styled.img`
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    left: 24px;
-    top: 57px;
 `;
 
 const EmptyCircle = styled.div`
@@ -208,6 +197,7 @@ const PlusText = styled.p`
 
     color: rgba(255, 255, 255, 0.5);
 `;
+
 const AddItem = ({onClick})=>{
     return (
         <ItemBlock onClick={onClick}>

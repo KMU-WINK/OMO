@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import loadPlanet from './planets2'
+import {loadPlanet} from './planets'
 
 const PlanetBlock = ({planetId, colorId, name, count})=>{
     return (
