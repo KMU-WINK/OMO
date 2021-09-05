@@ -32,7 +32,7 @@ const Footer = (props) => {
                     <p>목록</p>
                 </ListWrap>
                 <MoreWrap>
-                    <div onClick={() => console.log("더보기 페이지")}/>
+                    <div onClick={() => alert('더보기 페이지를 지금 볼 수 없습니다!')}/>
                     <p>더보기</p>
                 </MoreWrap>
             </Wrap>
