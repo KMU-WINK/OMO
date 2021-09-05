@@ -14,6 +14,7 @@ const CreateComponent = ()=>{
     const [planets, setPlanets] = React.useState([]);
     const [idKey, setIdKey] = React.useState(0);
     const [planetVisible, setPlanetVisible] = React.useState(false);
+    const [isCreateClick, setIsCreateClick] = React.useState(false);
     const savePlanet = (mainPlanet, mainColor, name)=>{
         setPlanets([
             ...planets,
@@ -30,11 +31,12 @@ const CreateComponent = ()=>{
         planets.map(p=>(
             console.log("mainColor: ", p)
         ));
+        setIsCreateClick(false);
     };
 
     return (
         <Background>
-            {planets.length === 0?<div>
+            {isCreateClick === true?<div>
                 <EmptyCircle onClick={()=>{setPlanetVisible(true)}}>
                     <Plus src={plus}></Plus>
                 </EmptyCircle>
@@ -51,7 +53,7 @@ const CreateComponent = ()=>{
                             <Item pKey={p.key} key={p.key} planetId={p.planet} colorId={p.color} name={p.name} count={0}/>
                         )):<></>
                     }
-                    <AddItem onClick={()=>{setPlanetVisible(true)}}/>
+                    <AddItem onClick={()=>{setIsCreateClick(true)}}/>
                 </SelectDiv>
             </div>}
             <PlanetCreate onClick={savePlanet} visible={planetVisible} setVisible={setPlanetVisible}/>
