@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 import Content from "../components/blackhole/content";
@@ -22,8 +21,10 @@ const BlackHole = (props) => {
     const editOff = () => {
         setEditMode(false);
     }
+
     return (
         <ContentContainer>
+
             <Header state={"Back"} title={"블랙홀"}></Header>
                 {
                     editMode == false ?
@@ -43,7 +44,7 @@ const BlackHole = (props) => {
                     editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ Check }/></AllChoice>
                 }
             </Menu>
-            <Content day={"20"} profileImgSrc={ Planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+            <Content  day={"20"} profileImgSrc={ Planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
             <Footer />
         </ContentContainer>
     )
@@ -56,7 +57,7 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 812px;
   background: rgba(0, 0, 0, 0.85);
 `
 const SelectContainer = styled.div`
@@ -69,7 +70,7 @@ const SelectContainer = styled.div`
 `
 const Select = styled.div`
   width: 187px;
-  height: 32px;
+  height: 32px; 
   border-bottom: ${(props) => props.active ? '2px solid rgba(255,255,255,0.9)' : 'none'};
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -147,7 +148,7 @@ const FinishButton = styled.div`
   border-radius: 10px;
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
-  font-weight: normal;
+  font-weight: normal;  
   font-size: 12px;
   line-height: 17px;
   letter-spacing: -0.025em;
