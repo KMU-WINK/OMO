@@ -7,9 +7,11 @@ import planetColors from './Colors'
 import PlanetInput from './PlanetInput';
 import Button from './Button';
 
+import loadPlanet from './planets2';
+
 const PlanetCreate = ({onClick, visible, setVisible})=>{
-    const [mainPlanet, setMainPlanet] = React.useState(1);
-    const [mainColor, setMainColor] = React.useState(1);
+    const [mainPlanet, setMainPlanet] = React.useState(0);
+    const [mainColor, setMainColor] = React.useState(0);
     const [planets, setPlanets] = React.useState(Planets);
     const [name, setName] = React.useState(null);
 
@@ -24,6 +26,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
                ...planet,
                isclick:true,
            }:{...planet, isclick:false}));
+
         setMainPlanet(id);
     }
     const colorClick = (id)=>{
@@ -55,8 +58,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
                 <TopLine />
                 <div>
                     <MainPlanetDiv id="MainPlanet">
-                        {planets.map(({Planet, isclick, id})=>(id===mainPlanet?
-                            <Planet key={id}></Planet>:<></>))}
+                        <MainPlanet mainPlanet={loadPlanet(mainPlanet,mainColor)}/>
                     </MainPlanetDiv>
                     <Text left="141px" top="84px">형태</Text>
                     <ItemBlock top="100px">
@@ -211,4 +213,15 @@ const Circle = styled.div`
     margin-right:11px;
     background: ${props=>props.color};
     border-radius: 50%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+const MainPlanet = styled.div`
+    position: absolute;
+    width: 105px;
+    height: 84px;
+    
+    left:18px;
+    top:90px;
+    background: url(${props=>props.mainPlanet}) no-repeat;
 `;

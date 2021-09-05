@@ -6,11 +6,10 @@ import {ReactComponent as planet5} from '../../images/create/planet5.svg'
 
 let id = 0;
 const addPlanet = (planet, isclick)=>{
-    id++;
     return {
         Planet:planet,
         isclick:isclick,
-        id:id,
+        id:id++,
     }
 }
 const planets = [
