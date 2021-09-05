@@ -43,7 +43,10 @@ const Footer = (props) => {
 export default Footer;
 
 const BackGround = styled.div`
-  background: transparent;
+  width: 375px;
+  position: fixed;
+  top: 728px;
+  background: transparent;  
   z-index: 100;
 `;
 
@@ -52,12 +55,8 @@ const Wrap = styled.div`
   height: 84px;
   background: #343139;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 20px 20px 0px 0px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  border-radius: 20px 20px 0px 0px;  
   display: flex;
-  justify-content: space-around;
   align-items: center;
 `;
 
