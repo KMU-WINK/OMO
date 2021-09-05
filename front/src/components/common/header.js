@@ -27,7 +27,7 @@ const Header = (props) => {
             <Title>{props.title}</Title>
             {props.next === "저장"?
                 <Next>
-                    <div onClick={() => console.log('저장')}>{props.next}</div>
+                    <div onClick={props.save}>{props.next}</div>
                 </Next>
                 :
                 <>

@@ -10,6 +10,7 @@ import Menu from "./pages/Menu"
 import Posts from "./pages/Posts";
 import BlackHole from "./pages/BlackHole";
 import Statistics from "./pages/Statistics";
+import WriteComplete from './pages/WriteComplete';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path="/post" component={Posts} />
             <Route path="/blackHole" component={BlackHole} />
             <Route path="/statistics" component={Statistics} />
+            <Route path="/writecomplete" component={WriteComplete} />
           </Wrap>
       </Router>
     );
