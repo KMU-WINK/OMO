@@ -40,6 +40,12 @@ const monthCSS = {
     fontFamily: 'AvertaStd-Semibold',
     marginRight: '8px',
 }
+const monthCSS2 = {
+    fontSize: '20px',
+    color: 'white',
+    fontFamily: 'AvertaStd-Semibold',
+    marginRight: '8px',
+}
 const SortingPeriod = {
     display: 'flex',
     marginTop: '10px',
@@ -107,6 +113,9 @@ const headerTXT = {
     padding:'4px 10px',
     margin:'0 4px',
 }
+const headerTXT2 = {
+    margin:'0 4px',
+}
 const backButton = {
     width: '9px',
     height: '16px',
@@ -148,24 +157,56 @@ const Menu = (props) => {
         setShowMonth(event.target.id);
         setShowModal(!showModal);
     }
+    const [checkMore, setCheckMore] = useState(true)
     const viewLarger = () => {
-
+        setCheckMore(!checkMore)
+        if(checkMore === true) {
+            document.getElementById("topPlanet").style.width = '100px';
+            document.getElementById("topPlanet").style.marginLeft = '20px';
+            document.getElementById("topPlanetDiv").style.justifyContent = 'left';
+            document.getElementById("topPlanetDiv").style.marginBottom = '20px';
+            document.getElementById("boxFixHeight").style.height = '620px';
+            document.getElementById("MonthAndPeriod").style.display = 'none';
+        }
+        else {
+            document.getElementById("topPlanet").style.width = '270px';
+            document.getElementById("topPlanet").style.marginLeft = '0';
+            document.getElementById("topPlanetDiv").style.marginBottom = '50px';
+            document.getElementById("topPlanetDiv").style.justifyContent = 'center';
+            document.getElementById("boxFixHeight").style.height = '480px';
+            document.getElementById("MonthAndPeriod").style.display = 'flex';
+        }
     }
 
     return (
         <div style={backgroundCSS}>
-            <div style={menuHeader}>
-                <div style={{width: '40px', marginLeft: '20px'}}>
-                    <img src={backButtonImg} style={backButton}/>
+            { checkMore ?
+                <div style={menuHeader}>
+                    <div style={{width: '40px', marginLeft: '20px'}}>
+                        <img src={backButtonImg} style={backButton}/>
+                    </div>
+                    <div style={{display:'flex', marginRight: '12px', fontSize:'12px'}}>
+                        <p style={headerTXT}>행성 수정</p>
+                        <p style={headerTXT}>편집</p>
+                    </div>
                 </div>
-                <div style={{display:'flex', marginRight: '12px', fontSize:'12px'}}>
-                    <p style={headerTXT}>행성 수정</p>
-                    <p style={headerTXT}>편집</p>
+                :
+                <div style={menuHeader}>
+                    <div style={{width: '40px', marginLeft: '20px'}}>
+                        <img src={backButtonImg} style={backButton}/>
+                    </div>
+                    <div style={monthButton} onClick={checkModal}>
+                        <div style={monthCSS2}>{showMonth}</div>
+                        <img src={checkMonth} style={checkMonthImg}/>
+                    </div>
+                    <div style={{display: 'flex', marginRight: '12px', fontSize: '12px'}}>
+                        <p style={headerTXT2}>편집</p>
+                    </div>
                 </div>
-            </div>
+            }
             <div style={mainContents}>
-                <div style={allPlanet}>
-                    <img src={purplePlanet} style={planetStyle}/>
+                <div style={allPlanet} id={"topPlanetDiv"}>
+                    <img id={"topPlanet"} src={purplePlanet} style={planetStyle}/>
                 </div>
                 {showModal === true ?
                     <Background>
@@ -214,8 +255,8 @@ const Menu = (props) => {
                 }
                 <div style={moreContents}>
                     <div style={blankSpace} onClick={viewLarger}></div>
-                    <div style={subContents}>
-                        <div style={checkPeriod}>
+                    <div style={subContents} id={"boxFixHeight"}>
+                        <div style={checkPeriod} id={"MonthAndPeriod"}>
                             <div style={monthButton} onClick={checkModal}>
                                 <div style={monthCSS}>{showMonth}</div>
                                 <img src={checkMonth} style={checkMonthImg}/>
