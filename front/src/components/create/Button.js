@@ -3,11 +3,9 @@ import styled from 'styled-components';
 
 const Button = ({onClick, left, top, text})=>{
     return (
-        <>
-            <StyleButton onClick = {onClick} left={left} top={top}>
-                <p>{text}</p>
-            </StyleButton>
-        </>
+        <StyleButton onClick = {onClick} left={left} top={top}>
+            <p>{text}</p>
+        </StyleButton>
     )
 }
 const StyleButton = styled.button`
