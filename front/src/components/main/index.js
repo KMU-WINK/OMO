@@ -38,13 +38,15 @@ const planetCSS6 = {
     marginLeft: '-80px',
 }
 
-const nameCSS = {
+const contentCSS ={
     width: '100%',
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+}
 
+const nameCSS = {
     fontFamily: 'S-Core Dream',
     fontStyle: 'normal',
     fontWeight: '500',
@@ -57,11 +59,7 @@ const nameCSS = {
 }
 
 const countCSS = {
-    width: '100%',
-    position: 'absolute',
-    top: '60%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    marginTop: '4px',
 
     fontFamily: 'S-Core Dream',
     fontStyle: 'normal',
@@ -87,8 +85,10 @@ const Index = (props) => {
         <Wrap>
             <div style={planet_css[props.idx]}>
                 <img src={props.imgSrc} style={imageSize}/>
-                <div style={nameCSS}>{props.name}</div>
-                <div style={countCSS}>{props.count}개의 기록</div>
+                <div style={contentCSS}>
+                    <div style={nameCSS}>{props.name}</div>
+                    <div style={countCSS}>{props.count}개의 기록</div>
+                </div>
             </div>
         </Wrap>
     )
