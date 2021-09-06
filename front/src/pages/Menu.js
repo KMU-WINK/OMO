@@ -1,4 +1,4 @@
-import React, { Component , useState } from 'react';
+import React, { Component , useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Header from "../components/common/header";
@@ -7,15 +7,15 @@ import Box from "../components/menu/box"
 import planet1 from "../images/main/main_planet1.png";
 import background from "../images/menu/background.png";
 import checkMonth from "../images/menu/menu_checkMonth.png";
+import purplePlanet from "../images/menu/menu_PurplePlanet.png";
 
 const backgroundCSS = {
     width: '100%',
     height: '100%',
-    overflow: 'auto',
+    overflow: 'hidden',
     background: "url("+background+") no-repeat",
 }
 const mainContents = {
-    position: 'relative',
     width: '375px',
     height: '762px',
 }
@@ -48,15 +48,16 @@ const Period = {
     color: 'rgba(255,255,255,0.4)',
     fontSize: '12px',
     fontWeight: '500',
+    cursor: 'pointer',
 }
 const boxes = {
     display:'flex',
     justifyContent: 'space-around',
     flexWrap : 'wrap',
-    overflow: 'scroll',
-    "&::-webkit-scrollbar": {
+    /*overflow: 'scroll',
+    "&::WebkitScrollbar": {
         display : 'none',
-    },
+    },*/
 }
 const checkMonthImg = {
     width: '12px',
@@ -66,7 +67,8 @@ const checkMonthImg = {
 const monthButton = {
     display: 'flex',
     alignItems: 'center',
-    zIndex: 1,
+    //zIndex: 1,
+    cursor:'pointer',
 }
 const allMonth ={
     color: 'white',
@@ -77,11 +79,41 @@ const allMonth ={
 const subMonth = {
     display:'flex',
     justifyContent:'space-around',
+    margin: '5% 0',
+}
+const monthStyle = {
+    cursor:'pointer',
+}
+const allPlanet = {
+    display:'flex',
+    justifyContent:'center',
+    marginBottom: '50px'
+}
+const planetStyle = {
+    width:'270px',
 }
 
+
 const Menu = (props) => {
+    useEffect(() => {
+        MonthButtonInit()
+    }, []);
+
     const [showModal, setShowModal] = useState(false);
     const checkModal = () => {
+        setShowModal(!showModal);
+    }
+    const now = new Date();
+    var monthLongNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+        "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+    ];
+    const [checkLongMonth, setCheckLongMonth] = useState(monthLongNames[now.getMonth()])
+    const [showMonth, setShowMonth] = useState('');
+    const MonthButtonInit = () => {
+        setShowMonth(checkLongMonth);
+    }
+    const MonthButtonClick = (event) => {
+        setShowMonth(event.target.id);
         setShowModal(!showModal);
     }
 
@@ -89,28 +121,31 @@ const Menu = (props) => {
         <div style={backgroundCSS}>
             <Header state={"Back"} title={props.name}/>
             <div style={mainContents}>
+                <div style={allPlanet}>
+                    <img src={purplePlanet} style={planetStyle}/>
+                </div>
                 <div style={subContents}>
                     {showModal === true ?
                         <Background>
                             <ModalContainer>
                                 <div style={allMonth}>
                                     <div style={subMonth}>
-                                        <p>JAN</p>
-                                        <p>FEB</p>
-                                        <p>MAR</p>
-                                        <p>APR</p>
+                                        <div style={monthStyle} id={"JANUARY"} onClick={(e)=> MonthButtonClick(e)}>JAN</div>
+                                        <div style={monthStyle} id={"FEBRUARY"} onClick={(e)=> MonthButtonClick(e)}>FEB</div>
+                                        <div style={monthStyle} id={"MARCH"} onClick={(e)=> MonthButtonClick(e)}>MAR</div>
+                                        <div style={monthStyle} id={"APRIL"} onClick={(e)=> MonthButtonClick(e)}>APR</div>
                                     </div>
                                     <div style={subMonth}>
-                                        <p>MAY</p>
-                                        <p>JUN</p>
-                                        <p>JUL</p>
-                                        <p>AUG</p>
+                                        <div style={monthStyle} id={"MAY"} onClick={(e)=> MonthButtonClick(e)}>MAY</div>
+                                        <div style={monthStyle} id={"JUNE"} onClick={(e)=> MonthButtonClick(e)}>JUN</div>
+                                        <div style={monthStyle} id={"JULY"} onClick={(e)=> MonthButtonClick(e)}>JUL</div>
+                                        <div style={monthStyle} id={"AUGUST"} onClick={(e)=> MonthButtonClick(e)}>AUG</div>
                                         </div>
                                     <div style={subMonth}>
-                                        <p>SEP</p>
-                                        <p>OCT</p>
-                                        <p>NOV</p>
-                                        <p>DEC</p>
+                                        <div style={monthStyle} id={"SEPTEMBER"} onClick={(e)=> MonthButtonClick(e)}>SEP</div>
+                                        <div style={monthStyle} id={"OCTOBER"} onClick={(e)=> MonthButtonClick(e)}>OCT</div>
+                                        <div style={monthStyle} id={"NOVEMBER"} onClick={(e)=> MonthButtonClick(e)}>NOV</div>
+                                        <div style={monthStyle} id={"DECEMBER"} onClick={(e)=> MonthButtonClick(e)}>DEC</div>
                                     </div>
                                 </div>
                             </ModalContainer>
@@ -119,12 +154,12 @@ const Menu = (props) => {
                     }
                     <div style={checkPeriod}>
                         <div style={monthButton} onClick={checkModal}>
-                            <div style={monthCSS}>June</div>
+                            <div style={monthCSS}>{showMonth}</div>
                             <img src={checkMonth} style={checkMonthImg} />
                         </div>
                         <div style={SortingPeriod}>
-                            <p style={Period}>최근 순 &nbsp;&nbsp;</p>
-                            <p style={Period}>오래된 순</p>
+                            <div style={Period} id={"recent"}>최근 순 &nbsp;&nbsp;</div>
+                            <div style={Period} id={"oldSoon"}>오래된 순</div>
                         </div>
                     </div>
                     <div style={boxes}>
@@ -164,10 +199,8 @@ const Menu = (props) => {
                             content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
                             "었냐하면..."}
                         />
-
                     </div>
                 </div>
-
             </div>
         </div>
     )
