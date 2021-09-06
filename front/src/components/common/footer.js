@@ -119,9 +119,11 @@ const SearchWrap = styled.div`
 
     font-family: S-Core Dream;
     font-style: normal;
-    font-weight: 600;
+    font-weight: bold;
     font-size: 10px;
     line-height: 12px;
+
+    text-align: center;
     letter-spacing: -0.025em;
 
     color: rgba(255, 255, 255, 0.9);

@@ -82,11 +82,14 @@ const BackButton = styled.div`
 `;
 
 const Title = styled.div`
-  font-family: AvertaStd-Semibold;
-  font-size: 18px;
-  line-height: 21px;
+  font-family: S-Core Dream;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
   letter-spacing: -0.025em;
-  color: #E7E7E7;
+
+  color: #FFFFFF;
 `;
 
 const Next = styled.div`
