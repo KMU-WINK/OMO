@@ -1,10 +1,19 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import {loadPlanet} from './planets'
 
 const PlanetBlock = ({planetId, colorId, name, count})=>{
+    const history = useHistory();
     return (
-        <ItemBlock>
+        <ItemBlock onClick={()=>{history.push({
+            pathname: "./write",
+            state: {
+                name: name,
+                planetId: planetId,
+                colorId: colorId,
+            }
+        })}}>
             <PlanetDiv>
                 <Planet src={loadPlanet(planetId, colorId)}/>
             </PlanetDiv>
