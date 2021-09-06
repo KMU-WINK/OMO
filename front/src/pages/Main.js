@@ -28,36 +28,6 @@ const mainContents = {
     position: 'relative',
     height: '720px',
 }
-const textCSS = {
-    textAlign: 'center',
-    fontSize: '14px',
-    lineHeight: '1.7',
-    marginTop: '300px',
-}
-const blurPlanetImg = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-}
-const blurPlanetCSS = {
-    width: '70px',
-    height: '70px',
-    marginBottom: '-20px',
-}
-const planetLineCSS = {
-    width: '1px',
-    height: '730px',
-}
-const bbuyoCSS = {
-    position: 'absolute',
-    marginLeft: '55%',
-    marginTop: '200px'
-}
-const bbuyoStyle = {
-    width: '44px',
-    height: '44px',
-    cursor: 'pointer',
-}
 const dateCSS = {
     margin: '0 7px',
     opacity: '0.6',
@@ -99,7 +69,7 @@ const FooterButtons = {
     justifyContent: 'space-evenly',
     backgroundColor: 'black',
     alignItems: 'center',
-    paddingBottom: '32px',
+    paddingBottom: '34px',
 }
 
 const BlackHole = {
@@ -224,7 +194,16 @@ function Main(props) {
     }
 
     // const planets = []; //빈배열
-    const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
+    // const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
+
+    const planets = [{'imgSrc':planet1, 'name':"화가 치밀어 오른다", 'count':32},
+                    {'imgSrc':planet2, 'name':"오늘은 조금 우울해", 'count':18},
+                    {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':32},
+                    {'imgSrc':planet4, 'name':"오늘은 조금 우울해", 'count':18},
+                    {'imgSrc':planet5, 'name':"오늘은 조금 우울해", 'count':18},
+                    {'imgSrc':planet6, 'name':"화가 치밀어 오른다", 'count':32}
+    ];
+    console.log(planets);
 
     return (
         <div style={{backgroundColor: 'black'}}>
@@ -262,7 +241,7 @@ function Main(props) {
                 </div>
                 <div style={FooterButtons}>
                     <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
-                    <div style={AddButton} onClick={() => history.push('/write')}> </div>
+                    <div style={AddButton} onClick={() => history.push('/create')}> </div>
                     <div style={ListButton} onClick={() => history.push('/list')}> </div>
                 </div>
             </div>
