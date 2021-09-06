@@ -32,7 +32,7 @@ const Footer = (props) => {
                     <p>목록</p>
                 </ListWrap>
                 <MoreWrap>
-                    <div onClick={() => console.log("더보기 페이지")}/>
+                    <div onClick={() => alert('더보기 페이지를 지금 볼 수 없습니다!')}/>
                     <p>더보기</p>
                 </MoreWrap>
             </Wrap>
@@ -119,9 +119,11 @@ const SearchWrap = styled.div`
 
     font-family: S-Core Dream;
     font-style: normal;
-    font-weight: 600;
+    font-weight: bold;
     font-size: 10px;
     line-height: 12px;
+
+    text-align: center;
     letter-spacing: -0.025em;
 
     color: rgba(255, 255, 255, 0.9);
