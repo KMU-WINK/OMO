@@ -1,4 +1,4 @@
-import React, { Component , useState, useEffect } from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 import Header from "../components/common/header";
@@ -8,39 +8,40 @@ import planet1 from "../images/main/main_planet1.png";
 import background from "../images/menu/background.png";
 import checkMonth from "../images/menu/menu_checkMonth.png";
 import purplePlanet from "../images/menu/menu_PurplePlanet.png";
+import backButtonImg from '../images/common/back.png';
 
 const backgroundCSS = {
     width: '100%',
     height: '100%',
-    overflow: 'hidden',
-    background: "url("+background+") no-repeat",
+    background: "url(" + background + ") no-repeat",
 }
 const mainContents = {
     width: '375px',
     height: '762px',
 }
 const subContents = {
-    background: 'linear-gradient(145.71deg, ' +
-        'rgba(251, 189, 206, 0.25) 13.89%, ' +
-        'rgba(118, 89, 235, 0.25) 87.84%)',
-    borderRadius: '20px 20px 0px 0px',
-    padding:'40px 12px',
+    padding: '0 12px',
+    height: '480px',
 }
-const checkPeriod ={
+const blankSpace = {
+    width: '100%',
+    height:'50px',
+}
+const checkPeriod = {
     display: 'flex',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    padding:'0 12px',
-    marginBottom:'16px',
+    padding: '0 12px',
+    marginBottom: '16px',
 }
 const monthCSS = {
     fontSize: '24px',
     color: 'white',
     fontFamily: 'AvertaStd-Semibold',
-    marginRight:'8px',
+    marginRight: '8px',
 }
 const SortingPeriod = {
-    display:'flex',
+    display: 'flex',
     marginTop: '10px',
 }
 const Period = {
@@ -51,46 +52,77 @@ const Period = {
     cursor: 'pointer',
 }
 const boxes = {
-    display:'flex',
-    justifyContent: 'space-around',
-    flexWrap : 'wrap',
-    /*overflow: 'scroll',
-    "&::WebkitScrollbar": {
-        display : 'none',
-    },*/
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    padding: '0 4px',
 }
 const checkMonthImg = {
     width: '12px',
-    height:'7px',
+    height: '7px',
     marginTop: '4px',
 }
 const monthButton = {
     display: 'flex',
     alignItems: 'center',
     //zIndex: 1,
-    cursor:'pointer',
+    cursor: 'pointer',
 }
-const allMonth ={
+const allMonth = {
     color: 'white',
-    display:'flex',
-    flexDirection:'column',
-    width:'260px',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '260px',
 }
 const subMonth = {
-    display:'flex',
-    justifyContent:'space-around',
+    display: 'flex',
+    justifyContent: 'space-around',
     margin: '5% 0',
 }
 const monthStyle = {
-    cursor:'pointer',
+    cursor: 'pointer',
 }
 const allPlanet = {
-    display:'flex',
-    justifyContent:'center',
-    marginBottom: '50px'
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '50px',
+    marginTop: '10px',
 }
 const planetStyle = {
-    width:'270px',
+    width: '270px',
+}
+const menuHeader = {
+    width: '100%',
+    height: '50px',
+    position: 'sticky',
+    background: 'transparent',
+    display: 'flex',
+    justifyContent: 'space-between',
+    color:'white',
+    alignItems:'center',
+}
+const headerTXT = {
+    border:'1px solid rgba(255,255,255,0.6)',
+    borderRadius: '12px',
+    padding:'4px 10px',
+    margin:'0 4px',
+}
+const backButton = {
+    width: '9px',
+    height: '16px',
+    backgroundSize: 'contain',
+}
+const moreContents = {
+    background: 'linear-gradient(145.71deg, ' +
+        'rgba(251, 189, 206, 0.25) 13.89%, ' +
+        'rgba(118, 89, 235, 0.25) 87.84%)',
+    borderRadius: '20px 20px 0px 0px',
+    overflow: 'scroll',
+    MsOverflowStyle: 'none',  /* IE and Edge */
+    scrollbarWidth: 'none',  /* Firefox */
+    '::-webkit-scrollbar': {
+        display: 'none',
+    }
 }
 
 
@@ -116,89 +148,127 @@ const Menu = (props) => {
         setShowMonth(event.target.id);
         setShowModal(!showModal);
     }
+    const viewLarger = () => {
+
+    }
 
     return (
         <div style={backgroundCSS}>
-            <Header state={"Back"} title={props.name}/>
+            <div style={menuHeader}>
+                <div style={{width: '40px', marginLeft: '20px'}}>
+                    <img src={backButtonImg} style={backButton}/>
+                </div>
+                <div style={{display:'flex', marginRight: '12px', fontSize:'12px'}}>
+                    <p style={headerTXT}>행성 수정</p>
+                    <p style={headerTXT}>편집</p>
+                </div>
+            </div>
             <div style={mainContents}>
                 <div style={allPlanet}>
                     <img src={purplePlanet} style={planetStyle}/>
                 </div>
-                <div style={subContents}>
-                    {showModal === true ?
-                        <Background>
-                            <ModalContainer>
-                                <div style={allMonth}>
-                                    <div style={subMonth}>
-                                        <div style={monthStyle} id={"JANUARY"} onClick={(e)=> MonthButtonClick(e)}>JAN</div>
-                                        <div style={monthStyle} id={"FEBRUARY"} onClick={(e)=> MonthButtonClick(e)}>FEB</div>
-                                        <div style={monthStyle} id={"MARCH"} onClick={(e)=> MonthButtonClick(e)}>MAR</div>
-                                        <div style={monthStyle} id={"APRIL"} onClick={(e)=> MonthButtonClick(e)}>APR</div>
+                {showModal === true ?
+                    <Background>
+                        <ModalContainer>
+                            <div style={allMonth}>
+                                <div style={subMonth}>
+                                    <div style={monthStyle} id={"JANUARY"}
+                                         onClick={(e) => MonthButtonClick(e)}>JAN
                                     </div>
-                                    <div style={subMonth}>
-                                        <div style={monthStyle} id={"MAY"} onClick={(e)=> MonthButtonClick(e)}>MAY</div>
-                                        <div style={monthStyle} id={"JUNE"} onClick={(e)=> MonthButtonClick(e)}>JUN</div>
-                                        <div style={monthStyle} id={"JULY"} onClick={(e)=> MonthButtonClick(e)}>JUL</div>
-                                        <div style={monthStyle} id={"AUGUST"} onClick={(e)=> MonthButtonClick(e)}>AUG</div>
-                                        </div>
-                                    <div style={subMonth}>
-                                        <div style={monthStyle} id={"SEPTEMBER"} onClick={(e)=> MonthButtonClick(e)}>SEP</div>
-                                        <div style={monthStyle} id={"OCTOBER"} onClick={(e)=> MonthButtonClick(e)}>OCT</div>
-                                        <div style={monthStyle} id={"NOVEMBER"} onClick={(e)=> MonthButtonClick(e)}>NOV</div>
-                                        <div style={monthStyle} id={"DECEMBER"} onClick={(e)=> MonthButtonClick(e)}>DEC</div>
+                                    <div style={monthStyle} id={"FEBRUARY"}
+                                         onClick={(e) => MonthButtonClick(e)}>FEB
+                                    </div>
+                                    <div style={monthStyle} id={"MARCH"} onClick={(e) => MonthButtonClick(e)}>MAR
+                                    </div>
+                                    <div style={monthStyle} id={"APRIL"} onClick={(e) => MonthButtonClick(e)}>APR
                                     </div>
                                 </div>
-                            </ModalContainer>
-                        </Background>
-                        : null
-                    }
-                    <div style={checkPeriod}>
-                        <div style={monthButton} onClick={checkModal}>
-                            <div style={monthCSS}>{showMonth}</div>
-                            <img src={checkMonth} style={checkMonthImg} />
+                                <div style={subMonth}>
+                                    <div style={monthStyle} id={"MAY"} onClick={(e) => MonthButtonClick(e)}>MAY
+                                    </div>
+                                    <div style={monthStyle} id={"JUNE"} onClick={(e) => MonthButtonClick(e)}>JUN
+                                    </div>
+                                    <div style={monthStyle} id={"JULY"} onClick={(e) => MonthButtonClick(e)}>JUL
+                                    </div>
+                                    <div style={monthStyle} id={"AUGUST"} onClick={(e) => MonthButtonClick(e)}>AUG
+                                    </div>
+                                </div>
+                                <div style={subMonth}>
+                                    <div style={monthStyle} id={"SEPTEMBER"}
+                                         onClick={(e) => MonthButtonClick(e)}>SEP
+                                    </div>
+                                    <div style={monthStyle} id={"OCTOBER"}
+                                         onClick={(e) => MonthButtonClick(e)}>OCT
+                                    </div>
+                                    <div style={monthStyle} id={"NOVEMBER"}
+                                         onClick={(e) => MonthButtonClick(e)}>NOV
+                                    </div>
+                                    <div style={monthStyle} id={"DECEMBER"}
+                                         onClick={(e) => MonthButtonClick(e)}>DEC
+                                    </div>
+                                </div>
+                            </div>
+                        </ModalContainer>
+                    </Background>
+                    : null
+                }
+                <div style={moreContents}>
+                    <div style={blankSpace} onClick={viewLarger}></div>
+                    <div style={subContents}>
+                        <div style={checkPeriod}>
+                            <div style={monthButton} onClick={checkModal}>
+                                <div style={monthCSS}>{showMonth}</div>
+                                <img src={checkMonth} style={checkMonthImg}/>
+                            </div>
+                            <div style={SortingPeriod}>
+                                <div style={Period} id={"recent"}>최근 순 &nbsp;&nbsp;</div>
+                                <div style={Period} id={"oldSoon"}>오래된 순</div>
+                            </div>
                         </div>
-                        <div style={SortingPeriod}>
-                            <div style={Period} id={"recent"}>최근 순 &nbsp;&nbsp;</div>
-                            <div style={Period} id={"oldSoon"}>오래된 순</div>
+                        <div style={boxes}>
+                            <Box
+                                date={"07/25"}
+                                title={"ㅋㅋㅋ대박이다 아님?"}
+                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
+                                "었냐하면..."}
+                            />
+                            <Box
+                                date={"07/25"}
+                                title={"ㅋㅋㅋ대박이다 아님?"}
+                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
+                                "었냐하면..."}
+                            />
+                            <Box
+                                date={"07/25"}
+                                title={"ㅋㅋㅋ대박이다 아님?"}
+                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
+                                "었냐하면..."}
+                            />
+                            <Box
+                                date={"07/25"}
+                                title={"ㅋㅋㅋ대박이다 아님?"}
+                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
+                                "었냐하면..."}
+                            />
+                            <Box
+                                date={"07/25"}
+                                title={"ㅋㅋㅋ대박이다 아님?"}
+                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
+                                "었냐하면..."}
+                            />
+                            <Box
+                                date={"07/25"}
+                                title={"ㅋㅋㅋ대박이다 아님?"}
+                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
+                                "었냐하면..."}
+                            />
+                            <Box
+                                date={"07/25"}
+                                title={"ㅋㅋㅋ대박이다 아님?"}
+                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
+                                "었냐하면..."}
+                            />
                         </div>
-                    </div>
-                    <div style={boxes}>
-                        <Box
-                            date={"07/25"}
-                            title={"ㅋㅋㅋ대박이다 아님?"}
-                            content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                            "었냐하면..."}
-                        />
-                        <Box
-                            date={"07/25"}
-                            title={"ㅋㅋㅋ대박이다 아님?"}
-                            content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                            "었냐하면..."}
-                        />
-                        <Box
-                            date={"07/25"}
-                            title={"ㅋㅋㅋ대박이다 아님?"}
-                            content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                            "었냐하면..."}
-                        />
-                        <Box
-                            date={"07/25"}
-                            title={"ㅋㅋㅋ대박이다 아님?"}
-                            content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                            "었냐하면..."}
-                        />
-                        <Box
-                            date={"07/25"}
-                            title={"ㅋㅋㅋ대박이다 아님?"}
-                            content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                            "었냐하면..."}
-                        />
-                        <Box
-                            date={"07/25"}
-                            title={"ㅋㅋㅋ대박이다 아님?"}
-                            content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                            "었냐하면..."}
-                        />
                     </div>
                 </div>
             </div>
