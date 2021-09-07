@@ -3,8 +3,8 @@ import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 import Content from "../components/blackhole/content";
 import styled from "styled-components";
-import Planet from '../images/blackhole/Planet.svg';
-import Check from '../images/blackhole/choiceButton.svg'
+import planet from '../images/blackhole/Planet.svg';
+import check from '../images/blackhole/choiceButton.svg'
 
 
 const BlackHole = (props) => {
@@ -26,25 +26,25 @@ const BlackHole = (props) => {
         <ContentContainer>
 
             <Header state={"Back"} title={"블랙홀"}></Header>
-                {
-                    editMode == false ?
-                        <SelectContainer>
-                            <Select onClick={ ()=>changeActive() } active={ isActive1 }>기록</Select>
-                            <Select onClick={ ()=>changeActive() } active={ isActive2 }>행성</Select>
-                        </SelectContainer>
-                            :
-                        <EditContainer>
-                            <Text>기록 편집</Text>
-                            <FinishButton onClick={ editOff }>완료</FinishButton>
-                        </EditContainer>
-                }
+            {
+                editMode == false ?
+                    <SelectContainer>
+                        <Select onClick={ ()=>changeActive() } active={ isActive1 }>기록</Select>
+                        <Select onClick={ ()=>changeActive() } active={ isActive2 }>행성</Select>
+                    </SelectContainer>
+                    :
+                    <EditContainer>
+                        <Text>기록 편집</Text>
+                        <FinishButton onClick={ editOff }>완료</FinishButton>
+                    </EditContainer>
+            }
             <Menu>
                 <EditText>삭제된 기록들</EditText>
                 {
-                    editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ Check }/></AllChoice>
+                    editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ check }/></AllChoice>
                 }
             </Menu>
-            <Content  day={"20"} profileImgSrc={ Planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+            <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
             <Footer />
         </ContentContainer>
     )
@@ -70,7 +70,7 @@ const SelectContainer = styled.div`
 `
 const Select = styled.div`
   width: 187px;
-  height: 32px; 
+  height: 32px;
   border-bottom: ${(props) => props.active ? '2px solid rgba(255,255,255,0.9)' : 'none'};
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -91,7 +91,7 @@ const Editbutton = styled.div`
   height: 23px;
   border: 1px solid #CBCBCB;
   box-sizing: border-box;
-  border-radius: 12px;  
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   font-family: Spoqa Han Sans Neo;
@@ -133,7 +133,7 @@ const EditContainer = styled.div`
   height: 32px;
   display: flex;
   align-items: center;
-  padding: 8px 16px; 
+  padding: 8px 16px;
   justify-content: center;
   position: relative;
 `
@@ -148,7 +148,7 @@ const FinishButton = styled.div`
   border-radius: 10px;
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
-  font-weight: normal;  
+  font-weight: normal;
   font-size: 12px;
   line-height: 17px;
   letter-spacing: -0.025em;

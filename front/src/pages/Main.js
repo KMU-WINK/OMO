@@ -12,12 +12,21 @@ import NextDate from '../images/main/main_nextDateButton.png';
 import Planet from "../components/main/planet";
 import Default from "../components/main/default";
 
-import planet1 from "../images/main/main_planet1.png";
-import planet2 from "../images/main/main_planet2.png";
-import planet3 from "../images/main/main_planet3.png";
-import planet4 from "../images/main/main_planet4.png";
-import planet5 from "../images/main/main_planet5.png";
-import planet6 from "../images/main/main_planet6.png";
+// figma main 화면 이미지
+// import planet4 from "../images/main/main_planet1.png";
+// import planet1 from "../images/main/main_planet2.png";
+// import planet5 from "../images/main/main_planet3.png";
+// import planet3 from "../images/main/main_planet4.png";
+// import planet1_1 from "../images/main/main_planet5.png";
+// import planet4_1 from "../images/main/main_planet6.png";
+
+// 행성 생성 페이지에서 생성할 행성 이미지 -> 고화질 필요
+import planet1 from "../images/common/planets/color2.svg";
+import planet2 from "../images/common/planets/planet0_4.svg";
+import planet3 from "../images/common/planets/planet1_5.svg";
+import planet4 from "../images/common/planets/planet2_1.svg";
+import planet5 from "../images/common/planets/planet3_0.svg";
+import planet6 from "../images/common/planets/planet4_3.svg";
 
 import {useHistory} from "react-router-dom";
 
@@ -27,36 +36,6 @@ const mainContents = {
     overflow: 'hidden',
     position: 'relative',
     height: '722px',
-}
-const textCSS = {
-    textAlign: 'center',
-    fontSize: '14px',
-    lineHeight: '1.7',
-    marginTop: '300px',
-}
-const blurPlanetImg = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-}
-const blurPlanetCSS = {
-    width: '70px',
-    height: '70px',
-    marginBottom: '-20px',
-}
-const planetLineCSS = {
-    width: '1px',
-    height: '730px',
-}
-const bbuyoCSS = {
-    position: 'absolute',
-    marginLeft: '55%',
-    marginTop: '200px'
-}
-const bbuyoStyle = {
-    width: '44px',
-    height: '44px',
-    cursor: 'pointer',
 }
 const dateCSS = {
     margin: '0 7px',
@@ -99,7 +78,7 @@ const FooterButtons = {
     justifyContent: 'space-evenly',
     backgroundColor: 'black',
     alignItems: 'center',
-    paddingBottom: '32px',
+    paddingBottom: '34px',
 }
 
 const BlackHole = {
@@ -224,7 +203,16 @@ function Main(props) {
     }
 
     // const planets = []; //빈배열
-    const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
+    // const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
+
+    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
+                    {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
+                    {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
+                    {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
+                    {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
+                    {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+    ];
+    // console.log(planets);
 
     return (
         <div style={{backgroundColor: 'black'}}>
@@ -262,7 +250,7 @@ function Main(props) {
                 </div>
                 <div style={FooterButtons}>
                     <div style={BlackHole} onClick={() => history.push('/blackHole')}> </div>
-                    <div style={AddButton} onClick={() => history.push('/write')}> </div>
+                    <div style={AddButton} onClick={() => history.push('/create')}> </div>
                     <div style={ListButton} onClick={() => history.push('/list')}> </div>
                 </div>
             </div>
