@@ -35,7 +35,7 @@ const mainContents = {
     color: 'white',
     overflow: 'hidden',
     position: 'relative',
-    height: '720px',
+    height: '722px',
 }
 const dateCSS = {
     margin: '0 7px',
@@ -110,7 +110,7 @@ const modalCSS = {
 const monthDays = {
     overflow: 'scroll',
     scrollBehavior: 'smooth',
-    "&::-webkit-scrollbar": {
+    "&::WebkitScrollbar": {
         display : 'none',
     },
 }
