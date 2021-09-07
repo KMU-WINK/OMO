@@ -58,43 +58,43 @@ const List = (props) => {
             <Middle>
                 {
                     isActive
-                    ?
-                    <Headbar>
-                        <CenterWrite>
-                            행성
-                            <Line />
-                        </CenterWrite>
-                    </Headbar>
-                    :
-                    <Headbar2 Editmode={isActive}>
-                    <HeadWord>행성목록 편집</HeadWord>
-                    <FinishButton onClick = {FinishEdit}>완료</FinishButton>
-                    </Headbar2>
+                        ?
+                        <Headbar>
+                            <CenterWrite>
+                                행성
+                                <Line />
+                            </CenterWrite>
+                        </Headbar>
+                        :
+                        <Headbar2 Editmode={isActive}>
+                            <HeadWord>행성목록 편집</HeadWord>
+                            <FinishButton onClick = {FinishEdit}>완료</FinishButton>
+                        </Headbar2>
                 }
                 <Neckbar>
                     {
                         test.length
-                        ?
-                        <ListName active={test.length}>감정 행성</ListName>
-                        :
-                        <Blank active={test.length}/>
+                            ?
+                            <ListName active={test.length}>감정 행성</ListName>
+                            :
+                            <Blank active={test.length}/>
                     }
                     {
                         isActive
-                        ?
-                        <EditButton onClick = {StartEdit}>편집</EditButton>
-                        :
-                            selectAll
                             ?
-                            <Canclecheck onClick = {cancelAll} check = {selectAll}>
-                                <div style={{margin: "3px 2px 0 0"}} className={"canclecheck"}/>
-                                선택 해제
-                            </Canclecheck>
+                            <EditButton onClick = {StartEdit}>편집</EditButton>
                             :
-                            <Wholecheck onClick = {checkAll} check = {selectAll}>
-                                <div className={"check"} />
-                                전체 선택
-                            </Wholecheck>
+                            selectAll
+                                ?
+                                <Canclecheck onClick = {cancelAll} check = {selectAll}>
+                                    <div style={{margin: "3px 2px 0 0"}} className={"canclecheck"}/>
+                                    선택 해제
+                                </Canclecheck>
+                                :
+                                <Wholecheck onClick = {checkAll} check = {selectAll}>
+                                    <div className={"check"} />
+                                    전체 선택
+                                </Wholecheck>
                     }
                 </Neckbar>
                 <PlanetBackground>
@@ -104,21 +104,21 @@ const List = (props) => {
                     {test.map((test, index)=> {
                         return (
                             <Planet planet = {test} checked={isClickedList[index]} active = {isActive} select={selectAll}/>
-                                )
-                        })};
+                        )
+                    })};
                     {/*{setSelect(0)};*/}
                 </PlanetBackground>
             </Middle>
             {
                 isActive
-                ?
-                <Footer />
-                :
-                <DeleteBar>
-                    <Deletediv>
-                        <Deleted/>
-                    </Deletediv>
-                </DeleteBar>
+                    ?
+                    <Footer />
+                    :
+                    <DeleteBar>
+                        <Deletediv>
+                            <Deleted/>
+                        </Deletediv>
+                    </DeleteBar>
             }
         </Background>
     )
@@ -211,11 +211,10 @@ const FinishButton = styled.button`
   align-items: center;
   padding: 2px 8px;
   margin: 0 20px 0 0;
-
   /* UI/Light */
   color: #A661FF;
   background: rgba(0, 0, 0, 1);
-  
+
   border: 1px solid #A661FF;
   box-sizing: border-box;
   border-radius: 10px;
@@ -230,12 +229,12 @@ const Neckbar = styled.div`
 `
 
 const Blank = styled.div`
-    display: ${({ active }) => {
-      if (active) {
-        return "none";
-      }
-      return "flex";
-    }};
+  display: ${({ active }) => {
+    if (active) {
+      return "none";
+    }
+    return "flex";
+  }};
 `
 
 const ListName = styled.div`
@@ -293,7 +292,7 @@ const PlusPlanet = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   > .plus {
     width: 54px;
     height: 58px;
@@ -313,12 +312,12 @@ const Wholecheck = styled.button`
   justify-content: center;
   border: none;
   > .check {
-      width: 18px;
-      height: 18px;
-      display: inline-block;
-      margin: 0;
-      background: url(${check}) no-repeat;
-      background-size: contain;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    margin: 0;
+    background: url(${check}) no-repeat;
+    background-size: contain;
 `
 
 const Canclecheck = styled.button`
@@ -330,12 +329,12 @@ const Canclecheck = styled.button`
   justify-content: center;
   border: none;
   > .canclecheck {
-      width: 14px;
-      height: 14px;
-      display: inline-block;
-      margin: 0;
-      background: url(${checkpupple}) no-repeat;
-      background-size: contain;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin: 0;
+    background: url(${checkpupple}) no-repeat;
+    background-size: contain;
 `
 
 const DeleteBar = styled.div`
@@ -357,11 +356,11 @@ const Deletediv = styled.div`
 
 
 const Deleted = styled.div`
-    width: 48px;
-    height: 48px;
-    display: inline-block;
-    margin: 0 0 6px 0;
-    background: transparent;
-    background: url(${deleted}) no-repeat;
-    background-size: contain;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin: 0 0 6px 0;
+  background: transparent;
+  background: url(${deleted}) no-repeat;
+  background-size: contain;
 `

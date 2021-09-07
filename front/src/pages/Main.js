@@ -35,7 +35,7 @@ const mainContents = {
     color: 'white',
     overflow: 'hidden',
     position: 'relative',
-    height: '720px',
+    height: '722px',
 }
 const dateCSS = {
     margin: '0 7px',
@@ -110,40 +110,40 @@ const modalCSS = {
 const monthDays = {
     overflow: 'scroll',
     scrollBehavior: 'smooth',
-    "&::-webkit-scrollbar": {
+    "&::WebkitScrollbar": {
         display : 'none',
     },
 }
 
 const Background = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0,0,0,0.50);
-    z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.50);
+  z-index: 1;
 `;
 
 const ModalContainer = styled.div`
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 280px;
-    height: 280px;
-    padding: 16px;
-    background: rgba(124, 124, 124, 0.3);
-    border-radius: 20px;
-    backdrop-filter: blur(4px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    @media only screen and (max-width: 300px) {
-        width: 220px;
-        height: 220px;
-    }
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  padding: 16px;
+  background: rgba(124, 124, 124, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: 300px) {
+    width: 220px;
+    height: 220px;
+  }
 `;
 
 function Main(props) {
@@ -206,11 +206,11 @@ function Main(props) {
     // const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
 
     const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
-                    {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
-                    {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
-                    {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
-                    {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
-                    {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
+        {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
+        {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
+        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
+        {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
     ];
     // console.log(planets);
 

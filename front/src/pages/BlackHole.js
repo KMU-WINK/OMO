@@ -6,6 +6,14 @@ import styled from "styled-components";
 import planet from '../images/blackhole/Planet.svg';
 import check from '../images/blackhole/choiceButton.svg'
 
+import Default from '../components/main/default';
+import Planet from '../components/main/planet';
+import planet1 from "../images/common/planets/color2.svg";
+import planet2 from "../images/common/planets/planet0_4.svg";
+import planet3 from "../images/common/planets/planet1_5.svg";
+import planet4 from "../images/common/planets/planet2_1.svg";
+import planet5 from "../images/common/planets/planet3_0.svg";
+import planet6 from "../images/common/planets/planet4_3.svg";
 
 const BlackHole = (props) => {
     const [isActive1, setActive1] = useState(true);
@@ -22,35 +30,76 @@ const BlackHole = (props) => {
         setEditMode(false);
     }
 
-    return (
-        <ContentContainer>
+    // const planets = [];
+    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
+        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
+        {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
+        {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
+        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
+        {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+    ];
+    console.log(planets);
 
-            <Header state={"Back"} title={"블랙홀"}></Header>
-            {
-                editMode == false ?
-                    <SelectContainer>
-                        <Select onClick={ ()=>changeActive() } active={ isActive1 }>기록</Select>
-                        <Select onClick={ ()=>changeActive() } active={ isActive2 }>행성</Select>
-                    </SelectContainer>
-                    :
-                    <EditContainer>
-                        <Text>기록 편집</Text>
-                        <FinishButton onClick={ editOff }>완료</FinishButton>
-                    </EditContainer>
-            }
-            <Menu>
-                <EditText>삭제된 기록들</EditText>
+    return (
+        <Background>
+            <ContentContainer>
+
+                <Header state={"Back"} title={"블랙홀"}></Header>
                 {
-                    editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ check }/></AllChoice>
+                    editMode == false ?
+                        <SelectContainer>
+                            <Select onClick={ ()=>changeActive() } active={ isActive1 }>기록</Select>
+                            <Select onClick={ ()=>changeActive() } active={ isActive2 }>행성</Select>
+                        </SelectContainer>
+                        :
+                        <EditContainer>
+                            <Text>기록 편집</Text>
+                            <FinishButton onClick={ editOff }>완료</FinishButton>
+                        </EditContainer>
                 }
-            </Menu>
-            <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
-            <Footer />
-        </ContentContainer>
+                <Menu>
+                    <EditText>삭제된 기록들</EditText>
+                    {
+                        editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ check }/></AllChoice>
+                    }
+                </Menu>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Footer />
+            </ContentContainer>
+            <Wrap>
+                <WrapMain>
+                    {planets.length === 0 ?
+                        <Default/>     // 행성이 없을 때
+                        :
+                        <Planet planets={planets}/>  // 행성이 있을 때
+                    }
+                </WrapMain>
+            </Wrap>
+        </Background>
     )
 }
 
 export default BlackHole;
+
+const Background = styled.div`
+  position: relative;  
+`;
+const Wrap = styled.div`
+  width: 100%;
+  height: 780px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -5;
+  background: black;
+  overflow: hidden;
+  padding-top: 30px;
+`;
+const WrapMain = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const ContentContainer = styled.div`
   display: flex;
