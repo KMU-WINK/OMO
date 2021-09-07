@@ -19,10 +19,11 @@ const backgroundCSS = {
 const mainContents = {
     width: '375px',
     height: '762px',
+    overflow: 'hidden',
 }
 const subContents = {
     padding: '0 12px',
-    height: '480px',
+    height: '620px',
 }
 const blankSpace = {
     width: '100%',
@@ -95,9 +96,12 @@ const allPlanet = {
     justifyContent: 'center',
     marginBottom: '50px',
     marginTop: '10px',
+    transition: 'all 1s ease-in 0s',
+    alignItems: 'center',
 }
 const planetStyle = {
     width: '270px',
+    transition: 'all 1s ease-in 0s',
 }
 const menuHeader = {
     width: '100%',
@@ -133,15 +137,13 @@ const moreContents = {
     scrollbarWidth: 'none',  /* Firefox */
     '::-webkit-scrollbar': {
         display: 'none',
-    }
+    },
+    transition: 'all 1s ease-in 0s',
 }
 
 const contentCSS ={
-    width: '100%',
     position: 'absolute',
-    top: '19%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transition: 'all 1s ease-in 0s',
 }
 const nameCSS = {
     fontFamily: 'S-Core Dream',
@@ -149,15 +151,12 @@ const nameCSS = {
     fontWeight: 'normal',
     fontSize: '16px',
     lineHeight: '19px',
-    textAlign: 'center',
     letterSpacing: '-0.05em',
-
     color: 'rgba(255, 255, 255, 0.9)'
 }
 
 const countCSS = {
     marginTop: '4px',
-
     fontFamily: 'S-Core Dream',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -165,7 +164,6 @@ const countCSS = {
     lineHeight: '15px',
     textAlign: 'center',
     letterSpacing: '-0.05em',
-
     color: 'rgba(255, 255, 255, 0.9)',
 }
 
@@ -201,16 +199,18 @@ const Menu = (props) => {
             document.getElementById("topPlanet").style.marginLeft = '20px';
             document.getElementById("topPlanetDiv").style.justifyContent = 'left';
             document.getElementById("topPlanetDiv").style.marginBottom = '20px';
-            document.getElementById("boxFixHeight").style.height = '620px';
             document.getElementById("MonthAndPeriod").style.display = 'none';
+            document.getElementById("countRecord").style.marginLeft = '35%';
+            document.getElementById("countcount").style.textAlign = 'left';
         }
         else {
             document.getElementById("topPlanet").style.width = '270px';
             document.getElementById("topPlanet").style.marginLeft = '0';
             document.getElementById("topPlanetDiv").style.marginBottom = '50px';
             document.getElementById("topPlanetDiv").style.justifyContent = 'center';
-            document.getElementById("boxFixHeight").style.height = '480px';
             document.getElementById("MonthAndPeriod").style.display = 'flex';
+            document.getElementById("countRecord").style.marginLeft = '0';
+            document.getElementById("countcount").style.textAlign = 'center';
         }
     }
 
@@ -243,9 +243,9 @@ const Menu = (props) => {
             <div style={mainContents}>
                 <div style={allPlanet} id={"topPlanetDiv"}>
                     <img id={"topPlanet"} src={purplePlanet} style={planetStyle}/>
-                    <div style={contentCSS}>
+                    <div style={contentCSS} id={"countRecord"}>
                         <div style={nameCSS}>{props.name}</div>
-                        <div style={countCSS}>{props.count}개의 기록</div>
+                        <div style={countCSS} id={"countcount"}>{props.count}개의 기록</div>
                     </div>
                 </div>
                 {showModal === true ?
@@ -295,7 +295,7 @@ const Menu = (props) => {
                 }
                 <div style={moreContents}>
                     <div style={blankSpace} onClick={viewLarger}></div>
-                    <div style={subContents} id={"boxFixHeight"}>
+                    <div style={subContents}>
                         <div style={checkPeriod} id={"MonthAndPeriod"}>
                             <div style={monthButton} onClick={checkModal}>
                                 <div style={monthCSS}>{showMonth}</div>
