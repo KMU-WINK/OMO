@@ -90,6 +90,7 @@ const monthStyle = {
     cursor: 'pointer',
 }
 const allPlanet = {
+    width: '100%',
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '50px',
@@ -135,6 +136,38 @@ const moreContents = {
     }
 }
 
+const contentCSS ={
+    width: '100%',
+    position: 'absolute',
+    top: '19%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+}
+const nameCSS = {
+    fontFamily: 'S-Core Dream',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '16px',
+    lineHeight: '19px',
+    textAlign: 'center',
+    letterSpacing: '-0.05em',
+
+    color: 'rgba(255, 255, 255, 0.9)'
+}
+
+const countCSS = {
+    marginTop: '4px',
+
+    fontFamily: 'S-Core Dream',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '12px',
+    lineHeight: '15px',
+    textAlign: 'center',
+    letterSpacing: '-0.05em',
+
+    color: 'rgba(255, 255, 255, 0.9)',
+}
 
 const Menu = (props) => {
     useEffect(() => {
@@ -210,6 +243,10 @@ const Menu = (props) => {
             <div style={mainContents}>
                 <div style={allPlanet} id={"topPlanetDiv"}>
                     <img id={"topPlanet"} src={purplePlanet} style={planetStyle}/>
+                    <div style={contentCSS}>
+                        <div style={nameCSS}>{props.name}</div>
+                        <div style={countCSS}>{props.count}개의 기록</div>
+                    </div>
                 </div>
                 {showModal === true ?
                     <Background>
