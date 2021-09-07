@@ -3,8 +3,8 @@ import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 import Content from "../components/blackhole/content";
 import styled from "styled-components";
-import Planet from '../images/blackhole/Planet.svg';
-import Check from '../images/blackhole/choiceButton.svg'
+import planet from '../images/blackhole/Planet.svg';
+import check from '../images/blackhole/choiceButton.svg'
 
 
 const BlackHole = (props) => {
@@ -41,10 +41,10 @@ const BlackHole = (props) => {
             <Menu>
                 <EditText>삭제된 기록들</EditText>
                 {
-                    editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ Check }/></AllChoice>
+                    editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ check }/></AllChoice>
                 }
             </Menu>
-            <Content  day={"20"} profileImgSrc={ Planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+            <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
             <Footer />
         </ContentContainer>
     )
