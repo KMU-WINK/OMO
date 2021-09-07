@@ -1,5 +1,6 @@
 import React, {Component, useState, useEffect} from 'react';
 import styled from 'styled-components';
+import {useHistory} from "react-router-dom";
 
 import Header from "../components/common/header";
 import Box from "../components/menu/box"
@@ -140,6 +141,8 @@ const Menu = (props) => {
         MonthButtonInit()
     }, []);
 
+    const history = useHistory();
+
     const [showModal, setShowModal] = useState(false);
     const checkModal = () => {
         setShowModal(!showModal);
@@ -183,7 +186,7 @@ const Menu = (props) => {
             { checkMore ?
                 <div style={menuHeader}>
                     <div style={{width: '40px', marginLeft: '20px'}}>
-                        <img src={backButtonImg} style={backButton}/>
+                        <img src={backButtonImg} style={backButton} onClick={() => history.goBack()}/>
                     </div>
                     <div style={{display:'flex', marginRight: '12px', fontSize:'12px'}}>
                         <p style={headerTXT}>행성 수정</p>
@@ -193,7 +196,7 @@ const Menu = (props) => {
                 :
                 <div style={menuHeader}>
                     <div style={{width: '40px', marginLeft: '20px'}}>
-                        <img src={backButtonImg} style={backButton}/>
+                        <img src={backButtonImg} style={backButton} onClick={() => history.goBack()}/>
                     </div>
                     <div style={monthButton} onClick={checkModal}>
                         <div style={monthCSS2}>{showMonth}</div>
