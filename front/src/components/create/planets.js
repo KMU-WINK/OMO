@@ -29,7 +29,7 @@ for(let i=0;i<colorCount;i++){
 
 for(let i=0;i<planetCount;i++){
     for(let j=0;j<colorCount;j++){
-        planetImages[i][j] = require('../../images/common/planets/planet' + i + '_' + j + '.png').default;
+        planetImages[i][j] = require('../../images/common/planets/planet' + i + '_' + j + '.svg').default;
     }
 }
 
