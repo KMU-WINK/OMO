@@ -12,12 +12,21 @@ import NextDate from '../images/main/main_nextDateButton.png';
 import Planet from "../components/main/planet";
 import Default from "../components/main/default";
 
-import planet1 from "../images/main/main_planet1.png";
-import planet2 from "../images/main/main_planet2.png";
-import planet3 from "../images/main/main_planet3.png";
-import planet4 from "../images/main/main_planet4.png";
-import planet5 from "../images/main/main_planet5.png";
-import planet6 from "../images/main/main_planet6.png";
+// figma main 화면 이미지
+import planet4 from "../images/main/main_planet1.png";
+import planet1 from "../images/main/main_planet2.png";
+import planet5 from "../images/main/main_planet3.png";
+import planet3 from "../images/main/main_planet4.png";
+import planet1_1 from "../images/main/main_planet5.png";
+import planet4_1 from "../images/main/main_planet6.png";
+
+// 행성 생성 페이지에서 생성할 행성 이미지 -> 고화질 필요
+// import planet1 from "../images/common/planets/color2.png";
+// import planet2 from "../images/common/planets/planet0_0.png";
+// import planet3 from "../images/common/planets/planet1_5.png";
+// import planet4 from "../images/common/planets/planet2_1.png";
+// import planet5 from "../images/common/planets/planet3_0.png";
+// import planet6 from "../images/common/planets/planet4_0.png";
 
 import {useHistory} from "react-router-dom";
 
@@ -196,12 +205,12 @@ function Main(props) {
     // const planets = []; //빈배열
     // const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
 
-    const planets = [{'imgSrc':planet1, 'name':"화가 치밀어 오른다", 'count':32},
-                    {'imgSrc':planet2, 'name':"오늘은 조금 우울해", 'count':20},
-                    {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':32},
-                    {'imgSrc':planet4, 'name':"오늘은 조금 우울해", 'count':18},
-                    {'imgSrc':planet5, 'name':"오늘은 조금 우울해", 'count':18},
-                    {'imgSrc':planet6, 'name':"화가 치밀어 오른다", 'count':32}
+    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
+                    {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':18},
+                    {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
+                    {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':18},
+                    {'imgSrc':planet1_1, 'name':"오늘은 조금 우울해", 'count':20},
+                    {'imgSrc':planet4_1, 'name':"화가 치밀어 오른다", 'count':20}
     ];
     console.log(planets);
 

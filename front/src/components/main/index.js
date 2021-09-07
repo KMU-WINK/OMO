@@ -2,34 +2,52 @@ import React from 'react';
 import styled, {keyframes} from 'styled-components';
 
 const planetCSS1 = {
+    width: '350px',
+    height: '350px',
     position: 'absolute',
-    marginTop: '170px',
-    marginLeft: '30px',
+    top: '120px',
+    left: '30px',
+    // border: '3px solid red',
 }
 const planetCSS2 = {
+    width: '350px',
+    height: '350px',
     position: 'absolute',
-    left: '220px',
-    top: '45px',
+    top: '0px',
+    left: '180px',
+    // border: '3px solid orange',
 }
 const planetCSS3 = {
+    width: '350px',
+    height: '350px',
     position: 'absolute',
-    marginTop: '-100px',
-    marginLeft: '-55px',
+    top: '-80px',
+    left: '-80px',
+    // border: '3px solid yellow',
 }
 const planetCSS4 = {
+    width: '350px',
+    height: '350px',
     position: 'absolute',
-    marginTop: '430px',
-    marginLeft: '120px',
+    top: '320px',
+    left: '10px',
+    // border: '3px solid green',
 }
 const planetCSS5 = {
+    width: '350px',
+    height: '350px',
     position: 'absolute',
-    marginTop: '370px',
-    marginLeft: '240px',
+    top: '210px',
+    left: '150px',
+    // border: '3px solid blue',
 }
 const planetCSS6 = {
+    width: '350px',
+    height: '350px',
     position: 'absolute',
-    marginTop: '300px',
-    marginLeft: '-80px',
+    top: '200px',
+    left: '-100px',
+    // border: '3px solid purple',
 }
 
 const contentCSS ={
@@ -121,14 +139,26 @@ const countCSS3 = {
 const imageSize1 ={
     width: '350px',
     objectFit: 'contain',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
 }
 const imageSize2 ={
-    width: '250px',
+    width: '275px',
     objectFit: 'contain',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
 }
 const imageSize3 ={
-    width: '150px',
+    width: '200px',
     objectFit: 'contain',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
 }
 
 const Index = (props) => {
@@ -178,10 +208,10 @@ const Wrap = styled.div`
 
   @keyframes movePlanet {
     from {
-      left: -5%;
+      left: -2%;
     }
     to {
-      left: 0%;
+      left: 2%;
     }
   }
 `;
