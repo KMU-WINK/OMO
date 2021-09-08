@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
-import Planet from "../components/list/planet";
+import Star from "../components/list/star";
 import styled from "styled-components";
 
 import plus from '../images/list/plusplanet.png';
@@ -17,11 +17,13 @@ import main from '../images/list/mainpage.png';
 import check from '../images/list/check.png';
 import deleted from '../images/list/delete.png';
 import checkpupple from '../images/list/checkpupple.png';
+import {useHistory} from "react-router-dom";
 
 const List = (props) => {
-    let test = [{title: "개웃기네", num: 3, Dday: 30, image:star2}, {title: "배고파", num: 18, Dday: 28, image:star4}, {title: "지치는날", num: 5, Dday: 12, image:star3}];
+    let test = [{title: "개웃기네", num: 3, image:star2}, {title: "배고파", num: 18, image:star4}, {title: "지치는날", num: 5, image:star3}];
     // let test = []
 
+    const history = useHistory();
     const isClickedList = Array(test.length).fill(false);
     const [isActive, setActive] = useState(true);
     const [selectAll, setSelect] = useState(false);
@@ -98,12 +100,12 @@ const List = (props) => {
                     }
                 </Neckbar>
                 <PlanetBackground>
-                    <PlusPlanet active={test.length}>
+                    <PlusPlanet active={test.length} onClick = { () => history.push('./Create')}>
                         <div className={"plus"} />
                     </PlusPlanet>
                     {test.map((test, index)=> {
                         return (
-                            <Planet planet = {test} checked={isClickedList[index]} active = {isActive} select={selectAll}/>
+                            <Star planet = {test} checked={isClickedList[index]} active = {isActive} select={selectAll}/>
                         )
                     })};
                     {/*{setSelect(0)};*/}
