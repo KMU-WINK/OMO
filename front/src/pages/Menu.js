@@ -96,12 +96,12 @@ const allPlanet = {
     justifyContent: 'center',
     marginBottom: '50px',
     marginTop: '10px',
-    transition: 'all 1s ease-in 0s',
+    transition: 'all 0.5s ease-in 0s',
     alignItems: 'center',
 }
 const planetStyle = {
     width: '270px',
-    transition: 'all 1s ease-in 0s',
+    transition: 'all 0.5s ease-in 0s',
 }
 const menuHeader = {
     width: '100%',
@@ -132,18 +132,13 @@ const moreContents = {
         'rgba(251, 189, 206, 0.25) 13.89%, ' +
         'rgba(118, 89, 235, 0.25) 87.84%)',
     borderRadius: '20px 20px 0px 0px',
-    overflow: 'scroll',
-    MsOverflowStyle: 'none',  /* IE and Edge */
-    scrollbarWidth: 'none',  /* Firefox */
-    '::-webkit-scrollbar': {
-        display: 'none',
-    },
-    transition: 'all 1s ease-in 0s',
+    overflowY: 'scroll',
+    transition: 'all 0.5s ease-in 0s',
 }
 
 const contentCSS ={
     position: 'absolute',
-    transition: 'all 1s ease-in 0s',
+    transition: 'all 0.5s ease-in 0s',
 }
 const nameCSS = {
     fontFamily: 'S-Core Dream',
@@ -200,7 +195,7 @@ const Menu = (props) => {
             document.getElementById("topPlanetDiv").style.justifyContent = 'left';
             document.getElementById("topPlanetDiv").style.marginBottom = '20px';
             document.getElementById("MonthAndPeriod").style.display = 'none';
-            document.getElementById("countRecord").style.marginLeft = '35%';
+            document.getElementById("countRecord").style.marginLeft = '130px';
             document.getElementById("countcount").style.textAlign = 'left';
         }
         else {
@@ -241,7 +236,7 @@ const Menu = (props) => {
                 </div>
             }
             <div style={mainContents}>
-                <div style={allPlanet} id={"topPlanetDiv"}>
+                <div style={allPlanet} id={"topPlanetDiv"} onClick={viewLarger}>
                     <img id={"topPlanet"} src={purplePlanet} style={planetStyle}/>
                     <div style={contentCSS} id={"countRecord"}>
                         <div style={nameCSS}>{props.name}</div>
