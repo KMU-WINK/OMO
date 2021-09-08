@@ -19,7 +19,7 @@ const Footer = (props) => {
                     <p>홈</p>
                 </HomeWrap>
                 <SearchWrap>
-                    <div onClick={() => console.log("검색 페이지")}/>
+                    <div onClick={() => alert('현재 검색 페이지에 접근할 수 없습니다!')}/>
                     <p>검색</p>
                 </SearchWrap>
                 <PlusWrap>
@@ -32,7 +32,7 @@ const Footer = (props) => {
                     <p>목록</p>
                 </ListWrap>
                 <MoreWrap>
-                    <div onClick={() => alert('더보기 페이지를 지금 볼 수 없습니다!')}/>
+                    <div onClick={() => history.push('/moreDetail')}/>
                     <p>더보기</p>
                 </MoreWrap>
             </Wrap>

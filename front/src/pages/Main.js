@@ -208,9 +208,9 @@ function Main(props) {
     const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
         {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
         {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
-        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
-        {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':32},
+        {'imgSrc':planet2, 'name':"오늘은 조금 우울해", 'count':18},
+        {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':18}
     ];
     // console.log(planets);
 
