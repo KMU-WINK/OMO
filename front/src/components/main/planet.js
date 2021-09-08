@@ -68,7 +68,7 @@ const Planet = (props) => {
     return (
         <div>
             <View/>
-            <img src={moreDetailButton} id={"showMoreDetailButtons"} style={moreDetailButtonImg} onClick={() => history.push('/moredetail')}/>
+            <img src={moreDetailButton} id={"showMoreDetailButtons"} style={moreDetailButtonImg} onClick={() => history.push('/moreDetail')}/>
             <img src={statisticsButton} id={"showStatisticsButtons"}  style={statisticsButtonImg} onClick={() => history.push('/statistics')}/>
             <div style={bbuyoCSS} onClick={showButtons}>
                 <p style={txtCSS}>뿌요</p>   {/*뿌요 대신 이름 들어가는 듯*/}

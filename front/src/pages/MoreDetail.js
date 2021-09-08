@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Component} from 'react';
+import {useHistory} from "react-router-dom";
 
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
@@ -96,6 +97,8 @@ const friendsImg = {
 }
 
 function MoreDetail(props) {
+    const history = useHistory();
+
     return (
         <div style={allContents}>
             <Header state={"Back"}/>
@@ -103,7 +106,7 @@ function MoreDetail(props) {
                 <div style={myProfile}>
                     <img src={profileImg} style={profileImgCSS}/>
                     <p style={profileName}>뿌요님</p>
-                    <div style={ProfileModificationButton}>프로필 수정</div>
+                    <div style={ProfileModificationButton} onClick={() => history.push('/modifyProfile')}>프로필 수정</div>
                 </div>
                 <div style={friendsBlock}>
                     <div style={contentsH}>
