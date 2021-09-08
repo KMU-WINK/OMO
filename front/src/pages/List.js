@@ -80,6 +80,9 @@ const List = (props) => {
                     isActive
                         ?
                         <Headbar>
+                            <CenterWrite style={{color: "rgba(255, 255, 255, 0.5)"}}>
+                                캘린더
+                            </CenterWrite>
                             <CenterWrite>
                                 행성
                                 <Line />
@@ -156,15 +159,19 @@ const List = (props) => {
 export default List;
 
 
+// const HeaderDiv = styled.div`
+//   width: 375px;
+//   background: ${({ active }) => {
+//     if (active) {
+//       return "transparent";
+//     }
+//     return "transparent";
+//   }};;
+// `
 const HeaderDiv = styled.div`
   width: 375px;
-  background: ${({ active }) => {
-    if (active) {
-      return "#141317";
-    }
-    return "transparent";
-  }};;
-`
+  background: transparent;
+`;
 
 const Background = styled.div`
   width: 375px;
@@ -196,11 +203,11 @@ const WrapMain = styled.div`
 const Middle = styled.div`
   width: 375px;
   height: 678px;
-  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
+  //box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
 `;
 
 const Headbar = styled.div`
-  background: #141317;
+  //background: #141317;
   width: 375px;
   height: 48px;
   display: flex;
