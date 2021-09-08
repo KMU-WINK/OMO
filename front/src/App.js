@@ -11,7 +11,11 @@ import Posts from "./pages/Posts";
 import BlackHole from "./pages/BlackHole";
 import Statistics from "./pages/Statistics";
 import WriteComplete from './pages/WriteComplete';
-import MoreDetail from './pages/MoreDetail'
+import MoreDetail from './pages/MoreDetail';
+import ModifyProfile from './pages/ModifyProfile';
+import Setting from './pages/Setting';
+import Notice from './pages/Notice';
+import FAQ from './pages/FAQ';
 
 class App extends Component {
   render() {
@@ -27,7 +31,11 @@ class App extends Component {
             <Route path="/blackHole" component={BlackHole} />
             <Route path="/statistics" component={Statistics} />
             <Route path="/writecomplete" component={WriteComplete} />
-            <Route path="/Moredetail" component={MoreDetail} />
+            <Route path="/moreDetail" component={MoreDetail} />
+            <Route path="/modifyProfile" component={ModifyProfile}/>
+            <Route path="/setting" component={Setting}/>
+            <Route path="/notice" component={Notice}/>
+            <Route path="/frequentlyAskedQuestion" component={FAQ}/>
           </Wrap>
       </Router>
     );

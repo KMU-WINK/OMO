@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Component} from 'react';
+import {useHistory} from "react-router-dom";
 
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
+import ButtonSection from "../components/common/buttonSection";
 
 import profileImg from "../images/moreDetail/profileImg.png";
-import moreButton from "../images/moreDetail/moredetail_moreButton.png";
 
 const allContents = {
     backgroundColor: 'black',
@@ -49,15 +50,6 @@ const contentsH ={
     margin: '0 16px',
     alignItems: 'flex-end',
 }
-const moreContents = {
-    display:'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-}
-const nameMoreContents = {
-    fontSize: '16px',
-    fontWeight: '400',
-}
 const moreButtonImg = {
     height:'12px',
     width:'8px',
@@ -96,6 +88,8 @@ const friendsImg = {
 }
 
 function MoreDetail(props) {
+    const history = useHistory();
+
     return (
         <div style={allContents}>
             <Header state={"Back"}/>
@@ -103,7 +97,7 @@ function MoreDetail(props) {
                 <div style={myProfile}>
                     <img src={profileImg} style={profileImgCSS}/>
                     <p style={profileName}>뿌요님</p>
-                    <div style={ProfileModificationButton}>프로필 수정</div>
+                    <div style={ProfileModificationButton} onClick={() => history.push('/modifyProfile')}>프로필 수정</div>
                 </div>
                 <div style={friendsBlock}>
                     <div style={contentsH}>
@@ -129,17 +123,14 @@ function MoreDetail(props) {
                     </div>
                 </div>
                 <div style={{margin:'10px 22px 0 22px'}}>
-                    <div style={moreContents}>
-                        <p style={nameMoreContents}>앱 설정</p>
-                        <img src={moreButton} style={moreButtonImg}/>
+                    <div onClick={() => history.push('/setting')}>
+                        <ButtonSection title={"앱 설정"}/>
                     </div>
-                    <div style={moreContents}>
-                        <p style={nameMoreContents}>공지사항</p>
-                        <img src={moreButton} style={moreButtonImg}/>
+                    <div onClick={() => history.push('/notice')}>
+                        <ButtonSection title={"공지사항"}/>
                     </div>
-                    <div style={moreContents}>
-                        <p style={nameMoreContents}>자주 묻는 질문</p>
-                        <img src={moreButton} style={moreButtonImg}/>
+                    <div onClick={() => history.push('/frequentlyAskedQuestion')}>
+                        <ButtonSection title={"자주 묻는 질문"}/>
                     </div>
                 </div>
             </div>

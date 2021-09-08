@@ -6,6 +6,7 @@ import Spaceship from '../images/statistics/statistics_Spaceship.png';
 import monthGraph from '../images/statistics/statistics_monthGraph.png';
 import planetGraph from '../images/statistics/statistics_planetGraph.png';
 import emotionGraph from '../images/statistics/statistics_emotionGraph.png';
+import recordFrequency from '../images/statistics/statistics_recordFrequency.png'
 
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
@@ -60,7 +61,6 @@ const myRecordFrequency = {
     width: '340px',
     borderRadius: '20px',
     backgroundColor: 'rgba(124,124,124,0.5)',
-    backdropFilter: 'blur(4px)',
     marginBottom: '10px',
 }
 const myRecordStatistics = {
@@ -147,7 +147,7 @@ const Statistics = (props) => {
                         </div>
                     </div>
                     <div style={myRecordFrequency}>
-                        <p style={headTXT}>나의 기록빈도</p>
+                        <img src={recordFrequency} style={{width: '100%'}}/>
                     </div>
                     <div style={myRecordStatistics}>
                         <div style={{width:'120px'}}>
