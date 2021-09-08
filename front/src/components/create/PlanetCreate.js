@@ -42,7 +42,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
                     <TopLine />
                     <div>
                         <MainPlanetDiv>
-                            <MainPlanet mainPlanet={loadPlanet(mainPlanet,mainColor)}/>
+                            <MainPlanet src={loadPlanet(mainPlanet,mainColor)}/>
                         </MainPlanetDiv>
                         <Text left="141px" top="84px">형태</Text>
                         <ItemBlock top="100px">
@@ -182,22 +182,24 @@ const PlanetDiv = styled.div`
 `;
 
 const CircleDiv = styled.div`
-    display:inline;
+    display:inline-block;
+    width:20px;
+    height:20px;
+    margin-left:0px;
+    margin-right:9px;
 `;
 
 const Circle = styled.img`
     display:inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right:11px;
+    width: 30px;
+    height: 30px;
 `;
 
-const MainPlanet = styled.div`
+const MainPlanet = styled.img`
     position: absolute;
-    width: 105px;
-    height: 84px;
+    width: 110px;
+    height: 110px;
     
-    left:18px;
+    left:12px;
     top:90px;
-    background: url(${props=>props.mainPlanet}) no-repeat;
 `;
