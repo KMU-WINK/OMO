@@ -11,6 +11,7 @@ import Posts from "./pages/Posts";
 import BlackHole from "./pages/BlackHole";
 import Statistics from "./pages/Statistics";
 import WriteComplete from './pages/WriteComplete';
+import MoreDetail from './pages/MoreDetail'
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/blackHole" component={BlackHole} />
             <Route path="/statistics" component={Statistics} />
             <Route path="/writecomplete" component={WriteComplete} />
+            <Route path="/Moredetail" component={MoreDetail} />
           </Wrap>
       </Router>
     );
