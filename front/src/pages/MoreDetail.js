@@ -3,9 +3,9 @@ import {useHistory} from "react-router-dom";
 
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
+import ButtonSection from "../components/common/buttonSection";
 
 import profileImg from "../images/moreDetail/profileImg.png";
-import moreButton from "../images/moreDetail/moredetail_moreButton.png";
 
 const allContents = {
     backgroundColor: 'black',
@@ -49,15 +49,6 @@ const contentsH ={
     justifyContent:'space-between',
     margin: '0 16px',
     alignItems: 'flex-end',
-}
-const moreContents = {
-    display:'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-}
-const nameMoreContents = {
-    fontSize: '16px',
-    fontWeight: '400',
 }
 const moreButtonImg = {
     height:'12px',
@@ -132,18 +123,9 @@ function MoreDetail(props) {
                     </div>
                 </div>
                 <div style={{margin:'10px 22px 0 22px'}}>
-                    <div style={moreContents}>
-                        <p style={nameMoreContents}>앱 설정</p>
-                        <img src={moreButton} style={moreButtonImg}/>
-                    </div>
-                    <div style={moreContents}>
-                        <p style={nameMoreContents}>공지사항</p>
-                        <img src={moreButton} style={moreButtonImg}/>
-                    </div>
-                    <div style={moreContents}>
-                        <p style={nameMoreContents}>자주 묻는 질문</p>
-                        <img src={moreButton} style={moreButtonImg}/>
-                    </div>
+                    <ButtonSection title={"앱 설정"}/>
+                    <ButtonSection title={"공지사항"}/>
+                    <ButtonSection title={"자주 묻는 질문"}/>
                 </div>
             </div>
             <Footer />
