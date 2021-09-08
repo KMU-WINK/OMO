@@ -38,12 +38,10 @@ const BlackHole = (props) => {
         {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
         {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
     ];
-    console.log(planets);
 
     return (
         <Background>
             <ContentContainer>
-
                 <Header state={"Back"} title={"블랙홀"}></Header>
                 {
                     editMode == false ?
@@ -99,6 +97,7 @@ const Wrap = styled.div`
 const WrapMain = styled.div`
   display: flex;
   align-items: center;
+  backdrop-filter: blur(4px);
 `;
 
 const ContentContainer = styled.div`
