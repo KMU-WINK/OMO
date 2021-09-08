@@ -123,9 +123,15 @@ function MoreDetail(props) {
                     </div>
                 </div>
                 <div style={{margin:'10px 22px 0 22px'}}>
-                    <ButtonSection title={"앱 설정"}/>
-                    <ButtonSection title={"공지사항"}/>
-                    <ButtonSection title={"자주 묻는 질문"}/>
+                    <div onClick={() => history.push('/setting')}>
+                        <ButtonSection title={"앱 설정"}/>
+                    </div>
+                    <div onClick={() => history.push('/notice')}>
+                        <ButtonSection title={"공지사항"}/>
+                    </div>
+                    <div onClick={() => history.push('/frequentlyAskedQuestion')}>
+                        <ButtonSection title={"자주 묻는 질문"}/>
+                    </div>
                 </div>
             </div>
             <Footer />
