@@ -236,7 +236,7 @@ const Menu = (props) => {
                 </div>
             }
             <div style={mainContents}>
-                <div style={allPlanet} id={"topPlanetDiv"}>
+                <div style={allPlanet} id={"topPlanetDiv"} onClick={viewLarger}>
                     <img id={"topPlanet"} src={purplePlanet} style={planetStyle}/>
                     <div style={contentCSS} id={"countRecord"}>
                         <div style={nameCSS}>{props.name}</div>
