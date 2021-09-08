@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {useHistory} from "react-router-dom";
 
-const star1CSS = {height : 60,  margin: "0 0 0 0"}
+const starCSS = {height : 60,  margin: "26px 0 0 0"}
 
-const Planet = ({planet, checked, active, select}) => {
-
+const Star = ({planet, checked, active, select}) => {
+    const history = useHistory();
     const [isClicked,setClicked] = useState(checked);
 
     const checkOne = () => {
         if (!active){
             setClicked(!isClicked);
+        }
+        else {
+            history.push({pathname: '/menu',
+            planet: planet});
         }
     }
 
@@ -29,15 +34,14 @@ const Planet = ({planet, checked, active, select}) => {
 
     return(
         <PlanetBase check = {isClicked} onClick = {checkOne}>
-            <Dday>D-{planet.Dday}</Dday>
-            <img src={planet.image} style = {star1CSS}/>
+            <img src={planet.image} style = {starCSS}/>
             <Title>{planet.title}</Title>
             <SubTitle>{planet.num}개의 기록</SubTitle>
         </PlanetBase>
     )
 }
 
-export default Planet;
+export default Star;
 
 
 const PlanetBase = styled.div`
