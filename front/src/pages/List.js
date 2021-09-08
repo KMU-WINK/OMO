@@ -19,6 +19,15 @@ import deleted from '../images/list/delete.png';
 import checkpupple from '../images/list/checkpupple.png';
 import {useHistory} from "react-router-dom";
 
+import Default from "../components/main/default";
+import Planet from "../components/main/planet";
+import planet4 from "../images/common/planets/planet2_1.svg";
+import planet1 from "../images/common/planets/color2.svg";
+import planet5 from "../images/common/planets/planet3_0.svg";
+import planet3 from "../images/common/planets/planet1_5.svg";
+import planet6 from "../images/common/planets/planet4_3.svg";
+import planet2 from "../images/common/planets/planet0_4.svg";
+
 const List = (props) => {
     let test = [{title: "개웃기네", num: 3, image:star2}, {title: "배고파", num: 18, image:star4}, {title: "지치는날", num: 5, image:star3}];
     // let test = []
@@ -51,6 +60,15 @@ const List = (props) => {
         setSelect(0);
         console.log(isClickedList);
     }
+
+    // const planets = [];
+    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
+        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
+        {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
+        {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
+        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
+        {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+    ];
 
     return (
         <Background>
@@ -122,6 +140,15 @@ const List = (props) => {
                         </Deletediv>
                     </DeleteBar>
             }
+            <Wrap>
+                <WrapMain>
+                    {planets.length === 0 ?
+                        <Default/>     // 행성이 없을 때
+                        :
+                        <Planet planets={planets}/>  // 행성이 있을 때
+                    }
+                </WrapMain>
+            </Wrap>
         </Background>
     )
 }
@@ -142,10 +169,28 @@ const HeaderDiv = styled.div`
 const Background = styled.div`
   width: 375px;
   height: 812px;
-  background: url(${main}) no-repeat;
   font-family: Spoqa Han Sans Neo;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 0;
+  background: rgba(0, 0, 0, 0.85);
+`;
+
+const Wrap = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -5;
+  background: black;
+  overflow: hidden;
+  padding-top: 30px;
+`;
+const WrapMain = styled.div`
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(4px);
 `;
 
 const Middle = styled.div`
