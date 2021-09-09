@@ -9,7 +9,6 @@ const CreateComponent = (props)=>{
     const [planets, setPlanets] = React.useState([]);
     const [idKey, setIdKey] = React.useState(0);
     const [planetVisible, setPlanetVisible] = React.useState(false);
-    const [isCreateClick, setIsCreateClick] = React.useState(false);
     
     const subText = "나의 기록이 보관될 행성을 만들어 보세요.";
 
@@ -25,12 +24,11 @@ const CreateComponent = (props)=>{
         ]);
 
         setIdKey(idKey + 1);
-        setIsCreateClick(false);
     };
 
     return (
         <Background>
-            {isCreateClick === true?<div>
+            {planets.length === 0?<div>
                 <EmptyCircle onClick={()=>{setPlanetVisible(true)}}>
                     <Plus src={plus}></Plus>
                 </EmptyCircle>
@@ -45,7 +43,7 @@ const CreateComponent = (props)=>{
                        planets.map(p=>(
                         <PlanetBlock pKey={p.key} key={p.key} planetId={p.planet} colorId={p.color} name={p.name} count={0}/>))
                     }
-                    <EmptyBlock onClick={()=>{setIsCreateClick(true)}}/>
+                    <EmptyBlock onClick={()=>{setPlanetVisible(true)}}/>
                 </SelectDiv>
             </div>}
             <PlanetCreate onClick={savePlanet} visible={planetVisible} setVisible={setPlanetVisible}/>
