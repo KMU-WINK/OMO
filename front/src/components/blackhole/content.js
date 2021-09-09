@@ -1,16 +1,20 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
-const Content = ({contents}) => {
+const Content = (props) => {
+    const [state, setState] = useState(props.isSelected);
+    useEffect(() => {
+        setState(props.isSelected)
+    }, [props])
     return (
-        <Wrap>
-            <Dday>D-{contents.day}</Dday>
+        <Wrap selected={ state } onClick={ () => props.onClick() }>
+            <Dday>D-{props.contents.day}</Dday>
             <Group>
-            <Profile><img src={contents.profileImgSrc}/></Profile>
+            <Profile><img src={props.contents.profileImgSrc}/></Profile>
             <Textgroup>
-            <Title>{contents.title}</Title>
-            <Detail>{contents.detail}</Detail>
-            <Hashtag>#{contents.hashtag}</Hashtag>
+            <Title>{props.contents.title}</Title>
+            <Detail>{props.contents.detail}</Detail>
+            <Hashtag>#{props.contents.hashtag}</Hashtag>
             </Textgroup>
             </Group>
         </Wrap>
@@ -24,7 +28,7 @@ const Wrap = styled.div`
   flex-flow: column;
   width: 319px;
   height: 84px;
-  background: rgba(255, 255, 255, 0.12);
+  background: ${(props) => props.selected==true ? 'rgba(255, 255, 255, 0.35)' : 'rgba(255, 255, 255, 0.12)'};
   color: rgba(255, 255, 255, 0.9);
   padding: 12px;
   border-radius: 10px;

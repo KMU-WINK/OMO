@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from "../components/common/header";
 import Content from "../components/blackhole/content";
 import styled from "styled-components";
-import Planet from '../images/blackhole/Planet.svg';
+import PlanetSvg from '../images/blackhole/Planet.svg';
 import Check from '../images/blackhole/choiceButton.svg';
+import deSelect from '../images/blackhole/deSelect.svg';
 import Restore from '../images/blackhole/restore.svg';
 import Delete from '../images/blackhole/delete.svg';
-
 import Default from '../components/main/default';
 import Planet from '../components/main/planet';
 import planet1 from "../images/common/planets/color2.svg";
@@ -21,40 +21,38 @@ const BlackHole = (props) => {
     const [isActive2, setActive2] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [clickArray, setClickArray] = useState(false);
-    const contents = [
+    const [selected, setSelected] = useState(false);
+    const [contents, setContents] = useState([
         {
             day: "20",
-            profileImgSrc: Planet,
+            profileImgSrc: PlanetSvg,
             title: "코딩 빡쳐",
             detail: "내용이 어느정도는 나와야겠죠? ...",
             hashtag: "침대",
-            select: false
         },
         {
             day: "20",
-            profileImgSrc: Planet,
+            profileImgSrc: PlanetSvg,
             title: "코딩 빡쳐",
             detail: "내용이 어느정도는 나와야겠죠? ...",
             hashtag: "침대",
-            select: false
         },
         {
             day: "20",
-            profileImgSrc: Planet,
+            profileImgSrc: PlanetSvg,
             title: "코딩 빡쳐",
             detail: "내용이 어느정도는 나와야겠죠? ...",
             hashtag: "침대",
-            select: false
         },
         {
             day: "20",
-            profileImgSrc: Planet,
+            profileImgSrc: PlanetSvg,
             title: "코딩 빡쳐",
             detail: "내용이 어느정도는 나와야겠죠? ...",
             hashtag: "침대",
-            select: false
         }
-    ]
+    ]);
+    const [isSelected, setIsselected] = useState(Array(contents.length).fill(false));
     const changeActive = () => {
         if (isActive1) {
             setActive2(true);
@@ -64,66 +62,95 @@ const BlackHole = (props) => {
             setActive2(false);
         }
     }
+    const allChoice = () => {
+        isSelected.fill(true);
+        setIsselected([...isSelected]);
+        setSelected(true);
+        setClickArray(true);
+    }
+    const allDeselect = () => {
+        isSelected.fill(false);
+        setIsselected([...isSelected]);
+        setSelected(false);
+        setClickArray(false);
+    }
     const editOn = () => {
         setEditMode(true);
     }
     const editOff = () => {
         setEditMode(false);
+        setClickArray(false);
+        allDeselect();
     }
-    const changeClick = (e) => {
-        console.log(e.target.value)
-        if (editMode && clickArray== false) {setClickArray(true)}
-        else {setClickArray(false);}
-        // if (editMode) {setClickArray(...clickArray, e);
-        // console.log(e)
-        // console.log(clickArray)
-        // }
+    const changeClick = (index) => {
+        if (editMode) {
+            if (isSelected[index]) {
+                isSelected[index] = false;
+                setIsselected([...isSelected])
+            }
+            else {
+                isSelected[index] = true;
+                setIsselected([...isSelected])
+            }
+            if (editMode && clickArray == false) {
+                setSelected(true);
+                setClickArray(true);
+            }
+            if (isSelected.every((isSelect) => isSelect == false)) {
+                setClickArray(false);
+                setSelected(false);
+            }
+        }
     }
-
-    // const planets = [];
-    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
-        {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
-        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
-        {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+    const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
+        {'imgSrc': planet1, 'name': "오늘은 조금 우울해", 'count': 20},
+        {'imgSrc': planet5, 'name': "화가 치밀어 오른다", 'count': 32},
+        {'imgSrc': planet3, 'name': "오늘은 조금 우울해", 'count': 32},
+        {'imgSrc': planet6, 'name': "오늘은 조금 우울해", 'count': 18},
+        {'imgSrc': planet2, 'name': "화가 치밀어 오른다", 'count': 18}
     ];
-
     return (
         <Background>
             <Header state={"Back"} title={"블랙홀"}></Header>
 
             <ContentContainer>
-            {
-                editMode == false ?
-                    <SelectContainer>
-                        <Select onClick={() => changeActive()} active={isActive1}>기록</Select>
-                        <Select onClick={() => changeActive()} active={isActive2}>행성</Select>
-                    </SelectContainer>
-                    :
-                    <EditContainer>
-                        <Text>기록 편집</Text>
-                        <FinishButton onClick={editOff}>완료</FinishButton>
-                    </EditContainer>
-            }
-            <Menu>
-                <EditText>삭제된 기록들</EditText>
                 {
-                    editMode == false ? <Editbutton onClick={editOn}>편집</Editbutton> :
-                        <AllChoice><img src={Check}/></AllChoice>
+                    editMode == false ?
+                        <SelectContainer>
+                            <Select onClick={() => changeActive()} active={isActive1}>기록</Select>
+                            <Select onClick={() => changeActive()} active={isActive2}>행성</Select>
+                        </SelectContainer>
+                        :
+                        <EditContainer>
+                            <Text>기록 편집</Text>
+                            <FinishButton onClick={editOff}>완료</FinishButton>
+                        </EditContainer>
                 }
-            </Menu>
-            {contents.map((content) => <div onClick={(e) => changeClick(e)}>
-                <Content contents={content}/>
-            </div> )}
+                <Menu>
+                    <EditText>삭제된 기록들</EditText>
+                    {
+                        editMode == false ? <Editbutton onClick={editOn}>편집</Editbutton> :
+                            selected ?
+                                <AllChoice onClick={ allDeselect }>
+                                    <img src={deSelect}/>
+                                </AllChoice>
+                                :
+                                <AllChoice onClick={ allChoice }>
+                                    <img src={Check}/>
+                                </AllChoice>
+                    }
+                </Menu>
+                {contents.map((content, index) =>
+                    <Content editMode = { editMode } isSelected = {isSelected[index]} onClick={() => changeClick(index)} contents={content}/>
+                )}
 
-            { clickArray &&
+                {clickArray &&
                 <RestoreDeleteContainer>
-                    <RestoreDelete><img src={Restore} /></RestoreDelete>
-                    <RestoreDelete><img src={Delete} /></RestoreDelete>
+                    <RestoreDelete><img src={Restore}/></RestoreDelete>
+                    <RestoreDelete><img src={Delete}/></RestoreDelete>
                 </RestoreDeleteContainer>
-            }
-        </ContentContainer>
+                }
+            </ContentContainer>
             <Wrap>
                 <WrapMain>
                     {planets.length === 0 ?
@@ -153,7 +180,7 @@ const Wrap = styled.div`
   opacity: 0.5;
   z-index: -5;
   background: black;
-  overflow: hidden;  
+  overflow: hidden;
 `;
 const WrapMain = styled.div`
   display: flex;
@@ -168,7 +195,7 @@ const ContentContainer = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.85);
   position: relative;
-  width: 100%;  
+  width: 100%;
   height: 762px;
   overflow: hidden;
   overflow-y: scroll;
@@ -190,7 +217,7 @@ const Select = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
 `
 const Menu = styled.div`
   width: 375px;
