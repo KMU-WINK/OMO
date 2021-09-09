@@ -41,13 +41,13 @@ const BlackHole = (props) => {
 
     return (
         <Background>
+            <Header state={"Back"} title={"블랙홀"}></Header>
             <ContentContainer>
-                <Header state={"Back"} title={"블랙홀"}></Header>
                 {
                     editMode == false ?
                         <SelectContainer>
                             <Select onClick={ ()=>changeActive() } active={ isActive1 }>기록</Select>
-                            <Select onClick={ ()=>changeActive() } active={ isActive2 }>행성</Select>
+                            <Select onClick={ ()=>changeActive() } active={ isActive2 } style={{color: "rgba(255, 255, 255, 0.5)"}}>행성</Select>
                         </SelectContainer>
                         :
                         <EditContainer>
@@ -62,8 +62,17 @@ const BlackHole = (props) => {
                     }
                 </Menu>
                 <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
-                <Footer />
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
+                <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
             </ContentContainer>
+            <Footer />
             <Wrap>
                 <WrapMain>
                     {planets.length === 0 ?
@@ -80,33 +89,36 @@ const BlackHole = (props) => {
 export default BlackHole;
 
 const Background = styled.div`
-  position: relative;  
+  height: 812px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.85);
 `;
 const Wrap = styled.div`
   width: 100%;
-  height: 780px;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0.5;
   z-index: -5;
   background: black;
-  overflow: hidden;
-  padding-top: 30px;
+  overflow: hidden;  
 `;
 const WrapMain = styled.div`
   display: flex;
   align-items: center;
   backdrop-filter: blur(4px);
+  padding-top: 30px;
 `;
 
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 812px;
-  background: rgba(0, 0, 0, 0.85);
+  width: 100%;  
+  height: 678px;
+  overflow: hidden;
+  overflow-y: scroll;
 `
 const SelectContainer = styled.div`
   width: 343px;

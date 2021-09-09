@@ -5,8 +5,17 @@ import styled from 'styled-components';
 import home from '../../images/common/home_icon.png';
 import search from '../../images/common/search_icon.png';
 import list from '../../images/common/list_icon.png';
+import list_purple from '../../images/common/list_purple.png';
 import more from '../../images/common/more_icon.png';
+import more_purple from '../../images/common/more_purple.png';
 import plus from '../../images/common/plus_icon.png';
+
+const listPurple = {
+    background: "url(" + list_purple + ") no-repeat",
+}
+const morePurple = {
+    background: "url(" + more_purple + ") no-repeat",
+}
 
 const Footer = (props) => {
     const history = useHistory();
@@ -27,14 +36,30 @@ const Footer = (props) => {
                         <div className={"plus"} onClick={() => history.push('/create')}/>
                     </div>
                 </PlusWrap>
-                <ListWrap>
-                    <div onClick={() => history.push('/list')}/>
-                    <p>목록</p>
-                </ListWrap>
-                <MoreWrap>
-                    <div onClick={() => history.push('/moreDetail')}/>
-                    <p>더보기</p>
-                </MoreWrap>
+                { props.page === "list" ?
+                    <div>
+                        <ListWrap>
+                            <div onClick={() => history.push('/list')} style={listPurple}/>
+                            <p style={{color: "#A661FF"}}>목록</p>
+                        </ListWrap>
+                        <MoreWrap>
+                            <div onClick={() => history.push('/moreDetail')}/>
+                            <p>더보기</p>
+                        </MoreWrap>
+                    </div>
+                    :
+                    <div>
+                        <ListWrap>
+                            <div onClick={() => history.push('/list')}/>
+                            <p>목록</p>
+                        </ListWrap>
+                        <MoreWrap>
+                            <div onClick={() => history.push('/moreDetail')} style={morePurple}/>
+                            <p style={{color: "#A661FF"}}>더보기</p>
+                        </MoreWrap>
+                    </div>
+
+                }
             </Wrap>
         </BackGround>
     )
