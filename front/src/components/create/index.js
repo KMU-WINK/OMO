@@ -57,9 +57,7 @@ const Background = styled.div`
   background: transparent;
   position: relative;
   width: 100%;
-  height: 762px;
-  overflow: hidden;
-  overflow-y: scroll;
+  height: 812px;
 `;
 
 const EmptyCircle = styled.div`
@@ -121,7 +119,7 @@ const MainText2 = styled.p`
     width: 90px;
     height: 30px;
     left: 25px;
-    top: 115px;
+    top: 0px;
 
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
@@ -137,7 +135,7 @@ const SubText2 = styled.p`
     width: 280px;
     height: 21px;
     left: 24px;
-    top: 149px;
+    top: 34px;
 
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
@@ -151,7 +149,8 @@ const SubText2 = styled.p`
 const SelectDiv = styled.div`
     position: absolute;
     width: 375px;
-    height: 513px;
+    height: 665px;
     left: 8px;
-    top: 203px;
+    top: 88px;
+    overflow-y: auto;
 `;

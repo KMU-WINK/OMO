@@ -102,9 +102,9 @@ const Background = styled.div`
     height: 812px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(167, 167, 167, 0.5);
+    justify-content: center;background: rgba(167, 167, 167, 0.5);
     backdrop-filter: blur(8px);
+    z-index:100;
 `;
 
 const Box = styled.div`
