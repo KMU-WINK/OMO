@@ -9,7 +9,6 @@ const CreateComponent = (props)=>{
     const [planets, setPlanets] = React.useState([]);
     const [idKey, setIdKey] = React.useState(0);
     const [planetVisible, setPlanetVisible] = React.useState(false);
-    const [isCreateClick, setIsCreateClick] = React.useState(false);
     
     const subText = "나의 기록이 보관될 행성을 만들어 보세요.";
 
@@ -25,12 +24,11 @@ const CreateComponent = (props)=>{
         ]);
 
         setIdKey(idKey + 1);
-        setIsCreateClick(false);
     };
 
     return (
         <Background>
-            {isCreateClick === true?<div>
+            {planets.length === 0?<div>
                 <EmptyCircle onClick={()=>{setPlanetVisible(true)}}>
                     <Plus src={plus}></Plus>
                 </EmptyCircle>
@@ -45,7 +43,7 @@ const CreateComponent = (props)=>{
                        planets.map(p=>(
                         <PlanetBlock pKey={p.key} key={p.key} planetId={p.planet} colorId={p.color} name={p.name} count={0}/>))
                     }
-                    <EmptyBlock onClick={()=>{setIsCreateClick(true)}}/>
+                    <EmptyBlock onClick={()=>{setPlanetVisible(true)}}/>
                 </SelectDiv>
             </div>}
             <PlanetCreate onClick={savePlanet} visible={planetVisible} setVisible={setPlanetVisible}/>
@@ -59,9 +57,7 @@ const Background = styled.div`
   background: transparent;
   position: relative;
   width: 100%;
-  height: 762px;
-  overflow: hidden;
-  overflow-y: scroll;
+  height: 812px;
 `;
 
 const EmptyCircle = styled.div`
@@ -123,7 +119,7 @@ const MainText2 = styled.p`
     width: 90px;
     height: 30px;
     left: 25px;
-    top: 115px;
+    top: 0px;
 
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
@@ -139,7 +135,7 @@ const SubText2 = styled.p`
     width: 280px;
     height: 21px;
     left: 24px;
-    top: 149px;
+    top: 34px;
 
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
@@ -153,7 +149,8 @@ const SubText2 = styled.p`
 const SelectDiv = styled.div`
     position: absolute;
     width: 375px;
-    height: 513px;
+    height: 665px;
     left: 8px;
-    top: 203px;
+    top: 88px;
+    overflow-y: auto;
 `;
