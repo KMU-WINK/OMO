@@ -1,15 +1,15 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import close from '../../images/create/close.png'
-import Planets from './planets';
-import planetColors from './Colors'
+import {planets as Planets, loadPlanet} from './planets';
+import colors from './Colors'
 
 import PlanetInput from './PlanetInput';
 import Button from './Button';
 
 const PlanetCreate = ({onClick, visible, setVisible})=>{
-    const [mainPlanet, setMainPlanet] = React.useState(1);
-    const [mainColor, setMainColor] = React.useState(1);
+    const [mainPlanet, setMainPlanet] = React.useState(0);
+    const [mainColor, setMainColor] = React.useState(0);
     const [planets, setPlanets] = React.useState(Planets);
     const [name, setName] = React.useState(null);
 
@@ -17,72 +17,59 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
         setName(e.target.value);
     }
 
-
     const planetClick = (id)=>{
         setPlanets(
            planets.map(planet=>planet.id===id?{
                ...planet,
                isclick:true,
            }:{...planet, isclick:false}));
+
         setMainPlanet(id);
     }
+
     const colorClick = (id)=>{
         setMainColor(id);
-        const color = planetColors.filter(color=>color.id === id);
-        const offset1 = document.getElementById("offset1")
-        const offset2 = document.getElementById("offset2")
-        offset1.setAttribute('offset', color[0]["offset1"]["offset"])
-        offset1.setAttribute("stop-color", color[0]["offset1"]["stopColor"])
-        offset2.setAttribute("offset", color[0]["offset2"]["offset"])
-        offset2.setAttribute("stop-color", color[0]["offset2"]["stopColor"])
-
-        
-        const offset3 = document.getElementById("offset3")
-        if (color[0]["offset3"] != null)
-        {
-            offset3.setAttribute("offset", color[0]["offset3"]["offset"])
-            offset3.setAttribute("stop-color", color[0]["offset3"]["stopColor"])
-        }
         return id;
     }
+
     {
         if (!visible) return null;
-    return(
-        <Background>
-            <Box>
-                <Text left="15.5px" top="16px" bold>행성 추가</Text>
-                <CloseButton onClick={()=>{setVisible(false)}}src={close}/>
-                <TopLine />
-                <div>
-                    <MainPlanetDiv id="MainPlanet">
-                        {planets.map(({Planet, isclick, id})=>(id===mainPlanet?
-                            <Planet key={id}></Planet>:<></>))}
-                    </MainPlanetDiv>
-                    <Text left="141px" top="84px">형태</Text>
-                    <ItemBlock top="100px">
-                        {planets.map(({Planet, isclick, id})=>(
-                            <PlanetDiv onClick={()=>{planetClick(id)}} isclick={isclick} key={id}>
-                                <Planet></Planet>
-                            </PlanetDiv>
-                        ))}
-                    </ItemBlock>
-                    <Text left="141px" top="151px">컬러</Text>
-                    <ItemBlock top="172px">
-                        {    
-                            planetColors.map(co=>(
-                                <CircleDiv onClick={()=>{colorClick(co.id)}} key={co.id}>
-                                    <Circle color={co.color}/>
-                                </CircleDiv>
-                            ))
-                        }
-                    </ItemBlock>
-                </div>
-                
-                <PlanetInput onChange = {onChange} left="52px" top="223px"/>
-                <Button onClick={()=>{setVisible(false);
-                    onClick(mainPlanet, mainColor, name)}}left="281px" top="272px" text="저장"/>
-            </Box>
-        </Background>
+        return(
+            <Background>
+                <Box>
+                    <Text left="15.5px" top="16px" bold>행성 추가</Text>
+                    <CloseButton onClick={()=>{setVisible(false)}}src={close}/>
+                    <TopLine />
+                    <div>
+                        <MainPlanetDiv>
+                            <MainPlanet src={loadPlanet(mainPlanet,mainColor)}/>
+                        </MainPlanetDiv>
+                        <Text left="141px" top="84px">형태</Text>
+                        <ItemBlock top="100px">
+                            {planets.map(({Planet, isclick, id})=>(
+                                <PlanetDiv onClick={()=>{planetClick(id)}} isclick={isclick} key={id}>
+                                    <Planet></Planet>
+                                </PlanetDiv>
+                            ))}
+                        </ItemBlock>
+                        <Text left="141px" top="151px">컬러</Text>
+                        <ItemBlock top="172px">
+                            {
+                                colors.map(c=>(
+                                    <CircleDiv onClick={()=>{colorClick(c.id)}} key={c.id}>
+                                        <Circle src={c.color} />
+                                        <WhiteCircle hidden={mainColor === c.id?false:true}/>
+                                    </CircleDiv>
+                                ))
+                            }
+                        </ItemBlock>
+                    </div>
+                    
+                    <PlanetInput onChange = {onChange} left="52px" top="223px"/>
+                    <Button onClick={()=>{setVisible(false);
+                        onClick(mainPlanet, mainColor, name)}}left="281px" top="272px" text="저장"/>
+                </Box>
+            </Background>
     )}
 }   
 
@@ -100,6 +87,7 @@ const Background = styled.div`
     background: rgba(167, 167, 167, 0.5);
     backdrop-filter: blur(8px);
 `;
+
 const Box = styled.div`
     position: fixed;
     width: 344px;
@@ -163,14 +151,6 @@ const ItemBlock = styled.div`
 `;
 const MainPlanetDiv = styled.div`
     display:inline;
-    >svg{
-        position:absolute;
-        width:100px;
-        height:100px;
-        left:18px;
-        top:90px;
-        transform: rotate(-20deg);
-    }
 `;
 const PlanetDiv = styled.div`
     display:inline;
@@ -201,14 +181,43 @@ const PlanetDiv = styled.div`
         `}
     }
 `;
+
 const CircleDiv = styled.div`
-    display:inline;
-`;
-const Circle = styled.div`
     display:inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right:11px;
-    background: ${props=>props.color};
+    width:20px;
+    height:20px;
+    margin-left:0px;
+    margin-top:-5px;
+    margin-right:9px;
+`;
+
+const Circle = styled.img`
+    display:inline-block;
+    margin-left: -5px;
+    width: 40px;
+    height: 40px;
+`;
+
+const WhiteCircle = styled.div`
+    position: relative;
+    top:-34px;
+    left:5px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
+    border: 1px solid #ffffff;
+
+    ${props=>props.hidden &&
+    css `
+        visibility: hidden;
+    `}
+`;
+
+const MainPlanet = styled.img`
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    
+    left:12px;
+    top:90px;
 `;

@@ -7,6 +7,14 @@ import Check from '../images/blackhole/choiceButton.svg';
 import Restore from '../images/blackhole/restore.svg';
 import Delete from '../images/blackhole/delete.svg';
 
+import Default from '../components/main/default';
+import Planet from '../components/main/planet';
+import planet1 from "../images/common/planets/color2.svg";
+import planet2 from "../images/common/planets/planet0_4.svg";
+import planet3 from "../images/common/planets/planet1_5.svg";
+import planet4 from "../images/common/planets/planet2_1.svg";
+import planet5 from "../images/common/planets/planet3_0.svg";
+import planet6 from "../images/common/planets/planet4_3.svg";
 
 const BlackHole = (props) => {
     const [isActive1, setActive1] = useState(true);
@@ -72,9 +80,20 @@ const BlackHole = (props) => {
         // }
     }
 
+    // const planets = [];
+    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
+        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
+        {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
+        {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
+        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
+        {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+    ];
+
     return (
-        <ContentContainer>
+        <Background>
             <Header state={"Back"} title={"블랙홀"}></Header>
+
+            <ContentContainer>
             {
                 editMode == false ?
                     <SelectContainer>
@@ -105,19 +124,54 @@ const BlackHole = (props) => {
                 </RestoreDeleteContainer>
             }
         </ContentContainer>
+            <Wrap>
+                <WrapMain>
+                    {planets.length === 0 ?
+                        <Default/>     // 행성이 없을 때
+                        :
+                        <Planet planets={planets}/>  // 행성이 있을 때
+                    }
+                </WrapMain>
+            </Wrap>
+        </Background>
     )
 }
 
 export default BlackHole;
 
+const Background = styled.div`
+  height: 812px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.85);
+`;
+const Wrap = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -5;
+  background: black;
+  overflow: hidden;  
+`;
+const WrapMain = styled.div`
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  padding-top: 30px;
+`;
+
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100vh;
   background: rgba(0, 0, 0, 0.85);
   position: relative;
+  width: 100%;  
+  height: 762px;
+  overflow: hidden;
+  overflow-y: scroll;
 `
 const SelectContainer = styled.div`
   width: 343px;
@@ -129,7 +183,7 @@ const SelectContainer = styled.div`
 `
 const Select = styled.div`
   width: 187px;
-  height: 32px; 
+  height: 32px;
   border-bottom: ${(props) => props.active ? '2px solid rgba(255,255,255,0.9)' : 'none'};
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -150,7 +204,7 @@ const Editbutton = styled.div`
   height: 23px;
   border: 1px solid #CBCBCB;
   box-sizing: border-box;
-  border-radius: 12px;  
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   font-family: Spoqa Han Sans Neo;
@@ -192,7 +246,7 @@ const EditContainer = styled.div`
   height: 32px;
   display: flex;
   align-items: center;
-  padding: 8px 16px; 
+  padding: 8px 16px;
   justify-content: center;
   position: relative;
 `
@@ -207,7 +261,7 @@ const FinishButton = styled.div`
   border-radius: 10px;
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
-  font-weight: normal;  
+  font-weight: normal;
   font-size: 12px;
   line-height: 17px;
   letter-spacing: -0.025em;

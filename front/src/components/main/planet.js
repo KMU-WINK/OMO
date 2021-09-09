@@ -1,49 +1,12 @@
 import React, { useState, useEffect, Component} from 'react';
 import {useHistory} from "react-router-dom";
 
-import bbuyo from '../../images/main/main_bbuyo.png'
-// import planet1 from "../../images/main/main_planet1.png";
-// import planet2 from "../../images/main/main_planet2.png";
-// import planet3 from "../../images/main/main_planet3.png";
-// import planet4 from "../../images/main/main_planet4.png";
-// import planet5 from "../../images/main/main_planet5.png";
-// import planet6 from "../../images/main/main_planet6.png";
+import Index from "./index";
 
-const planetCSS1 = {
-    width: '400px',
-    position: 'absolute',
-    marginTop: '170px',
-    marginLeft: '30px',
-}
-const planetCSS2 = {
-    width: '220px',
-    position: 'absolute',
-    marginLeft: '200px',
-}
-const planetCSS3 = {
-    width: '360px',
-    position: 'absolute',
-    marginTop: '-70px',
-    marginLeft: '-80px',
-}
-const planetCSS4 = {
-    width: '150px',
-    position: 'absolute',
-    marginTop: '490px',
-    marginLeft: '100px',
-}
-const planetCSS5 = {
-    width: '300px',
-    position: 'absolute',
-    marginTop: '360px',
-    marginLeft: '-40px',
-}
-const planetCSS6 = {
-    width: '160px',
-    position: 'absolute',
-    marginLeft: '220px',
-    marginTop: '430px',
-}
+import bbuyo from '../../images/main/main_bbuyo.png';
+import moreDetailButton from '../../images/main/main_moreDetailButton.png';
+import statisticsButton from '../../images/main/main_statisticsButton.png';
+
 const bbuyoCSS = {
     position: 'absolute',
     marginLeft: '73%',
@@ -61,20 +24,53 @@ const txtCSS = {
     margin: 0,
     paddingBottom:'6px',
 }
+const moreDetailButtonImg = {
+    marginTop: '555px',
+    marginLeft: '284px',
+    width: '25px',
+    height: '25px',
+    position: 'absolute',
+    display: 'none',
+    cursor: 'pointer',
+}
+const statisticsButtonImg = {
+    marginTop: '575px',
+    marginLeft: '245px',
+    width: '25px',
+    height: '25px',
+    position: 'absolute',
+    display: 'none',
+    cursor: 'pointer',
+}
 
 const Planet = (props) => {
     const history = useHistory();
 
     const View = () => {
-        const css = [planetCSS1, planetCSS2, planetCSS3, planetCSS4, planetCSS5, planetCSS6];
         let idx = 0;
-        // console.log(props.planets);
-        return props.planets.map((planet)=> <img key={planet} src={planet} style={css[idx++]}/>)
+        return (
+            props.planets.map((planet)=><Index idx={idx++} imgSrc={planet.imgSrc} name={planet.name} count={planet.count}/>)
+        )
     }
+    const [checkShowButtons, setCheckShowButtons] = useState(false);
+    const showButtons = () => {
+        if(checkShowButtons === false){
+            document.getElementById("showMoreDetailButtons").style.display = 'block';
+            document.getElementById("showStatisticsButtons").style.display = 'block';
+        }
+        else{
+            document.getElementById("showMoreDetailButtons").style.display = 'none';
+            document.getElementById("showStatisticsButtons").style.display = 'none';
+        }
+        setCheckShowButtons(!checkShowButtons)
+    }
+
     return (
         <div>
             <View/>
-            <div style={bbuyoCSS} onClick={() => history.push('/statistics')}>
+            <img src={moreDetailButton} id={"showMoreDetailButtons"} style={moreDetailButtonImg} onClick={() => history.push('/moreDetail')}/>
+            <img src={statisticsButton} id={"showStatisticsButtons"} style={statisticsButtonImg} onClick={() => history.push('/statistics')}/>
+            <div style={bbuyoCSS} onClick={showButtons}>
                 <p style={txtCSS}>뿌요</p>   {/*뿌요 대신 이름 들어가는 듯*/}
                 <img src={bbuyo} style={bbuyoStyle} />
             </div>

@@ -28,6 +28,7 @@ const Wrap = styled.div`
   color: rgba(255, 255, 255, 0.9);
   padding: 12px;
   border-radius: 10px;
+  margin-top: 8px;
 `;
 const Dday = styled.div`
   width: 100%;

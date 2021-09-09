@@ -6,11 +6,10 @@ import {ReactComponent as planet5} from '../../images/create/planet5.svg'
 
 let id = 0;
 const addPlanet = (planet, isclick)=>{
-    id++;
     return {
         Planet:planet,
         isclick:isclick,
-        id:id,
+        id:id++,
     }
 }
 const planets = [
@@ -21,5 +20,22 @@ const planets = [
     addPlanet(planet5, false),
 ]
 
+const planetCount = 5;
+const colorCount = 6;
+const planetImages = new Array(planetCount);
+for(let i=0;i<colorCount;i++){
+    planetImages[i] = new Array(colorCount);
+}
 
-export default planets;
+for(let i=0;i<planetCount;i++){
+    for(let j=0;j<colorCount;j++){
+        planetImages[i][j] = require('../../images/common/planets/planet' + i + '_' + j + '.svg').default;
+    }
+}
+
+const loadPlanet = (planetId, colorId) =>{
+    console.log(planetImages);
+    return planetImages[planetId][colorId];
+}
+
+export {planets, loadPlanet};

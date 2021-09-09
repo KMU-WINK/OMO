@@ -35,11 +35,17 @@ const Write = (props) => {
     const saveBtn = () => {
         console.log(title, contents)
     }
+    // description={<PostCardContent postData={post.content}/>}
+    // {postData.split(/(#[^\s#]+)/g).map((v, i) => {
+    //   if(v.match(/(#[^\s#]+)/)){
+    //     return <Link href={`/hashtag/${v.slice(1)}`} key={i}><a>{v}</a></Link>
+    //   }
+    //   return v;
+    // })}
     return (
         <BackGround>
-            <Header state={"Back"} title={year+"/"+month+"/"+day} next={"저장"} onClick={saveBtn}/>
+            <Header state={"Back"} title={year+"/"+month+"/"+day} next={"저장"} save={saveBtn}/>
             <Wrap>
-                <button onClick={saveBtn} className="save-button">저장</button>
                 <img className={"planet"} src={plantIcon} />
                 <p className={"planet_name"}>개웃기네</p>
                 <input className={"input_title"} type="text" onChange = {setTitleFunction} placeholder="제목을 입력하세요"></input>
@@ -54,7 +60,6 @@ const Write = (props) => {
                 <div className={"div_reminder"}>이 날을 기억하기 위해 <span style={{color: '#553C75'}}>한달 후</span> 알림 받기</div>
                 <div className={"tag_alert"} style={{display : `${isToggled?"block":"none"}`}} >리마인더 설정 완료! {month+1}월 {day}일에 알림 드릴게요.</div>
             </Wrap>
-            <Footer />
         </BackGround>
     )
 }
@@ -67,24 +72,27 @@ const BackGround = styled.div`
 
 const Wrap = styled.div`
     position: relative;    
-    height:678px;
+    height:762px;
   > .planet{
     text-align: center;
     display: block;
     justify-content: center;
     align-items: center;
     margin: auto;
-    padding-top:20px;
-    padding-bottom: 15px;
+    padding-top:30px;
+    padding-bottom: 20px;
     width: 132px;
   }
 
   > .planet_name{
       font-size:10px;
-      color:white;
+      font-family: S-Core Dream;
+      font-style: normal;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
       position:absolute;
-      top: 53px;
-      left: 45.5%
+      top: 63px;
+      left: 45.1%
   }
 
   > .input_title{
@@ -121,7 +129,7 @@ const Wrap = styled.div`
     color:white;
     font-size:14px;
     margin-left: 34px;
-    margin-top:90px;
+    margin-top:135px;
   }
   > .input_tag{
     color: #A661FF;
@@ -157,6 +165,7 @@ const Wrap = styled.div`
     margin: auto;
     padding-left: 0;
     padding-right: 0;
+    margin-bottom: 10px;
 
   }
   
