@@ -180,6 +180,7 @@ const Background = styled.div`
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 0;
   background: rgba(0, 0, 0, 0.85);
+  position: relative;
 `;
 
 const Wrap = styled.div`
@@ -191,7 +192,7 @@ const Wrap = styled.div`
   opacity: 0.5;
   z-index: -5;
   background: black;
-  overflow: hidden;
+  overflow: hidden;  
 `;
 const WrapMain = styled.div`
   display: flex;
