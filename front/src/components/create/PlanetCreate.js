@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import close from '../../images/create/close.png'
+import close from '../../images/create/close.png';
+import arrow from '../../images/create/next1.png';
 import {planets as Planets, loadPlanet} from './planets';
-import colors from './Colors'
+import colors from './Colors';
 
 import PlanetInput from './PlanetInput';
 import Button from './Button';
@@ -12,12 +13,22 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
     const [mainColor, setMainColor] = React.useState(0);
     const [planets, setPlanets] = React.useState(Planets);
     const [name, setName] = React.useState(null);
+    const [planetContent, setPlanetContent] = React.useState(5);
+    const [colorContent, setColorContent] = React.useState(6);
+
+    const clickPlanetContent = (addNumber)=>{
+        setPlanetContent(planetContent + addNumber);
+    };
+
+    const clickColorContent = (addNumber)=>{
+        setColorContent(colorContent + addNumber);
+    };
 
     const onChange = (e)=>{
         setName(e.target.value);
     }
 
-    const planetClick = (id)=>{
+    const clickPlanet = (id)=>{
         setPlanets(
            planets.map(planet=>planet.id===id?{
                ...planet,
@@ -27,7 +38,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
         setMainPlanet(id);
     }
 
-    const colorClick = (id)=>{
+    const clickColor = (id)=>{
         setMainColor(id);
         return id;
     }
@@ -42,26 +53,34 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
                     <TopLine />
                     <div>
                         <MainPlanetDiv>
-                            <MainPlanet src={loadPlanet(mainPlanet,mainColor)}/>
+                            <MainPlanet src={loadPlanet(mainPlanet%5,mainColor%6)}/>
                         </MainPlanetDiv>
                         <Text left="141px" top="84px">형태</Text>
                         <ItemBlock top="100px">
-                            {planets.map(({Planet, isclick, id})=>(
-                                <PlanetDiv onClick={()=>{planetClick(id)}} isclick={isclick} key={id}>
-                                    <Planet></Planet>
-                                </PlanetDiv>
-                            ))}
+                            {planetContent===5?<></>:<Arrow rotate180 top="11px" left="-10px" onClick={()=>{clickPlanetContent(-1);}} src={arrow} />}
+                            {
+                                planets.map(({Planet, isclick, id})=>(
+                                    id<planetContent && id>=(planetContent-5)?
+                                    <PlanetDiv onClick={()=>{clickPlanet(id)}} isclick={isclick} key={id}>
+                                        <Planet></Planet>
+                                    </PlanetDiv>:<></>
+                                ))
+                            }
+                            {planetContent===planets.length?<></>:<Arrow top="11px" left="185px" onClick={()=>{clickPlanetContent(1);}} src={arrow} />}
                         </ItemBlock>
                         <Text left="141px" top="151px">컬러</Text>
                         <ItemBlock top="172px">
+                            {colorContent===6?<></>:<Arrow rotate180 top="11px" left="-10px" onClick={()=>{clickColorContent(-1);}} src={arrow} />}
                             {
                                 colors.map(c=>(
-                                    <CircleDiv onClick={()=>{colorClick(c.id)}} key={c.id}>
+                                    c.id<colorContent && c.id>=(colorContent-6)?
+                                    <CircleDiv onClick={()=>{clickColor(c.id)}} key={c.id}>
                                         <Circle src={c.color} />
                                         <WhiteCircle hidden={mainColor === c.id?false:true}/>
-                                    </CircleDiv>
+                                    </CircleDiv>:<></>
                                 ))
                             }
+                            {colorContent===colors.length?<></>:<Arrow top="11px" left="185px" onClick={()=>{clickColorContent(1);}} src={arrow} />}
                         </ItemBlock>
                     </div>
                     
@@ -182,6 +201,18 @@ const PlanetDiv = styled.div`
     }
 `;
 
+const Arrow = styled.img`
+    position:absolute;
+    width:6px;
+    height:10px;
+    top: ${props=>props.top};
+    left: ${props=>props.left};
+
+    ${props=>props.rotate180 && css`
+        transform: rotate(180deg);
+    `}
+`;
+
 const CircleDiv = styled.div`
     display:inline-block;
     width:20px;
@@ -200,12 +231,12 @@ const Circle = styled.img`
 
 const WhiteCircle = styled.div`
     position: relative;
-    top:-34px;
-    left:5px;
+    top:-35px;
+    left:4px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 1px solid #ffffff;
+    border: 2px solid #ffffff;
 
     ${props=>props.hidden &&
     css `

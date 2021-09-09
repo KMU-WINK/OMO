@@ -3,6 +3,8 @@ import {ReactComponent as planet2} from '../../images/create/planet2.svg'
 import {ReactComponent as planet3} from '../../images/create/planet3.svg'
 import {ReactComponent as planet4} from '../../images/create/planet4.svg'
 import {ReactComponent as planet5} from '../../images/create/planet5.svg'
+import {ReactComponent as planet6} from '../../images/create/planet1.svg'
+import {ReactComponent as planet7} from '../../images/create/planet2.svg'
 
 let id = 0;
 const addPlanet = (planet, isclick)=>{
@@ -12,12 +14,23 @@ const addPlanet = (planet, isclick)=>{
         id:id++,
     }
 }
+// const planets = [
+//     addPlanet(planet1, true),
+//     addPlanet(planet2, false),
+//     addPlanet(planet3, false),
+//     addPlanet(planet4, false),
+//     addPlanet(planet5, false),
+// ]
+
+// 행성 여러개 뒀을때 Test -- 행성 Slide bar Button
 const planets = [
     addPlanet(planet1, true),
     addPlanet(planet2, false),
     addPlanet(planet3, false),
     addPlanet(planet4, false),
     addPlanet(planet5, false),
+    addPlanet(planet6, false),
+    addPlanet(planet7, false),
 ]
 
 const planetCount = 5;
@@ -34,7 +47,6 @@ for(let i=0;i<planetCount;i++){
 }
 
 const loadPlanet = (planetId, colorId) =>{
-    console.log(planetImages);
     return planetImages[planetId][colorId];
 }
 
