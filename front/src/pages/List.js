@@ -29,7 +29,7 @@ import planet6 from "../images/common/planets/planet4_3.svg";
 import planet2 from "../images/common/planets/planet0_4.svg";
 
 const List = (props) => {
-    let test = [{title: "개웃기네", num: 3, image:star2}, {title: "배고파", num: 18, image:star4}, {title: "지치는날", num: 5, image:star3}];
+    let test = [{title: "개웃기네", num: 3, image:star2}, {title: "배고파", num: 18, image:star4}, {title: "지치는날", num: 5, image:star3}, {title: "개웃기네", num: 3, image:star2}, {title: "배고파", num: 18, image:star4}, {title: "지치는날", num: 5, image:star3}, {title: "개웃기네", num: 3, image:star2}, {title: "배고파", num: 18, image:star4}, {title: "지치는날", num: 5, image:star3},{title: "개웃기네", num: 3, image:star2}];
     // let test = []
 
     const history = useHistory();
@@ -177,6 +177,7 @@ const Background = styled.div`
   width: 375px;
   height: 812px;
   font-family: Spoqa Han Sans Neo;
+  padding-top: 0;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 0;
   background: rgba(0, 0, 0, 0.85);
@@ -192,7 +193,6 @@ const Wrap = styled.div`
   z-index: -5;
   background: black;
   overflow: hidden;
-  padding-top: 30px;
 `;
 const WrapMain = styled.div`
   display: flex;
@@ -203,6 +203,8 @@ const WrapMain = styled.div`
 const Middle = styled.div`
   width: 375px;
   height: 678px;
+  overflow: hidden;
+  overflow-y: scroll;
   //box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
 `;
 
