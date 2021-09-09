@@ -135,7 +135,7 @@ const List = (props) => {
             {
                 isActive
                     ?
-                    <Footer />
+                    <Footer page={"list"}/>
                     :
                     <DeleteBar>
                         <Deletediv>
@@ -177,7 +177,6 @@ const Background = styled.div`
   width: 375px;
   height: 812px;
   font-family: Spoqa Han Sans Neo;
-  padding-top: 0;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 0;
   background: rgba(0, 0, 0, 0.85);
@@ -198,6 +197,7 @@ const WrapMain = styled.div`
   display: flex;
   align-items: center;
   backdrop-filter: blur(4px);
+  padding-top: 30px;
 `;
 
 const Middle = styled.div`
