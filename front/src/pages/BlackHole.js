@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Header from "../components/common/header";
 import Content from "../components/blackhole/content";
+import Star from "../components/blackhole/planetContent";
 import styled from "styled-components";
 import PlanetSvg from '../images/blackhole/Planet.svg';
+import starimg from '../images/list/star1.png';
 import Check from '../images/blackhole/choiceButton.svg';
 import deSelect from '../images/blackhole/deSelect.svg';
 import Restore from '../images/blackhole/restore.svg';
@@ -52,7 +54,30 @@ const BlackHole = (props) => {
             hashtag: "침대",
         }
     ]);
+    const [planetContents, setPlanetContents] = useState([
+        {
+            profileImgSrc: starimg,
+            title: "코딩 빡쳐",
+            number: "2",
+        },
+        {
+            profileImgSrc: starimg,
+            title: "코딩 빡쳐",
+            number: "2",
+        },
+        {
+            profileImgSrc: starimg,
+            title: "코딩 빡쳐",
+            number: "2",
+        },
+        {
+            profileImgSrc: starimg,
+            title: "코딩 빡쳐",
+            number: "2",
+        }
+    ])
     const [isSelected, setIsselected] = useState(Array(contents.length).fill(false));
+    const [isSelectedPlanet, setIsselectedPlanet] = useState(Array(planetContents.length).fill(false));
     const changeActive = () => {
         if (isActive1) {
             setActive2(true);
@@ -64,13 +89,17 @@ const BlackHole = (props) => {
     }
     const allChoice = () => {
         isSelected.fill(true);
+        isSelectedPlanet.fill(true);
         setIsselected([...isSelected]);
+        setIsselectedPlanet([...isSelectedPlanet]);
         setSelected(true);
         setClickArray(true);
     }
     const allDeselect = () => {
         isSelected.fill(false);
+        isSelectedPlanet.fill(false);
         setIsselected([...isSelected]);
+        setIsselectedPlanet([...isSelectedPlanet]);
         setSelected(false);
         setClickArray(false);
     }
@@ -97,6 +126,26 @@ const BlackHole = (props) => {
                 setClickArray(true);
             }
             if (isSelected.every((isSelect) => isSelect == false)) {
+                setClickArray(false);
+                setSelected(false);
+            }
+        }
+    }
+    const changeClickPlanet = (index) => {
+        if (editMode) {
+            if (isSelectedPlanet[index]) {
+                isSelectedPlanet[index] = false;
+                setIsselectedPlanet([...isSelectedPlanet])
+            }
+            else {
+                isSelectedPlanet[index] = true;
+                setIsselectedPlanet([...isSelectedPlanet])
+            }
+            if (editMode && clickArray == false) {
+                setSelected(true);
+                setClickArray(true);
+            }
+            if (isSelectedPlanet.every((isSelect) => isSelect == false)) {
                 setClickArray(false);
                 setSelected(false);
             }
@@ -140,9 +189,16 @@ const BlackHole = (props) => {
                                 </AllChoice>
                     }
                 </Menu>
-                {contents.map((content, index) =>
+
+                { isActive1 ? contents.map((content, index) =>
                     <Content editMode = { editMode } isSelected = {isSelected[index]} onClick={() => changeClick(index)} contents={content}/>
-                )}
+                )
+                :  <PlanetBackground>{
+                        planetContents.map((planetContent, index) =>
+                        <Star editMode={editMode} isSelected = {isSelectedPlanet[index]} onClick={() => changeClickPlanet(index)} planetContents={ planetContent }  />
+                        )}
+                    </PlanetBackground>
+                }
 
                 {clickArray &&
                 <RestoreDeleteContainer>
@@ -311,4 +367,10 @@ const RestoreDeleteContainer = styled.div`
   bottom: 0;
   display: flex;
   align-items: center;
+`
+const PlanetBackground = styled.div`
+  width: 375px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8px 0 0 7px;
 `
