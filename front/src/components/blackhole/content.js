@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const Content = (props) => {
+const Content = ({contents}) => {
     return (
         <Wrap>
-            <Dday>D-{props.day}</Dday>
+            <Dday>D-{contents.day}</Dday>
             <Group>
-            <Profile><img src={props.profileImgSrc}/></Profile>
+            <Profile><img src={contents.profileImgSrc}/></Profile>
             <Textgroup>
-            <Title>{props.title}</Title>
-            <Detail>{props.detail}</Detail>
-            <Hashtag>#{props.hashtag}</Hashtag>
+            <Title>{contents.title}</Title>
+            <Detail>{contents.detail}</Detail>
+            <Hashtag>#{contents.hashtag}</Hashtag>
             </Textgroup>
             </Group>
         </Wrap>

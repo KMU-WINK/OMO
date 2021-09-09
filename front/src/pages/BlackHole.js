@@ -1,19 +1,60 @@
 import React, { useState } from 'react';
 import Header from "../components/common/header";
-import Footer from "../components/common/footer";
 import Content from "../components/blackhole/content";
 import styled from "styled-components";
 import Planet from '../images/blackhole/Planet.svg';
-import Check from '../images/blackhole/choiceButton.svg'
+import Check from '../images/blackhole/choiceButton.svg';
+import Restore from '../images/blackhole/restore.svg';
+import Delete from '../images/blackhole/delete.svg';
 
 
 const BlackHole = (props) => {
     const [isActive1, setActive1] = useState(true);
     const [isActive2, setActive2] = useState(false);
     const [editMode, setEditMode] = useState(false);
+    const [clickArray, setClickArray] = useState(false);
+    const contents = [
+        {
+            day: "20",
+            profileImgSrc: Planet,
+            title: "코딩 빡쳐",
+            detail: "내용이 어느정도는 나와야겠죠? ...",
+            hashtag: "침대",
+            select: false
+        },
+        {
+            day: "20",
+            profileImgSrc: Planet,
+            title: "코딩 빡쳐",
+            detail: "내용이 어느정도는 나와야겠죠? ...",
+            hashtag: "침대",
+            select: false
+        },
+        {
+            day: "20",
+            profileImgSrc: Planet,
+            title: "코딩 빡쳐",
+            detail: "내용이 어느정도는 나와야겠죠? ...",
+            hashtag: "침대",
+            select: false
+        },
+        {
+            day: "20",
+            profileImgSrc: Planet,
+            title: "코딩 빡쳐",
+            detail: "내용이 어느정도는 나와야겠죠? ...",
+            hashtag: "침대",
+            select: false
+        }
+    ]
     const changeActive = () => {
-        if (isActive1) {setActive2(true); setActive1(false);}
-        else {setActive1(true); setActive2(false);}
+        if (isActive1) {
+            setActive2(true);
+            setActive1(false);
+        } else {
+            setActive1(true);
+            setActive2(false);
+        }
     }
     const editOn = () => {
         setEditMode(true);
@@ -21,31 +62,48 @@ const BlackHole = (props) => {
     const editOff = () => {
         setEditMode(false);
     }
+    const changeClick = (e) => {
+        console.log(e.target.value)
+        if (editMode && clickArray== false) {setClickArray(true)}
+        else {setClickArray(false);}
+        // if (editMode) {setClickArray(...clickArray, e);
+        // console.log(e)
+        // console.log(clickArray)
+        // }
+    }
 
     return (
         <ContentContainer>
-
             <Header state={"Back"} title={"블랙홀"}></Header>
-                {
-                    editMode == false ?
-                        <SelectContainer>
-                            <Select onClick={ ()=>changeActive() } active={ isActive1 }>기록</Select>
-                            <Select onClick={ ()=>changeActive() } active={ isActive2 }>행성</Select>
-                        </SelectContainer>
-                            :
-                        <EditContainer>
-                            <Text>기록 편집</Text>
-                            <FinishButton onClick={ editOff }>완료</FinishButton>
-                        </EditContainer>
-                }
+            {
+                editMode == false ?
+                    <SelectContainer>
+                        <Select onClick={() => changeActive()} active={isActive1}>기록</Select>
+                        <Select onClick={() => changeActive()} active={isActive2}>행성</Select>
+                    </SelectContainer>
+                    :
+                    <EditContainer>
+                        <Text>기록 편집</Text>
+                        <FinishButton onClick={editOff}>완료</FinishButton>
+                    </EditContainer>
+            }
             <Menu>
                 <EditText>삭제된 기록들</EditText>
                 {
-                    editMode==false ?  <Editbutton onClick={ editOn }>편집</Editbutton> : <AllChoice><img src={ Check }/></AllChoice>
+                    editMode == false ? <Editbutton onClick={editOn}>편집</Editbutton> :
+                        <AllChoice><img src={Check}/></AllChoice>
                 }
             </Menu>
-            <Content  day={"20"} profileImgSrc={ Planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
-            <Footer />
+            {contents.map((content) => <div onClick={(e) => changeClick(e)}>
+                <Content contents={content}/>
+            </div> )}
+
+            { clickArray &&
+                <RestoreDeleteContainer>
+                    <RestoreDelete><img src={Restore} /></RestoreDelete>
+                    <RestoreDelete><img src={Delete} /></RestoreDelete>
+                </RestoreDeleteContainer>
+            }
         </ContentContainer>
     )
 }
@@ -57,8 +115,9 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 812px;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.85);
+  position: relative;
 `
 const SelectContainer = styled.div`
   width: 343px;
@@ -155,4 +214,20 @@ const FinishButton = styled.div`
   color: #AD6EFD;
   position: absolute;
   right: 16px;
+`
+const RestoreDelete = styled.div`
+  width: 187.5px;
+  height: 84px;
+  background-color: #A661FF;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+const RestoreDeleteContainer = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
 `
