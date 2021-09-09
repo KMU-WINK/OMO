@@ -57,7 +57,8 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
                             {
                                 colors.map(c=>(
                                     <CircleDiv onClick={()=>{colorClick(c.id)}} key={c.id}>
-                                        <Circle src={c.color}/>
+                                        <Circle src={c.color} />
+                                        <WhiteCircle hidden={mainColor === c.id?false:true}/>
                                     </CircleDiv>
                                 ))
                             }
@@ -186,13 +187,30 @@ const CircleDiv = styled.div`
     width:20px;
     height:20px;
     margin-left:0px;
+    margin-top:-5px;
     margin-right:9px;
 `;
 
 const Circle = styled.img`
     display:inline-block;
-    width: 30px;
-    height: 30px;
+    margin-left: -5px;
+    width: 40px;
+    height: 40px;
+`;
+
+const WhiteCircle = styled.div`
+    position: relative;
+    top:-34px;
+    left:5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+
+    ${props=>props.hidden &&
+    css `
+        visibility: hidden;
+    `}
 `;
 
 const MainPlanet = styled.img`
