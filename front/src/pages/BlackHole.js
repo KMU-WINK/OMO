@@ -72,7 +72,6 @@ const BlackHole = (props) => {
                 <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
                 <Content  day={"20"} profileImgSrc={ planet } title={"코딩 빡쳐"} detail={"내용이 어느정도는 나와야겠죠? ..."} hashtag={"침대"}/>
             </ContentContainer>
-            <Footer />
             <Wrap>
                 <WrapMain>
                     {planets.length === 0 ?
@@ -116,7 +115,7 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;  
-  height: 678px;
+  height: 762px;
   overflow: hidden;
   overflow-y: scroll;
 `
