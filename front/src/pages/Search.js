@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+import Content from "../components/blackhole/content";
 import Footer from "../components/common/footer";
 
 import searchIcon from '../images/search/searchIcon.png';
@@ -57,16 +59,19 @@ const searchDefaultIconImg = {
     width:'60px',
     height:'60px',
 }
-const searchDefaultTXT = {
-    color:'#8B8B8B',
+const noResultWord = {
+    display:'flex',
     fontWeight: 500,
     fontSize: '14px',
     fontFamily: 'Roboto',
 }
+const searchDefaultTXT = {
+    color:'#8B8B8B',
+}
 
 const Search = (props) => {
 
-    const [initSearch, setInitSearch] = useState(false)
+    const [initSearch, setInitSearch] = useState(true)
     const [searchWord, setSearchWord] = useState('')
 
     const initSearchBox = () => {
@@ -75,17 +80,54 @@ const Search = (props) => {
     const searching = () => {
         document.getElementById('cancelIcon').style.display = 'block';
     }
+    const searchWordEndFind = (e) => {
+        if(e.key === 'Enter'){
+            let word = document.getElementById('searchFor').value;
+            console.log(word)
+            setSearchWord(word)
+        }
+    }
+
     const cancelSearch = () => {
         document.getElementById('searchFor').value = '';
         document.getElementById('cancelIcon').style.display = 'none';
     }
+    const test = {
+        day: "20",
+        profileImgSrc: null,
+        title: "코딩",
+        detail: "코딩을 하고 있어요",
+        hashtag: "컴퓨터",
+    }
+    const test2 = {
+        day: "74",
+        profileImgSrc: null,
+        title: "속초",
+        detail: "속초 여행을 갔어요",
+        hashtag: "여행",
+    }
+    const test3 = {
+        day: "13",
+        profileImgSrc: null,
+        title: "백신 접종",
+        detail: "백신을 맞았어요",
+        hashtag: "침대",
+    }
+
 
     return (
         <div style={allContents}>
             <div style={subContent}>
                 <div style={searchBlock}>
                     <img src={searchIcon} style={searchIconImg}/>
-                    <input type={'text'} style={searchBox} id={'searchFor'} placeholder={'검색'} onChange={searching} onClick={initSearchBox}/>
+                    <input type={'text'}
+                           style={searchBox}
+                           id={'searchFor'}
+                           placeholder={'검색'}
+                           onChange={searching}
+                           onClick={initSearchBox}
+                           onKeyPress={searchWordEndFind}
+                    />
                     <img src={cancelIcon} style={cancelIconImg} id={'cancelIcon'} onClick={cancelSearch}/>
                 </div>
                 {
@@ -97,10 +139,19 @@ const Search = (props) => {
                         :
                         <div style={searchDefaultBlock}>
                             <img src={noResultIcon} style={searchDefaultIconImg}/>
-                            <p style={searchDefaultTXT}>{searchWord}에 대한 검색 결과가 없습니다.</p>
+                            <div style={noResultWord}>
+                                <p style={{color:'#A661FF'}}>{searchWord}</p>
+                                <p style={searchDefaultTXT}>에 대한 검색 결과가 없습니다.</p>
+                            </div>
                         </div>
                 }
-
+                <div>
+                    {/*<Content editMode = { false } isSelected = {4} contents={test}/>
+                    <Content editMode = { false } isSelected = {4} contents={test2}/>
+                    <Content editMode = { false } isSelected = {4} contents={test3}/>
+                    <Content editMode = { false } isSelected = {4} contents={test2}/>
+                    <Content editMode = { false } isSelected = {4} contents={test3}/>*/}
+                </div>
             </div>
             <Footer />
         </div>
