@@ -12,7 +12,6 @@ import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 
 const mainContents = {
-    height: '680px',
     padding: '5%',
     color: 'white',
     overflow: 'scroll',
@@ -169,7 +168,6 @@ const Statistics = (props) => {
                         <img src={planetGraph} style={planetGraphImg}/>
                     </div>
                 </div>
-            <Footer />
         </div>
     )
 }
