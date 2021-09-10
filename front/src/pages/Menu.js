@@ -10,11 +10,20 @@ import background from "../images/menu/background.png";
 import checkMonth from "../images/menu/menu_checkMonth.png";
 import purplePlanet from "../images/menu/menu_PurplePlanet.png";
 import backButtonImg from '../images/common/back.png';
+import Default from "../components/main/default";
+import Planet from "../components/main/planet";
+import planet4 from "../images/common/planets/planet2_1.svg";
+import planet5 from "../images/common/planets/planet3_0.svg";
+import planet3 from "../images/common/planets/planet1_5.svg";
+import planet6 from "../images/common/planets/planet4_3.svg";
+import planet2 from "../images/common/planets/planet0_4.svg";
 
 const backgroundCSS = {
     width: '100%',
     height: '100%',
-    background: "url(" + background + ") no-repeat",
+    // background: "url(" + background + ") no-repeat",
+    background: 'rgba(0, 0, 0, 0.85)',
+    position: 'relative',
 }
 const mainContents = {
     width: '375px',
@@ -208,6 +217,13 @@ const Menu = (props) => {
             document.getElementById("countcount").style.textAlign = 'center';
         }
     }
+    const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
+        {'imgSrc': planet1, 'name': "오늘은 조금 우울해", 'count': 20},
+        {'imgSrc': planet5, 'name': "화가 치밀어 오른다", 'count': 32},
+        {'imgSrc': planet3, 'name': "오늘은 조금 우울해", 'count': 32},
+        {'imgSrc': planet6, 'name': "오늘은 조금 우울해", 'count': 18},
+        {'imgSrc': planet2, 'name': "화가 치밀어 오른다", 'count': 18}
+    ];
 
     return (
         <div style={backgroundCSS}>
@@ -237,10 +253,10 @@ const Menu = (props) => {
             }
             <div style={mainContents}>
                 <div style={allPlanet} id={"topPlanetDiv"} onClick={viewLarger}>
-                    <img id={"topPlanet"} src={purplePlanet} style={planetStyle}/>
+                    <img id={"topPlanet"} src={props.location.state.planetSrc} style={planetStyle}/>
                     <div style={contentCSS} id={"countRecord"}>
-                        <div style={nameCSS}>{props.name}</div>
-                        <div style={countCSS} id={"countcount"}>{props.count}개의 기록</div>
+                        <div style={nameCSS} >{props.location.state.planetName}</div>
+                        <div style={countCSS} id={"countcount"}>{props.location.state.planetCount}개의 기록</div>
                     </div>
                 </div>
                 {showModal === true ?
@@ -303,6 +319,8 @@ const Menu = (props) => {
                         </div>
                         <div style={boxes}>
                             <Box
+                                planetSrc={props.location.state.planetSrc}
+                                planetName={props.location.state.planetName}
                                 date={"07/25"}
                                 title={"ㅋㅋㅋ대박이다 아님?"}
                                 content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
@@ -348,6 +366,15 @@ const Menu = (props) => {
                     </div>
                 </div>
             </div>
+            <Wrap>
+                <WrapMain>
+                    {planets.length === 0 ?
+                        <Default/>     // 행성이 없을 때
+                        :
+                        <Planet planets={planets}/>  // 행성이 있을 때
+                    }
+                </WrapMain>
+            </Wrap>
         </div>
     )
 }
@@ -362,6 +389,24 @@ const Background = styled.div`
     right: 0;
     background-color: rgba(0,0,0,0.50);
     z-index: 1;
+`;
+
+const Wrap = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: -5;
+  background: black;
+  overflow: hidden;
+`;
+const WrapMain = styled.div`
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  padding-top: 30px;
 `;
 
 const ModalContainer = styled.div`
