@@ -96,31 +96,18 @@ const recentlySearchTxT = {
     color: '#9B9B9B',
     borderBottom:'1px solid #9B9B9B',
 }
+const sortingDate = {
+    fontFamily: 'Spoqa Han Sans Neo',
+    fontWeight:' 500',
+    fontSize: '12px',
+    color: '#969696',
+    margin:'32px 0 16px 6px',
+}
 
 const Search = (props) => {
 
     {/*임시 데이터들. 나중에 디비에서 가져온걸로 넣어야 함. 나중에 지울 데이터*/}
-    const test = {
-        day: "20",
-        profileImgSrc: null,
-        title: "코딩",
-        detail: "코딩을 하고 있어요",
-        hashtag: "컴퓨터",
-    }
-    const test2 = {
-        day: "74",
-        profileImgSrc: null,
-        title: "속초",
-        detail: "속초 여행을 갔어요",
-        hashtag: "여행",
-    }
-    const test3 = {
-        day: "13",
-        profileImgSrc: null,
-        title: "백신 접종",
-        detail: "백신을 맞았어요",
-        hashtag: "침대",
-    }
+
     const [testSet, setTestSet] = useState([
         {
             day: "20",
@@ -149,6 +136,13 @@ const Search = (props) => {
             title: "코딩 빡쳐",
             detail: "내용이 어느정도는 나와야겠죠? ...",
             hashtag: "침대",
+        },
+        {
+            day: "93",
+            profileImgSrc: null,
+            title: "검색 기능",
+            detail: "검색 기능 넣고 있는데 힘들어요.",
+            hashtag: "똑똑이가되자",
         }
     ]);
     {/*여기까진 지워도 됨*/}
@@ -175,6 +169,7 @@ const Search = (props) => {
         document.getElementById('searchFor').value = '';
         document.getElementById('cancelIcon').style.display = 'none';
         setInitSearch(true)
+        setCheckSearch(false)
     }
     {/*검색했을 때 검색기록배열에 추가*/}
     const searchWordEndFind = (e) => {
@@ -188,16 +183,18 @@ const Search = (props) => {
         }
     }
 
-    {/*검색 결과만 리턴해주는 기능. 아직 구현 완성 안됨 */}
+    {/*검색 결과만 리턴해주는 기능 */}
     const resultSearchBlocks = testSet.filter((data)=>{
         if(data.title.toString().toLowerCase().includes(searchWord.toString().toLowerCase())
             || data.detail.toString().toLowerCase().includes(searchWord.toString().toLowerCase())
             || data.hashtag.toString().toLowerCase().includes(searchWord.toString().toLowerCase())
         ){
-            return (
-                null
-            )
+            return data
         }
+    }).map((data, idx)=> {
+        return (
+            <Content editMode = { false } isSelected = {1} contents={data}/>
+        )
     })
 
     {/*검색 기록 삭제하는 기능*/}
@@ -260,9 +257,16 @@ const Search = (props) => {
                 }
                 {
                     checkSearch ?
-                        resultSearchBlocks
-                        :
-                        null
+                        <div>
+                            <div style={{display:'flex', justifyContent: 'flex-end'}}>
+                                <p style={sortingDate}>최근 순</p>
+                                <p style={sortingDate}>오래된 순</p>
+                            </div>
+                            <div>
+                            { resultSearchBlocks }
+                            </div>
+                        </div>
+                        : null
                 }
             </div>
             <Footer />
