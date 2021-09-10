@@ -78,7 +78,7 @@ const FooterButtons = {
     justifyContent: 'space-evenly',
     backgroundColor: 'black',
     alignItems: 'center',
-    paddingBottom: '34px',
+    paddingBottom: '32px',
 }
 
 const BlackHole = {
@@ -206,11 +206,11 @@ function Main(props) {
     // const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
 
     const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
+        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':32},
         {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
         {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':32},
-        {'imgSrc':planet2, 'name':"오늘은 조금 우울해", 'count':18},
-        {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':18}
+        {'imgSrc':planet2, 'name':"오늘은 조금 우울해", 'count':32},
+        {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':32}
     ];
     // console.log(planets);
 
