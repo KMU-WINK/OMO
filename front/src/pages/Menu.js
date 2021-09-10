@@ -17,6 +17,10 @@ import planet5 from "../images/common/planets/planet3_0.svg";
 import planet3 from "../images/common/planets/planet1_5.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
 import planet2 from "../images/common/planets/planet0_4.svg";
+import star2 from "../images/list/star2.png";
+import star4 from "../images/list/star4.png";
+import star3 from "../images/list/star3.png";
+import Star from "../components/list/star";
 
 const backgroundCSS = {
     width: '100%',
@@ -127,6 +131,16 @@ const headerTXT = {
     borderRadius: '12px',
     padding:'4px 10px',
     margin:'0 4px',
+    color: 'rgba(255, 255, 255, 0.5)',
+
+    fontFamily: 'Spoqa Han Sans Neo',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '12px',
+    lineHeight: '15px',
+
+    textAlign: 'center',
+    letterSpacing: '-0.025em',
 }
 const headerTXT2 = {
     margin:'0 4px',
@@ -217,6 +231,7 @@ const Menu = (props) => {
             document.getElementById("countcount").style.textAlign = 'center';
         }
     }
+
     const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
         {'imgSrc': planet1, 'name': "오늘은 조금 우울해", 'count': 20},
         {'imgSrc': planet5, 'name': "화가 치밀어 오른다", 'count': 32},
@@ -224,6 +239,19 @@ const Menu = (props) => {
         {'imgSrc': planet6, 'name': "오늘은 조금 우울해", 'count': 18},
         {'imgSrc': planet2, 'name': "화가 치밀어 오른다", 'count': 18}
     ];
+    // const planets = [];
+    let test = [{date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/26", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/27", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/28", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/29", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/30", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/31", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+
+    ];
+    // let test = [];
 
     return (
         <div style={backgroundCSS}>
@@ -318,50 +346,61 @@ const Menu = (props) => {
                             </div>
                         </div>
                         <div style={boxes}>
-                            <Box
-                                planetSrc={props.location.state.planetSrc}
-                                planetName={props.location.state.planetName}
-                                date={"07/25"}
-                                title={"ㅋㅋㅋ대박이다 아님?"}
-                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                                "었냐하면..."}
-                            />
-                            <Box
-                                date={"07/25"}
-                                title={"ㅋㅋㅋ대박이다 아님?"}
-                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                                "었냐하면..."}
-                            />
-                            <Box
-                                date={"07/25"}
-                                title={"ㅋㅋㅋ대박이다 아님?"}
-                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                                "었냐하면..."}
-                            />
-                            <Box
-                                date={"07/25"}
-                                title={"ㅋㅋㅋ대박이다 아님?"}
-                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                                "었냐하면..."}
-                            />
-                            <Box
-                                date={"07/25"}
-                                title={"ㅋㅋㅋ대박이다 아님?"}
-                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                                "었냐하면..."}
-                            />
-                            <Box
-                                date={"07/25"}
-                                title={"ㅋㅋㅋ대박이다 아님?"}
-                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                                "었냐하면..."}
-                            />
-                            <Box
-                                date={"07/25"}
-                                title={"ㅋㅋㅋ대박이다 아님?"}
-                                content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                                "었냐하면..."}
-                            />
+                            {test.map((test)=> {
+                                return (
+                                    <Box
+                                        planetSrc={props.location.state.planetSrc}
+                                        planetName={props.location.state.planetName}
+                                        date={test.date}
+                                        title={test.title}
+                                        content={test.content}
+                                    />
+                                )
+                            })};
+                            {/*<Box*/}
+                            {/*    planetSrc={props.location.state.planetSrc}*/}
+                            {/*    planetName={props.location.state.planetName}*/}
+                            {/*    date={"07/25"}*/}
+                            {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                            {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                            {/*    "었냐하면..."}*/}
+                            {/*/>*/}
+                            {/*<Box*/}
+                            {/*    date={"07/25"}*/}
+                            {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                            {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                            {/*    "었냐하면..."}*/}
+                            {/*/>*/}
+                            {/*<Box*/}
+                            {/*    date={"07/25"}*/}
+                            {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                            {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                            {/*    "었냐하면..."}*/}
+                            {/*/>*/}
+                            {/*<Box*/}
+                            {/*    date={"07/25"}*/}
+                            {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                            {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                            {/*    "었냐하면..."}*/}
+                            {/*/>*/}
+                            {/*<Box*/}
+                            {/*    date={"07/25"}*/}
+                            {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                            {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                            {/*    "었냐하면..."}*/}
+                            {/*/>*/}
+                            {/*<Box*/}
+                            {/*    date={"07/25"}*/}
+                            {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                            {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                            {/*    "었냐하면..."}*/}
+                            {/*/>*/}
+                            {/*<Box*/}
+                            {/*    date={"07/25"}*/}
+                            {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                            {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                            {/*    "었냐하면..."}*/}
+                            {/*/>*/}
                         </div>
                     </div>
                 </div>

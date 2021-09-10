@@ -19,8 +19,9 @@ const Post = (props) => {
                     <img src={props.planet}/>
                 </Planet>
                 <Title>{props.title}</Title>
+                <Line1 />
                 <Body>{props.content}</Body>
-                <Line />
+                <Line2 />
                 <Tag>
                     <HashTag hashtag={"교수님"}/>
                     <HashTag hashtag={"ㅋㅋㅋㅋㅋ"}/>
@@ -60,6 +61,7 @@ const Date = styled.div`
   height: 23.97px;
   left: 18px;
   top: 21px;
+  color: rgba(255, 255, 255, 0.6);
 `;
 
 const Planet = styled.div`
@@ -87,6 +89,15 @@ const Title = styled.div`
   color: #E2E2E2;
 `;
 
+const Line1 = styled.div`
+  position: absolute;
+  width: 288px;
+  height: 0px;
+  left: 19px;
+  top: 193.47px;
+  border: 1px solid #535353;
+`;
+
 const Body = styled.div`
   position: absolute;
   width: 290px;
@@ -103,7 +114,7 @@ const Body = styled.div`
   color: #ABABAB;
 `;
 
-const Line = styled.div`
+const Line2 = styled.div`
   position: absolute;
   width: 288px;
   height: 0px;
@@ -134,7 +145,7 @@ const Buttons = styled.div`
   position: absolute;
   width: 104px;
   height: 24px;
-  left: 18px;
+  left: 22px;
   top: 531px;
 `;
 
