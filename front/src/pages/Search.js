@@ -74,10 +74,18 @@ const searchDefaultTXT = {
     color:'#8B8B8B',
 }
 const recentlySearch = {
+    color: 'rgba(255, 255, 255, 0.8)',
     fontFamily: 'Spoqa Han Sans Neo',
     fontWeight: 'bold',
     fontSize: '18px',
     marginTop: '32px',
+}
+const deleteAllSearchWord ={
+    fontFamily: 'Spoqa Han Sans Neo',
+    color: '#9B9B9B',
+    fontSize: '12px',
+    float: 'right',
+    cursor: 'pointer',
 }
 const recentlySearchTxT = {
     display:'flex',
@@ -85,6 +93,7 @@ const recentlySearchTxT = {
     justifyContent:'space-between',
     width:'320px',
     padding:'16px 4px',
+    color: '#9B9B9B',
     borderBottom:'1px solid #9B9B9B',
 }
 
@@ -148,9 +157,10 @@ const Search = (props) => {
     const [searchWord, setSearchWord] = useState('')
     const [checkSearch, setCheckSearch] = useState(false)
 
-    {/*검색 기록 담는 배열*/}
+    {/*검색 기록 담는 배열과 검색기록 수*/}
     const [searchHistory, setSearchHistory] = useState([])
     const [searchHistoryLen, setSearchHistoryLen] = useState(0)
+
     {/*검색 시작 전 검색창 초기화*/}
     const initSearchBox = () => {
         document.getElementById('searchFor').placeholder = '';
@@ -178,6 +188,11 @@ const Search = (props) => {
         }
     }
 
+    /*console.log(testSet)
+    console.log(testSet.map((res)=> (
+        res.detail
+    )))*/
+    console.log(searchHistory, searchHistoryLen)
 
     {/*검색 결과만 리턴해주는 기능. 아직 구현 완성 안됨 */}
     const resultSearchBlocks = testSet.filter((data)=>{
@@ -194,6 +209,11 @@ const Search = (props) => {
     {/*검색 기록 삭제하는 기능*/}
     const recentlySearchCancelEvent = () => {
 
+    }
+    {/*검색 기록 전체삭제하는 기능*/}
+    const deleteAllSearchWordEvent = () => {
+        setSearchHistory([])
+        setSearchHistoryLen(0)
     }
 
     const recentlySearchBlocks = searchHistory.map((res)=>{
@@ -227,14 +247,15 @@ const Search = (props) => {
                             <img src={searchDefaultIcon} style={searchDefaultIconImg}/>
                             <p style={searchDefaultTXT}>최근 검색어 내역이 없습니다.</p>
                         </div>
-                    // 검색 안했고 검색기록은 있을 때
-                    : initSearch && searchHistoryLen !== 0 ?
+                        // 검색 안했고 검색기록은 있을 때
+                        : initSearch && searchHistoryLen !== 0 ?
                         <div>
                             <p style={recentlySearch}>최근 검색</p>
                             { recentlySearchBlocks }
+                            <p style={deleteAllSearchWord} onClick={deleteAllSearchWordEvent}>검색어 전체삭제</p>
                         </div>
-                    //검색 했을 때
-                    :
+                        //검색 했을 때
+                        :
                         <div style={searchDefaultBlock}>
                             <img src={noResultIcon} style={searchDefaultIconImg}/>
                             <div style={noResultWord}>
@@ -249,7 +270,7 @@ const Search = (props) => {
                         :
                         null
                 }
-                </div>
+            </div>
             <Footer />
         </div>
     )
