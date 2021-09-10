@@ -12,6 +12,7 @@ import planet5 from "../images/common/planets/planet3_0.svg";
 import planet3 from "../images/common/planets/planet1_5.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
 import planet2 from "../images/common/planets/planet0_4.svg";
+import Box from "../components/menu/box";
 
 const Posts = (props) => {
     const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
@@ -21,20 +22,43 @@ const Posts = (props) => {
         {'imgSrc': planet6, 'name': "오늘은 조금 우울해", 'count': 18},
         {'imgSrc': planet2, 'name': "화가 치밀어 오른다", 'count': 18}
     ];
+    // const planets = [];
+    let test = [{date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/26", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/27", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/28", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/29", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/30", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/31", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+
+    ];
+    // let test = [];
 
     return (
         <BackGround>
-            <Header state={"Back"} title={props.date}/>
+            <Header state={"Back"} title={props.location.state.planetName + " 행성"}/>
             <WrapPost>
-                <Post
-                    date={"25. FRIDAY"}
-                    planet={props.location.state.planetSrc}
-                    title={"ㅋㅋㅋ대박이다 아님?"}
-                    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +
-                    "었냐하면 말이야 진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ " +
-                    "오늘 무슨일이 있었냐하면 말이야 진짜 우리 교수님은 레전드" +
-                    "다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면 말이야 "}
-                />
+                {test.map((test, index)=> {
+                    return (
+                        <Post
+                            planet={props.location.state.planetSrc}
+                            date={test.date}
+                            title={test.title}
+                            content={test.content}
+                        />
+                    )
+                })};
+                {/*<Post*/}
+                {/*    date={"25. FRIDAY"}*/}
+                {/*    planet={props.location.state.planetSrc}*/}
+                {/*    title={"ㅋㅋㅋ대박이다 아님?"}*/}
+                {/*    content={"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있" +*/}
+                {/*    "었냐하면 말이야 진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ " +*/}
+                {/*    "오늘 무슨일이 있었냐하면 말이야 진짜 우리 교수님은 레전드" +*/}
+                {/*    "다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면 말이야 "}*/}
+                {/*/>*/}
             </WrapPost>
             <Wrap>
                 <WrapMain>
