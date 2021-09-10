@@ -46,7 +46,7 @@ const CreateComponent = (props)=>{
                     <EmptyBlock onClick={()=>{setPlanetVisible(true)}}/>
                 </SelectDiv>
             </div>}
-            <PlanetCreate onClick={savePlanet} visible={planetVisible} setVisible={setPlanetVisible}/>
+            <PlanetCreate onClick={savePlanet} visible={planetVisible} setVisible={setPlanetVisible} mainText="행성 추가"/>
         </Background>
     )
 }   
