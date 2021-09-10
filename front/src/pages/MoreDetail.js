@@ -104,7 +104,7 @@ function MoreDetail(props) {
                             <p style={friendsTXT}>친구</p>
                             <p style={countfriendsTXT}>10</p>
                         </div>
-                        <p style={moreFriendsTXT}>더보기</p>
+                        <p style={moreFriendsTXT} onClick={() => history.push('/morefriends')}>더보기</p>
                     </div>
                     <div style={allFriend}>
                         <div style={friendProfile}>
@@ -133,7 +133,7 @@ function MoreDetail(props) {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer page={"more"} />
         </div>
     );
 }
