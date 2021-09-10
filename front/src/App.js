@@ -17,7 +17,8 @@ import Setting from './pages/Setting';
 import Notice from './pages/Notice';
 import FAQ from './pages/FAQ';
 import Search from './pages/Search';
-import MoreFriends from './pages/MoreFriends'
+import MoreFriends from './pages/MoreFriends';
+import ReminderAlarm from  './pages/ReminderAlarm';
 
 class App extends Component {
   render() {
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path="/frequentlyAskedQuestion" component={FAQ}/>
             <Route path="/search" component={Search}/>
             <Route path="/morefriends" component={MoreFriends}/>
+            <Route path="/reminderAlarm" component={ReminderAlarm}/>
           </Wrap>
       </Router>
     );
