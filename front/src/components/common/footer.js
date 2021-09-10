@@ -28,7 +28,7 @@ const Footer = (props) => {
                     <p>홈</p>
                 </HomeWrap>
                 <SearchWrap>
-                    <div onClick={() => alert('현재 검색 페이지에 접근할 수 없습니다!')}/>
+                    <div onClick={() => history.push('/search')}/>
                     <p>검색</p>
                 </SearchWrap>
                 <PlusWrap>

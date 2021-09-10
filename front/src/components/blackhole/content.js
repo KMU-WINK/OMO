@@ -28,7 +28,7 @@ const Wrap = styled.div`
   flex-flow: column;
   width: 319px;
   height: 84px;
-  background: ${(props) => props.selected==true ? 'rgba(255, 255, 255, 0.35)' : 'rgba(255, 255, 255, 0.12)'};
+  background: ${(props) => props.selected===true ? 'rgba(255, 255, 255, 0.35)' : 'rgba(255, 255, 255, 0.12)'};
   color: rgba(255, 255, 255, 0.9);
   padding: 12px;
   border-radius: 10px;
