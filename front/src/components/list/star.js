@@ -4,13 +4,14 @@ import {useHistory} from "react-router-dom";
 
 const starCSS = {height : 60,  margin: "26px 0 0 0"}
 
-const Star = ({planet, checked, active, select}) => {
+const Star = ({planet, checked, active, select, setChecked, id}) => {
     const history = useHistory();
     const [isClicked,setClicked] = useState(checked);
 
     const checkOne = () => {
         if (!active){
             setClicked(!isClicked);
+            setChecked(id, !isClicked);
         }
         else {
             history.push({
@@ -23,6 +24,7 @@ const Star = ({planet, checked, active, select}) => {
     const checkEdit = () => {
         if (active && isClicked){
             setClicked(false);
+            setChecked(id, false);
         }
     }
 

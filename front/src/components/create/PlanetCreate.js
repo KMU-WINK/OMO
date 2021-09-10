@@ -8,7 +8,7 @@ import colors from './Colors';
 import PlanetInput from './PlanetInput';
 import Button from './Button';
 
-const PlanetCreate = ({onClick, visible, setVisible})=>{
+const PlanetCreate = ({onClick, visible, setVisible, top, mainText})=>{
     const [mainPlanet, setMainPlanet] = React.useState(0);
     const [mainColor, setMainColor] = React.useState(0);
     const [planets, setPlanets] = React.useState(Planets);
@@ -46,9 +46,9 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
     {
         if (!visible) return null;
         return(
-            <Background>
+            <Background top = {top}>
                 <Box>
-                    <Text left="15.5px" top="16px" bold>행성 추가</Text>
+                    <Text left="15.5px" top="16px" bold>{mainText}</Text>
                     <CloseButton onClick={()=>{setVisible(false)}}src={close}/>
                     <TopLine />
                     <div>
@@ -98,6 +98,7 @@ const Background = styled.div`
     position: relative;
     left: 0;
     top:-50px;
+    top:${props=>props.top};
     width: 375px;
     height: 812px;
     display: flex;
