@@ -269,7 +269,7 @@ const Search = (props) => {
                         : null
                 }
             </div>
-            <Footer />
+            <Footer page={"search"} />
         </div>
     )
 }

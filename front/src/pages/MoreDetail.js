@@ -134,7 +134,7 @@ function MoreDetail(props) {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer page={"more"} />
         </div>
     );
 }

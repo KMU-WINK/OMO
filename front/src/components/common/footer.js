@@ -27,17 +27,37 @@ const Footer = (props) => {
                     <div onClick={() => history.push('/main')}/>
                     <p>홈</p>
                 </HomeWrap>
-                <SearchWrap>
-                    <div onClick={() => history.push('/search')}/>
-                    <p>검색</p>
-                </SearchWrap>
-                <PlusWrap>
-                    <div className={"circle"}>
-                        <div className={"plus"} onClick={() => history.push('/create')}/>
-                    </div>
-                </PlusWrap>
-                { props.page === "list" ?
+                { props.page === "search" ?
                     <div>
+                        <SearchWrap>
+                            <div onClick={() => history.push('/search')} style={listPurple}/>
+                            <p style={{color: "#A661FF"}}>검색</p>
+                        </SearchWrap>
+                        <PlusWrap>
+                            <div className={"circle"}>
+                                <div className={"plus"} onClick={() => history.push('/create')}/>
+                            </div>
+                        </PlusWrap>
+                        <ListWrap>
+                            <div onClick={() => history.push('/list')}/>
+                            <p>목록</p>
+                        </ListWrap>
+                        <MoreWrap>
+                            <div onClick={() => history.push('/moreDetail')}/>
+                            <p>더보기</p>
+                        </MoreWrap>
+                    </div>
+                    : props.page === "list" ?
+                        <div>
+                        <SearchWrap>
+                            <div onClick={() => history.push('/search')}/>
+                            <p>검색</p>
+                        </SearchWrap>
+                        <PlusWrap>
+                            <div className={"circle"}>
+                                <div className={"plus"} onClick={() => history.push('/create')}/>
+                            </div>
+                        </PlusWrap>
                         <ListWrap>
                             <div onClick={() => history.push('/list')} style={listPurple}/>
                             <p style={{color: "#A661FF"}}>목록</p>
@@ -49,6 +69,15 @@ const Footer = (props) => {
                     </div>
                     :
                     <div>
+                        <SearchWrap>
+                            <div onClick={() => history.push('/search')}/>
+                            <p>검색</p>
+                        </SearchWrap>
+                        <PlusWrap>
+                            <div className={"circle"}>
+                                <div className={"plus"} onClick={() => history.push('/create')}/>
+                            </div>
+                        </PlusWrap>
                         <ListWrap>
                             <div onClick={() => history.push('/list')}/>
                             <p>목록</p>
@@ -58,7 +87,6 @@ const Footer = (props) => {
                             <p style={{color: "#A661FF"}}>더보기</p>
                         </MoreWrap>
                     </div>
-
                 }
             </Wrap>
         </BackGround>
