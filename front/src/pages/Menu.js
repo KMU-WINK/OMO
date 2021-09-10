@@ -131,6 +131,16 @@ const headerTXT = {
     borderRadius: '12px',
     padding:'4px 10px',
     margin:'0 4px',
+    color: 'rgba(255, 255, 255, 0.5)',
+
+    fontFamily: 'Spoqa Han Sans Neo',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '12px',
+    lineHeight: '15px',
+
+    textAlign: 'center',
+    letterSpacing: '-0.025em',
 }
 const headerTXT2 = {
     margin:'0 4px',
@@ -336,7 +346,7 @@ const Menu = (props) => {
                             </div>
                         </div>
                         <div style={boxes}>
-                            {test.map((test, index)=> {
+                            {test.map((test)=> {
                                 return (
                                     <Box
                                         planetSrc={props.location.state.planetSrc}

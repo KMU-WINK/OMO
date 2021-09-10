@@ -40,7 +40,7 @@ const Posts = (props) => {
         <BackGround>
             <Header state={"Back"} title={props.location.state.planetName + " 행성"}/>
             <WrapPost>
-                {test.map((test, index)=> {
+                {test.map((test)=> {
                     return (
                         <Post
                             planet={props.location.state.planetSrc}
