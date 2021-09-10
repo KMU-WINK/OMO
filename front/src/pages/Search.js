@@ -188,12 +188,6 @@ const Search = (props) => {
         }
     }
 
-    /*console.log(testSet)
-    console.log(testSet.map((res)=> (
-        res.detail
-    )))*/
-    console.log(searchHistory, searchHistoryLen)
-
     {/*검색 결과만 리턴해주는 기능. 아직 구현 완성 안됨 */}
     const resultSearchBlocks = testSet.filter((data)=>{
         if(data.title.toString().toLowerCase().includes(searchWord.toString().toLowerCase())
