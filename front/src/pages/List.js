@@ -446,7 +446,7 @@ const Canclecheck = styled.button`
 const DeleteBar = styled.div`
   width: 375px;
   height: 84px;
-  background: #553C75;
+  background: #A661FF;
   display: flex;
   justify-content: space-between;
 `
@@ -454,7 +454,7 @@ const DeleteBar = styled.div`
 const Deletediv = styled.div`
   width: 100%;
   height: 84px;
-  background: #553C75;
+  background: #A661FF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -464,7 +464,6 @@ const Edited = styled.div`
   width: 48px;
   height: 44px;
   display: inline-block;
-  margin: 6px 0 6px 0;
   margin-left: 75px;
   margin-top:18px;
   background: transparent;
