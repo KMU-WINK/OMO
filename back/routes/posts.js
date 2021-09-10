@@ -9,11 +9,6 @@ router.get('/', async (req, res, next) => {
             limit: 10,
             order: [['createdAt', 'DESC']],
             include: [{
-                model: User,
-                attributes: {
-                    exclude: ['password', 'createdAt', 'updatedAt'],
-                },
-            }, {
                 model: Image,
             }],
         });
