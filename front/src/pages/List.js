@@ -16,7 +16,7 @@ import star6 from '../images/list/star6.png';
 import main from '../images/list/mainpage.png';
 import check from '../images/list/check.png';
 import deleted from '../images/list/delete.png';
-import edited from '../images/list/edit.png';
+import fixed from '../images/list/edit.png';
 import checkpupple from '../images/list/checkpupple.png';
 import {useHistory} from "react-router-dom";
 
@@ -181,13 +181,8 @@ const List = (props) => {
                     <Footer page={"list"}/>
                     :
                     <DeleteBar >
-                      {
-                        getIsCheckedCount() === 1?
-                        <DeleteBar onClick={()=>{setchangeActive(true)}}>
-                          <Edited/>
-                        </DeleteBar>:<></>
-                      }
                         <Deletediv >
+                            <Fixed />
                             <Deleted />
                         </Deletediv>
                     </DeleteBar>
@@ -446,7 +441,7 @@ const Canclecheck = styled.button`
 const DeleteBar = styled.div`
   width: 375px;
   height: 84px;
-  background: #553C75;
+  background: #A661FF;
   display: flex;
   justify-content: space-between;
 `
@@ -454,23 +449,11 @@ const DeleteBar = styled.div`
 const Deletediv = styled.div`
   width: 100%;
   height: 84px;
-  background: #553C75;
+  background: #A661FF;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 `
-
-const Edited = styled.div`
-  width: 48px;
-  height: 44px;
-  display: inline-block;
-  margin: 6px 0 6px 0;
-  margin-left: 75px;
-  margin-top:18px;
-  background: transparent;
-  background: url(${edited}) no-repeat;
-  background-size: contain;
-`;
 
 const Deleted = styled.div`
   width: 48px;
@@ -479,5 +462,15 @@ const Deleted = styled.div`
   margin: 0 0 6px 0;
   background: transparent;
   background: url(${deleted}) no-repeat;
+  background-size: contain;
+`
+
+const Fixed = styled.div`
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  margin: 0 0 6px 0;
+  background: transparent;
+  background: url(${fixed}) no-repeat;
   background-size: contain;
 `
