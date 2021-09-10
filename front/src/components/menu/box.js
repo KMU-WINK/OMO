@@ -39,7 +39,10 @@ const Box = (props) => {
     const history = useHistory();
 
     return(
-        <div style={OneBox}>
+        <div style={OneBox} onClick={() => history.push({
+            pathname: '/post',
+            state: {planetSrc: props.planetSrc, planetName: props.planetName}
+        })}>
             <div style={{padding:'12px 12px 0 12px'}}>
                 <div style={{display:'flex', justifyContent: 'space-between', marginBottom:'14px'}}>
                     <div style={dateCSS}>{props.date}</div>

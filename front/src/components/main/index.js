@@ -2,51 +2,51 @@ import React from 'react';
 import styled, {keyframes} from 'styled-components';
 
 const planetCSS1 = {
-    width: '350px',
-    height: '350px',
+    width: '580px',
+    height: '580px',
     position: 'absolute',
-    top: '120px',
-    left: '30px',
+    top: '-40px',
+    left: '-90px',
     // border: '3px solid red',
 }
 const planetCSS2 = {
-    width: '350px',
-    height: '350px',
+    width: '580px',
+    height: '580px',
     position: 'absolute',
-    top: '0px',
-    left: '180px',
+    top: '-160px',
+    left: '40px',
     // border: '3px solid orange',
 }
 const planetCSS3 = {
-    width: '350px',
-    height: '350px',
+    width: '580px',
+    height: '580px',
     position: 'absolute',
-    top: '-80px',
-    left: '-80px',
+    top: '-220px',
+    left: '-210px',
     // border: '3px solid yellow',
 }
 const planetCSS4 = {
-    width: '350px',
-    height: '350px',
+    width: '580px',
+    height: '580px',
     position: 'absolute',
-    top: '320px',
-    left: '10px',
+    top: '210px',
+    left: '-100px',
     // border: '3px solid green',
 }
 const planetCSS5 = {
-    width: '350px',
-    height: '350px',
+    width: '580px',
+    height: '580px',
     position: 'absolute',
-    top: '210px',
-    left: '150px',
+    top: '100px',
+    left: '40px',
     // border: '3px solid blue',
 }
 const planetCSS6 = {
-    width: '350px',
-    height: '350px',
+    width: '580px',
+    height: '580px',
     position: 'absolute',
-    top: '200px',
-    left: '-100px',
+    top: '80px',
+    left: '-230px',
     // border: '3px solid purple',
 }
 
@@ -58,86 +58,8 @@ const contentCSS ={
     transform: 'translate(-50%, -50%)',
 }
 
-// const nameCSS1 = {
-//     fontFamily: 'S-Core Dream',
-//     fontStyle: 'normal',
-//     fontWeight: '500',
-//     fontSize: '20px',
-//     lineHeight: '19px',
-//     textAlign: 'center',
-//     letterSpacing: '-0.05em',
-//
-//     color: '#FFFFFF'
-// }
-//
-// const countCSS1 = {
-//     marginTop: '4px',
-//
-//     fontFamily: 'S-Core Dream',
-//     fontStyle: 'normal',
-//     fontWeight: '500',
-//     fontSize: '14px',
-//     lineHeight: '13px',
-//     textAlign: 'center',
-//     letterSpacing: '-0.05em',
-//
-//     color: '#FFFFFF',
-// }
-//
-// const nameCSS2 = {
-//     fontFamily: 'S-Core Dream',
-//     fontStyle: 'normal',
-//     fontWeight: '500',
-//     fontSize: '16px',
-//     lineHeight: '19px',
-//     textAlign: 'center',
-//     letterSpacing: '-0.05em',
-//
-//     color: '#FFFFFF'
-// }
-//
-// const countCSS2 = {
-//     marginTop: '4px',
-//
-//     fontFamily: 'S-Core Dream',
-//     fontStyle: 'normal',
-//     fontWeight: '500',
-//     fontSize: '12px',
-//     lineHeight: '13px',
-//     textAlign: 'center',
-//     letterSpacing: '-0.05em',
-//
-//     color: '#FFFFFF',
-// }
-//
-// const nameCSS3 = {
-//     fontFamily: 'S-Core Dream',
-//     fontStyle: 'normal',
-//     fontWeight: '500',
-//     fontSize: '12px',
-//     lineHeight: '19px',
-//     textAlign: 'center',
-//     letterSpacing: '-0.05em',
-//
-//     color: '#FFFFFF'
-// }
-//
-// const countCSS3 = {
-//     marginTop: '4px',
-//
-//     fontFamily: 'S-Core Dream',
-//     fontStyle: 'normal',
-//     fontWeight: '500',
-//     fontSize: '10px',
-//     lineHeight: '13px',
-//     textAlign: 'center',
-//     letterSpacing: '-0.05em',
-//
-//     color: '#FFFFFF',
-// }
-
 const imageSize1 ={
-    width: '350px',
+    width: '580px',
     objectFit: 'contain',
     position: 'absolute',
     top: '50%',
@@ -145,7 +67,7 @@ const imageSize1 ={
     transform: 'translate(-50%, -50%)',
 }
 const imageSize2 ={
-    width: '275px',
+    width: '404px',
     objectFit: 'contain',
     position: 'absolute',
     top: '50%',
@@ -153,7 +75,7 @@ const imageSize2 ={
     transform: 'translate(-50%, -50%)',
 }
 const imageSize3 ={
-    width: '200px',
+    width: '300px',
     objectFit: 'contain',
     position: 'absolute',
     top: '50%',
@@ -170,20 +92,16 @@ const Index = (props) => {
                 <div style={planet_css[props.idx]}>
                     <img src={props.imgSrc} style={imageSize1}/>
                     <div style={contentCSS}>
-                        {/*<div style={nameCSS1}>{props.name}</div>*/}
-                        {/*<div style={countCSS1}>{props.count}개의 기록</div>*/}
                         <Name1>{props.name}</Name1>
                         <Count1>{props.count}개의 기록</Count1>
                     </div>
                 </div>
                 :
                 <>
-                    {props.count *1 >= 20?
+                    {props.count * 1 >= 20?
                         <div style={planet_css[props.idx]}>
                             <img src={props.imgSrc} style={imageSize2}/>
                             <div style={contentCSS}>
-                                {/*<div style={nameCSS2}>{props.name}</div>*/}
-                                {/*<div style={countCSS2}>{props.count}개의 기록</div>*/}
                                 <Name2>{props.name}</Name2>
                                 <Count2>{props.count}개의 기록</Count2>
                             </div>
@@ -192,8 +110,6 @@ const Index = (props) => {
                         <div style={planet_css[props.idx]}>
                             <img src={props.imgSrc} style={imageSize3}/>
                             <div style={contentCSS}>
-                                {/*<div style={nameCSS3}>{props.name}</div>*/}
-                                {/*<div style={countCSS3}>{props.count}개의 기록</div>*/}
                                 <Name3>{props.name}</Name3>
                                 <Count3>{props.count}개의 기록</Count3>
                             </div>

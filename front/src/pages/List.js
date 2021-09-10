@@ -16,6 +16,7 @@ import star6 from '../images/list/star6.png';
 import main from '../images/list/mainpage.png';
 import check from '../images/list/check.png';
 import deleted from '../images/list/delete.png';
+import edited from '../images/list/edit.png';
 import checkpupple from '../images/list/checkpupple.png';
 import {useHistory} from "react-router-dom";
 
@@ -28,18 +29,60 @@ import planet3 from "../images/common/planets/planet1_5.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
 import planet2 from "../images/common/planets/planet0_4.svg";
 
+import {loadPlanet} from '../components/create/planets';
+import PlanetCreate from '../components/create/PlanetCreate';
+
 const List = (props) => {
-    let test = [{title: "개웃기네", num: 3, image:star2}, {title: "배고파", num: 18, image:star4}, {title: "지치는날", num: 5, image:star3}];
+    // 추후에 백엔드로 받아오기
+    let test2 = [
+      {title: "개웃기네", num: 3, image:star2}, 
+      {title: "배고파", num: 18, image:star4}, 
+      {title: "지치는날", num: 5, image:star3}, 
+      {title: "개웃기네", num: 3, image:star2}, 
+      {title: "배고파", num: 18, image:star4}, 
+      {title: "지치는날", num: 5, image:star3}, 
+      {title: "개웃기네", num: 3, image:star2}, 
+      {title: "배고파", num: 18, image:star4}, 
+      {title: "지치는날", num: 5, image:star3},
+      {title: "개웃기네", num: 3, image:star2}];
+    const [test, setTest] = useState(test2);
+
     // let test = []
 
     const history = useHistory();
-    const isClickedList = Array(test.length).fill(false);
+    const [isClickedList, setIsClickedList] = useState(Array(test.length).fill(false));
     const [isActive, setActive] = useState(true);
     const [selectAll, setSelect] = useState(false);
+    const [changeActive, setchangeActive] = useState(false);
+    
+    const setClickedList = (index, isClicked)=>{
+      setIsClickedList(isClickedList.map((value, cindex)=>{
+        return index === cindex ? isClicked : value
+      }));
+    };
+    
+    const changePlanet = (mainPlanet, mainColor, name)=>{
+      isClickedList.map((value, index)=>{
+        if(value === true){
+          setTest(test.map((t, tindex)=>{
+            return index === tindex ? {...t, title:name, image:loadPlanet(mainPlanet, mainColor),}: t;
+          }));
+        }
+      });
+      FinishEdit();
+    }
+
+    const getIsCheckedCount = ()=>{
+      let count = 0;
+      for(const isChcked of isClickedList){
+          if(isChcked === true) count += 1;
+      }
+      return count;
+    }
 
     const FinishEdit = () => {
         setActive(true);
-        isClickedList.fill(0,0, isClickedList.length);
+        setIsClickedList(Array(test.length).fill(false));
         setSelect(false);
     }
 
@@ -50,7 +93,7 @@ const List = (props) => {
     };
 
     const checkAll = () => {
-        isClickedList.fill(1, 0, isClickedList.length);
+        setIsClickedList(Array(test.length).fill(true));
         setSelect(2);
         console.log(isClickedList)
     }
@@ -67,7 +110,7 @@ const List = (props) => {
         {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
         {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
         {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
-        {'imgSrc':planet2, 'name':"화가 치밀어 오른다", 'count':18}
+        {'imgSrc':planet2, 'name':"화가 치밀adsasd어 오른다", 'count':18}
     ];
 
     return (
@@ -80,6 +123,9 @@ const List = (props) => {
                     isActive
                         ?
                         <Headbar>
+                            <CenterWrite style={{color: "rgba(255, 255, 255, 0.5)"}}>
+                                캘린더
+                            </CenterWrite>
                             <CenterWrite>
                                 행성
                                 <Line />
@@ -123,7 +169,7 @@ const List = (props) => {
                     </PlusPlanet>
                     {test.map((test, index)=> {
                         return (
-                            <Star planet = {test} checked={isClickedList[index]} active = {isActive} select={selectAll}/>
+                            <Star id={index} planet = {test} checked={isClickedList[index]} active = {isActive} select={selectAll} setChecked={setClickedList}/>
                         )
                     })};
                     {/*{setSelect(0)};*/}
@@ -132,11 +178,17 @@ const List = (props) => {
             {
                 isActive
                     ?
-                    <Footer />
+                    <Footer page={"list"}/>
                     :
-                    <DeleteBar>
-                        <Deletediv>
-                            <Deleted/>
+                    <DeleteBar >
+                      {
+                        getIsCheckedCount() === 1?
+                        <DeleteBar onClick={()=>{setchangeActive(true)}}>
+                          <Edited/>
+                        </DeleteBar>:<></>
+                      }
+                        <Deletediv >
+                            <Deleted />
                         </Deletediv>
                     </DeleteBar>
             }
@@ -149,22 +201,26 @@ const List = (props) => {
                     }
                 </WrapMain>
             </Wrap>
+            <PlanetCreate onClick={changePlanet} visible={changeActive} setVisible={setchangeActive} mainText="행성 수정" top="-812px" />
         </Background>
     )
 }
 
 export default List;
 
-
+// const HeaderDiv = styled.div`
+//   width: 375px;
+//   background: ${({ active }) => {
+//     if (active) {
+//       return "transparent";
+//     }
+//     return "transparent";
+//   }};;
+// `
 const HeaderDiv = styled.div`
   width: 375px;
-  background: ${({ active }) => {
-    if (active) {
-      return "#141317";
-    }
-    return "transparent";
-  }};;
-`
+  background: transparent;
+`;
 
 const Background = styled.div`
   width: 375px;
@@ -173,6 +229,7 @@ const Background = styled.div`
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 0;
   background: rgba(0, 0, 0, 0.85);
+  position: relative;
 `;
 
 const Wrap = styled.div`
@@ -184,23 +241,25 @@ const Wrap = styled.div`
   opacity: 0.5;
   z-index: -5;
   background: black;
-  overflow: hidden;
-  padding-top: 30px;
+  overflow: hidden;  
 `;
 const WrapMain = styled.div`
   display: flex;
   align-items: center;
   backdrop-filter: blur(4px);
+  padding-top: 30px;
 `;
 
 const Middle = styled.div`
   width: 375px;
   height: 678px;
-  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  overflow-y: scroll;
+  //box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.25);
 `;
 
 const Headbar = styled.div`
-  background: #141317;
+  //background: #141317;
   width: 375px;
   height: 48px;
   display: flex;
@@ -261,7 +320,6 @@ const FinishButton = styled.button`
   /* UI/Light */
   color: #A661FF;
   background: rgba(0, 0, 0, 1);
-
   border: 1px solid #A661FF;
   box-sizing: border-box;
   border-radius: 10px;
@@ -339,7 +397,6 @@ const PlusPlanet = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   > .plus {
     width: 54px;
     height: 58px;
@@ -365,6 +422,7 @@ const Wholecheck = styled.button`
     margin: 0;
     background: url(${check}) no-repeat;
     background-size: contain;
+  }
 `
 
 const Canclecheck = styled.button`
@@ -382,6 +440,7 @@ const Canclecheck = styled.button`
     margin: 0;
     background: url(${checkpupple}) no-repeat;
     background-size: contain;
+  }
 `
 
 const DeleteBar = styled.div`
@@ -401,6 +460,17 @@ const Deletediv = styled.div`
   justify-content: center;
 `
 
+const Edited = styled.div`
+  width: 48px;
+  height: 44px;
+  display: inline-block;
+  margin: 6px 0 6px 0;
+  margin-left: 75px;
+  margin-top:18px;
+  background: transparent;
+  background: url(${edited}) no-repeat;
+  background-size: contain;
+`;
 
 const Deleted = styled.div`
   width: 48px;

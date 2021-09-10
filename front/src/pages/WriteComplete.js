@@ -1,17 +1,10 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 
-import Header from "../components/common/header";
-import Footer from "../components/common/footer";
 import plantIcon from "../images/write/write_planet.png";
 
 const WriteComplete = (props) => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const day = now.getDate();
-
     return (
         <BackGround>
             <Wrap>

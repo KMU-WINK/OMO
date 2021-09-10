@@ -1,23 +1,34 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import close from '../../images/create/close.png'
+import close from '../../images/create/close.png';
+import arrow from '../../images/create/next1.png';
 import {planets as Planets, loadPlanet} from './planets';
-import colors from './Colors'
+import colors from './Colors';
 
 import PlanetInput from './PlanetInput';
 import Button from './Button';
 
-const PlanetCreate = ({onClick, visible, setVisible})=>{
+const PlanetCreate = ({onClick, visible, setVisible, top, mainText})=>{
     const [mainPlanet, setMainPlanet] = React.useState(0);
     const [mainColor, setMainColor] = React.useState(0);
     const [planets, setPlanets] = React.useState(Planets);
     const [name, setName] = React.useState(null);
+    const [planetContent, setPlanetContent] = React.useState(5);
+    const [colorContent, setColorContent] = React.useState(6);
+
+    const clickPlanetContent = (addNumber)=>{
+        setPlanetContent(planetContent + addNumber);
+    };
+
+    const clickColorContent = (addNumber)=>{
+        setColorContent(colorContent + addNumber);
+    };
 
     const onChange = (e)=>{
         setName(e.target.value);
     }
 
-    const planetClick = (id)=>{
+    const clickPlanet = (id)=>{
         setPlanets(
            planets.map(planet=>planet.id===id?{
                ...planet,
@@ -27,7 +38,7 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
         setMainPlanet(id);
     }
 
-    const colorClick = (id)=>{
+    const clickColor = (id)=>{
         setMainColor(id);
         return id;
     }
@@ -35,32 +46,41 @@ const PlanetCreate = ({onClick, visible, setVisible})=>{
     {
         if (!visible) return null;
         return(
-            <Background>
+            <Background top = {top}>
                 <Box>
-                    <Text left="15.5px" top="16px" bold>행성 추가</Text>
+                    <Text left="15.5px" top="16px" bold>{mainText}</Text>
                     <CloseButton onClick={()=>{setVisible(false)}}src={close}/>
                     <TopLine />
                     <div>
                         <MainPlanetDiv>
-                            <MainPlanet src={loadPlanet(mainPlanet,mainColor)}/>
+                            <MainPlanet src={loadPlanet(mainPlanet%5,mainColor%6)}/>
                         </MainPlanetDiv>
                         <Text left="141px" top="84px">형태</Text>
                         <ItemBlock top="100px">
-                            {planets.map(({Planet, isclick, id})=>(
-                                <PlanetDiv onClick={()=>{planetClick(id)}} isclick={isclick} key={id}>
-                                    <Planet></Planet>
-                                </PlanetDiv>
-                            ))}
+                            {planetContent===5?<></>:<Arrow rotate180 top="11px" left="-10px" onClick={()=>{clickPlanetContent(-1);}} src={arrow} />}
+                            {
+                                planets.map(({Planet, isclick, id})=>(
+                                    id<planetContent && id>=(planetContent-5)?
+                                    <PlanetDiv onClick={()=>{clickPlanet(id)}} isclick={isclick} key={id}>
+                                        <Planet></Planet>
+                                    </PlanetDiv>:<></>
+                                ))
+                            }
+                            {planetContent===planets.length?<></>:<Arrow top="11px" left="185px" onClick={()=>{clickPlanetContent(1);}} src={arrow} />}
                         </ItemBlock>
                         <Text left="141px" top="151px">컬러</Text>
                         <ItemBlock top="172px">
+                            {colorContent===6?<></>:<Arrow rotate180 top="11px" left="-10px" onClick={()=>{clickColorContent(-1);}} src={arrow} />}
                             {
                                 colors.map(c=>(
-                                    <CircleDiv onClick={()=>{colorClick(c.id)}} key={c.id}>
-                                        <Circle src={c.color}/>
-                                    </CircleDiv>
+                                    c.id<colorContent && c.id>=(colorContent-6)?
+                                    <CircleDiv onClick={()=>{clickColor(c.id)}} key={c.id}>
+                                        <Circle src={c.color} />
+                                        <WhiteCircle hidden={mainColor === c.id?false:true}/>
+                                    </CircleDiv>:<></>
                                 ))
                             }
+                            {colorContent===colors.length?<></>:<Arrow top="11px" left="185px" onClick={()=>{clickColorContent(1);}} src={arrow} />}
                         </ItemBlock>
                     </div>
                     
@@ -78,13 +98,14 @@ const Background = styled.div`
     position: relative;
     left: 0;
     top:-50px;
+    top:${props=>props.top};
     width: 375px;
     height: 812px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(167, 167, 167, 0.5);
+    justify-content: center;background: rgba(167, 167, 167, 0.5);
     backdrop-filter: blur(8px);
+    z-index:100;
 `;
 
 const Box = styled.div`
@@ -181,18 +202,47 @@ const PlanetDiv = styled.div`
     }
 `;
 
+const Arrow = styled.img`
+    position:absolute;
+    width:6px;
+    height:10px;
+    top: ${props=>props.top};
+    left: ${props=>props.left};
+
+    ${props=>props.rotate180 && css`
+        transform: rotate(180deg);
+    `}
+`;
+
 const CircleDiv = styled.div`
     display:inline-block;
     width:20px;
     height:20px;
     margin-left:0px;
+    margin-top:-5px;
     margin-right:9px;
 `;
 
 const Circle = styled.img`
     display:inline-block;
-    width: 30px;
-    height: 30px;
+    margin-left: -5px;
+    width: 40px;
+    height: 40px;
+`;
+
+const WhiteCircle = styled.div`
+    position: relative;
+    top:-35px;
+    left:4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+
+    ${props=>props.hidden &&
+    css `
+        visibility: hidden;
+    `}
 `;
 
 const MainPlanet = styled.img`
