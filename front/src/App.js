@@ -16,6 +16,7 @@ import ModifyProfile from './pages/ModifyProfile';
 import Setting from './pages/Setting';
 import Notice from './pages/Notice';
 import FAQ from './pages/FAQ';
+import Search from './pages/Search'
 
 class App extends Component {
   render() {
@@ -36,6 +37,7 @@ class App extends Component {
             <Route path="/setting" component={Setting}/>
             <Route path="/notice" component={Notice}/>
             <Route path="/frequentlyAskedQuestion" component={FAQ}/>
+            <Route path="/search" component={Search}/>
           </Wrap>
       </Router>
     );
