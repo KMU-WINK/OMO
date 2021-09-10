@@ -10,6 +10,7 @@ const passportConfig = require('./passport');
 const passport = require("passport");
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const path = require('path');
 const app = express();
 
 db.sequelize.sync()
@@ -18,7 +19,6 @@ db.sequelize.sync()
     })
     .catch(console.error)
 
-passportConfig();
 app.use(morgan('dev'));
 dotenv.config();
 
@@ -27,6 +27,7 @@ app.use(cors({
     credential: true,
 }));
 
+app.use('/', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('winkSecretKey'));
@@ -35,14 +36,12 @@ app.use(session({
     resave: false,
     secret: process.env.COOKIE_SECRET,
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.get('/', (req, res) => {
     res.send('OMO');
 });
 
-app.use('/user', userRouter);
+// app.use('/user', userRouter);
 app.use('/post', postRouter)
 app.use('/posts', postsRouter)
 
