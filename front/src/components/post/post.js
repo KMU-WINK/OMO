@@ -28,7 +28,7 @@ const Post = (props) => {
                     <HashTag hashtag={"에바임"}/>
                 </Tag>
                 <Buttons>
-                    <Edit />
+                    <Edit onClick={() => history.push('/write')}/>
                     <Delete />
                     <Share />
                 </Buttons>
