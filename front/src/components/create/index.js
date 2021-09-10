@@ -153,4 +153,5 @@ const SelectDiv = styled.div`
     left: 8px;
     top: 88px;
     overflow-y: auto;
+    padding-top: 10px;
 `;
