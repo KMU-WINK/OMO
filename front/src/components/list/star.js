@@ -13,8 +13,10 @@ const Star = ({planet, checked, active, select}) => {
             setClicked(!isClicked);
         }
         else {
-            history.push({pathname: '/menu',
-            planet: planet});
+            history.push({
+                pathname: '/menu',
+                state: {planetSrc: planet.image, planetName: planet.title, planetCount: planet.num}
+            });
         }
     }
 
