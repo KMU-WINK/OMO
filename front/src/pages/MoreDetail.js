@@ -28,7 +28,6 @@ const profileName = {
     margin: '12px 0',
 }
 const ProfileModificationButton = {
-    border: 0,
     marginBottom: '32px',
     color: '#553C75',
     fontSize: '12px',
