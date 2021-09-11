@@ -67,6 +67,7 @@ const List = (props) => {
     const [selectAll, setSelectAll] = useState(false);
     const [changeActive, setchangeActive] = useState(false);
     const [isSelect, setSelect] = useState(false);
+    const [isModal, setModal] = useState(false);
 
     const setClickedList = (index, isClicked)=>{
       setIsClickedList(isClickedList.map((value, cindex)=>{
@@ -124,16 +125,22 @@ const List = (props) => {
         for (let i = 0; i < isClickedList.length; i++){
             if (isClickedList[i]) {
                 setSelectAll(true);
-                count = 1;
+                setSelect(true);
+                count += 1;
                 break;
             }
         }
         if (!count) {
             setSelectAll(false);
+            setSelect(false);
+        }
+        if (count > 0){
+            setSelect(true)
         }
     }
 
     const checkOne = (index) => {
+        console.log(isModal);
         if (isClickedList[index]){
             isClickedList[index] = false;
             setClickedList([...isClickedList])
@@ -217,21 +224,21 @@ const List = (props) => {
                 </PlanetBackground>
             </Middle>
             {
-                isActive
+                isSelect
                     ?
-                    <Footer page={"list"}/>
-                    :
                     <DeleteBar >
-                      {
-                        getIsCheckedCount() === 1?
-                        <DeleteBar onClick={()=>{setchangeActive(true)}}>
-                          <Edited/>
-                        </DeleteBar>:<></>
-                      }
-                        <Deletediv >
+                        {
+                            getIsCheckedCount() === 1?
+                                <DeleteBar onClick={()=>{setchangeActive(true)}}>
+                                    <Edited/>
+                                </DeleteBar>:<></>
+                        }
+                        <Deletediv onClick ={() => {setModal(true)}} >
                             <Deleted />
                         </Deletediv>
                     </DeleteBar>
+                    :
+                    <Footer page={"list"}/>
             }
             <Wrap>
                 <WrapMain>
@@ -242,6 +249,24 @@ const List = (props) => {
                     }
                 </WrapMain>
             </Wrap>
+            {
+                isModal ?
+                    <Modal>
+                        <Alim>
+                            <Contents>기록을 정말 삭제하시겠어요?</Contents>
+                            <ButtonContaner>
+                                <CancelButton onClick ={() => {setModal(false)}} >
+                                    취소
+                                </CancelButton>
+                                <DeleteButton>
+                                    삭제
+                                </DeleteButton>
+                            </ButtonContaner>
+                        </Alim>
+                    </Modal>
+                    :
+                    <></>
+            }
             <PlanetCreate onClick={changePlanet} visible={changeActive} setVisible={setchangeActive} mainText="행성 수정" top="-812px" />
         </Background>
     )
@@ -521,3 +546,77 @@ const Deleted = styled.div`
   background: url(${deleted}) no-repeat;
   background-size: contain;
 `
+
+const Modal = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(167, 167, 167, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Alim = styled.div`
+  width: 300px;
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(11, 13, 24, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+`
+
+const Contents = styled.div`
+  width: 300px;
+  height: 106px;
+  border-bottom: 0.5px solid #555555;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size : 14px;
+  font-family: Spoqa Han Sans Neo;
+  letter-spacing: -0.025em;
+  font-style: normal;
+  font-weight: 400;
+`
+
+const ButtonContaner = styled.div`
+  width: 300px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const CancelButton = styled.div`
+  width: 47px;
+  height: 32px;
+  margin-right: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid #A661FF;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: #A661FF;
+  font-size: 12px;
+`;
+
+const DeleteButton = styled.div`
+  width: 47px;
+  height: 32px;
+  margin-left: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #A661FF;
+  border-radius: 8px;
+  font-size: 12px;
+`;
