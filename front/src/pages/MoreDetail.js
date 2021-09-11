@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Component} from 'react';
 import {useHistory} from "react-router-dom";
+import styled from 'styled-components';
 
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
@@ -9,6 +10,7 @@ import profileImg from "../images/moreDetail/profileImg.png";
 
 const allContents = {
     backgroundColor: 'black',
+    width: '100%',
     height: '812px',
     color:'white',
     fontFamily: 'Spoqa Han Sans Neo',
@@ -133,9 +135,43 @@ function MoreDetail(props) {
                     </div>
                 </div>
             </div>
+            {/*<WrapModal>*/}
+            {/*    <Modal>*/}
+            {/*        <p>💜 접근 불가 페이지입니다 💜</p>*/}
+            {/*    </Modal>*/}
+            {/*</WrapModal>*/}
             <Footer page={"more"} />
         </div>
     );
 }
 
 export default MoreDetail;
+
+ // const WrapModal = styled.div`
+ //   width: 375px;
+ //   height: 812px;
+ //   position: absolute;
+ //   top: 0;
+ //   background: rgba(167, 167, 167, 0.5);
+ //   backdrop-filter: blur(4px);
+ //   //overflow: hidden;
+ // `;
+ // const Modal = styled.div`
+ //   width: 300px;
+ //   position: absolute;
+ //   top: 314px;
+ //   left: 37.5px;
+ //
+ //   background: rgba(11, 13, 24, 0.8);
+ //   border-radius: 16px;
+ //
+ //   font-family: Spoqa Han Sans Neo;
+ //   font-style: normal;
+ //   font-weight: normal;
+ //   font-size: 14px;
+ //   line-height: 18px;
+ //   text-align: center;
+ //   letter-spacing: -0.025em;
+ //
+ //   color: #FFFFFF;
+ // `;
