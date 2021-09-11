@@ -1,47 +1,40 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useHistory} from "react-router-dom";
 
 const starCSS = {height : 60,  margin: "26px 0 0 0"}
 
-const Star = ({planet, checked, active, select, setChecked, id}) => {
+const Star = (props) => {
     const history = useHistory();
-    const [isClicked,setClicked] = useState(checked);
-
-    const checkOne = () => {
-        if (!active){
-            setClicked(!isClicked);
-            setChecked(id, !isClicked);
-        }
-        else {
-            history.push({
-                pathname: '/menu',
-                state: {planetSrc: planet.image, planetName: planet.title, planetCount: planet.num}
-            });
-        }
-    }
-
-    const checkEdit = () => {
-        if (active && isClicked){
-            setClicked(false);
-            setChecked(id, false);
-        }
-    }
-
-    checkEdit();
-
-    // 전체 선택, 하지만 이렇게 하면 하나씩 선택이 불가능.
-    // const selectAll = () => {
-    //     setClicked(isClicked * select);
-    // }
-
+    const [isClicked,setClicked] = useState(props.checked);
+    useEffect(() => {
+        setClicked(props.checked)
+    }, [props])
 
     return(
-        <PlanetBase check = {isClicked} onClick = {checkOne}>
-            <img src={planet.image} style = {starCSS}/>
-            <Title>{planet.title}</Title>
-            <SubTitle>{planet.num}개의 기록</SubTitle>
-        </PlanetBase>
+        <>
+        {
+            props.Editmode === false ?
+                <PlanetBase check = { isClicked } onClick = {() => { props.onClick() }}>
+                    <img src={props.planet.image} style = {starCSS}/>
+                    <Title>{props.planet.title}</Title>
+                    <SubTitle>{props.planet.num}개의 기록</SubTitle>
+                </PlanetBase>
+                :
+                <PlanetBase check = { isClicked } onClick = {() => { history.push({
+                    pathname: '/menu',
+                    state: {
+                        planetSrc: props.planet.image,
+                        planetName: props.planet.title,
+                        planetCount: props.planet.num
+                    }
+                })}}>
+                    <img src={props.planet.image} style = {starCSS}/>
+                    <Title>{props.planet.title}</Title>
+                    <SubTitle>{props.planet.num}개의 기록</SubTitle>
+                </PlanetBase>
+        }
+        </>
     )
 }
 
