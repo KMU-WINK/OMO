@@ -47,14 +47,27 @@ const List = (props) => {
       {title: "개웃기네", num: 3, image:star2}];
     const [test, setTest] = useState(test2);
 
+    const [planet, setPlanet] = useState([
+        {title: "개웃기네", num: 3, image:star2},
+        {title: "배고파", num: 18, image:star4},
+        {title: "지치는날", num: 5, image:star3},
+        {title: "개웃기네", num: 3, image:star2},
+        {title: "배고파", num: 18, image:star4},
+        {title: "지치는날", num: 5, image:star3},
+        {title: "개웃기네", num: 3, image:star2},
+        {title: "배고파", num: 18, image:star4},
+        {title: "지치는날", num: 5, image:star3},
+        {title: "개웃기네", num: 3, image:star2}])
+
     // let test = []
 
     const history = useHistory();
     const [isClickedList, setIsClickedList] = useState(Array(test.length).fill(false));
     const [isActive, setActive] = useState(true);
-    const [selectAll, setSelect] = useState(false);
+    const [selectAll, setSelectAll] = useState(false);
     const [changeActive, setchangeActive] = useState(false);
-    
+    const [isSelect, setSelect] = useState(false);
+
     const setClickedList = (index, isClicked)=>{
       setIsClickedList(isClickedList.map((value, cindex)=>{
         return index === cindex ? isClicked : value
@@ -83,7 +96,7 @@ const List = (props) => {
     const FinishEdit = () => {
         setActive(true);
         setIsClickedList(Array(test.length).fill(false));
-        setSelect(false);
+        setSelectAll(false);
     }
 
     const StartEdit = () => {
@@ -94,14 +107,42 @@ const List = (props) => {
 
     const checkAll = () => {
         setIsClickedList(Array(test.length).fill(true));
-        setSelect(2);
+        setSelectAll(true);
+        setSelect(true);
         console.log(isClickedList)
     }
 
     const cancelAll = () => {
         isClickedList.fill(0, 0, isClickedList.length);
-        setSelect(0);
+        setSelectAll(false);
+        setSelect(false);
         console.log(isClickedList);
+    }
+
+    const checkSelect = () => {
+        let count = 0
+        for (let i = 0; i < isClickedList.length; i++){
+            if (isClickedList[i]) {
+                setSelectAll(true);
+                count = 1;
+                break;
+            }
+        }
+        if (!count) {
+            setSelectAll(false);
+        }
+    }
+
+    const checkOne = (index) => {
+        if (isClickedList[index]){
+            isClickedList[index] = false;
+            setClickedList([...isClickedList])
+        }
+        else{
+            isClickedList[index] = true;
+            setClickedList([...isClickedList])
+        }
+        checkSelect();
     }
 
     // const planets = [];
@@ -167,9 +208,9 @@ const List = (props) => {
                     <PlusPlanet active={test.length} onClick = { () => history.push('./Create')}>
                         <div className={"plus"} />
                     </PlusPlanet>
-                    {test.map((test, index)=> {
+                    {planet.map((planet, index)=> {
                         return (
-                            <Star id={index} planet = {test} checked={isClickedList[index]} active = {isActive} select={selectAll} setChecked={setClickedList}/>
+                            <Star planet = {planet} checked={isClickedList[index]} Editmode = { isActive } onClick = {() => checkOne(index)}/>
                         )
                     })};
                     {/*{setSelect(0)};*/}
