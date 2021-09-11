@@ -4,12 +4,16 @@ import styled from 'styled-components';
 
 import home from '../../images/common/home_icon.png';
 import search from '../../images/common/search_icon.png';
+import search_purple from '../../images/common/search_purple.png';
 import list from '../../images/common/list_icon.png';
 import list_purple from '../../images/common/list_purple.png';
 import more from '../../images/common/more_icon.png';
 import more_purple from '../../images/common/more_purple.png';
 import plus from '../../images/common/plus_icon.png';
 
+const searchPurple = {
+    background: "url(" + search_purple + ") no-repeat",
+}
 const listPurple = {
     background: "url(" + list_purple + ") no-repeat",
 }
@@ -30,7 +34,7 @@ const Footer = (props) => {
                 { props.page === "search" ?
                     <div>
                         <SearchWrap>
-                            <div onClick={() => history.push('/search')} style={listPurple}/>
+                            <div onClick={() => history.push('/search')} style={searchPurple}/>
                             <p style={{color: "#A661FF"}}>검색</p>
                         </SearchWrap>
                         <PlusWrap>
