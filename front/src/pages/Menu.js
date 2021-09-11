@@ -260,10 +260,10 @@ const Menu = (props) => {
                     <div style={{width: '40px', marginLeft: '20px'}}>
                         <img src={backButtonImg} style={backButton} onClick={() => history.goBack()}/>
                     </div>
-                    <div style={{display:'flex', marginRight: '12px', fontSize:'12px'}}>
-                        <p style={headerTXT}>행성 수정</p>
-                        <p style={headerTXT}>편집</p>
-                    </div>
+                    {/*<div style={{display:'flex', marginRight: '12px', fontSize:'12px'}}>*/}
+                    {/*    <p style={headerTXT}>행성 수정</p>*/}
+                    {/*    <p style={headerTXT}>편집</p>*/}
+                    {/*</div>*/}
                 </div>
                 :
                 <div style={menuHeader}>

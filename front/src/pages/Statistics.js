@@ -12,9 +12,10 @@ import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 
 const mainContents = {
+    height: '762px',
     padding: '5%',
     color: 'white',
-    overflow: 'scroll',
+    overflowY: 'scroll',
     "&::-webkit-scrollbar": {
         display : 'none',
     },
@@ -168,8 +169,42 @@ const Statistics = (props) => {
                         <img src={planetGraph} style={planetGraphImg}/>
                     </div>
                 </div>
+            <WrapModal>
+                <Modal>
+                    <p>💜 접근 불가 페이지입니다 💜</p>
+                </Modal>
+            </WrapModal>
         </div>
     )
 }
 
 export default Statistics;
+
+const WrapModal = styled.div`
+   width: 375px;
+   height: 812px;
+   position: absolute;
+   top: 0;
+   background: rgba(167, 167, 167, 0.5);
+   backdrop-filter: blur(4px);
+   //overflow: hidden;
+ `;
+const Modal = styled.div`
+   width: 300px;
+   position: absolute;
+   top: 380px;
+   left: 37.5px;
+
+   background: rgba(11, 13, 24, 0.8);
+   border-radius: 16px;
+
+   font-family: Spoqa Han Sans Neo;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 18px;
+   text-align: center;
+   letter-spacing: -0.025em;
+
+   color: #FFFFFF;
+ `;
