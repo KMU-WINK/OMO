@@ -74,7 +74,7 @@ const EmptyCircle = styled.div`
 
 const Plus = styled.img`
     position: absolute;
-    left: 118px;
+    left: 123px;
     transform: translate(-50%, 0%);
     top: 43.35%;
     bottom: 53.2%;
@@ -84,9 +84,10 @@ const MainText = styled.p`
     position: absolute;
     width: 80px;
     height: 23px;
-    left: 187.5px;
+    left: 187px;
     top: 427px;
     transform: translate(-50%, 0%);
+    text-align: center;
 
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
@@ -101,9 +102,10 @@ const SubText = styled.p`
     position: absolute;
     width: 300px;
     height: 20px;
-    left: 202px;
+    left: 193px;
     transform: translate(-50%, 0%);
     top: 460px;
+    text-align: center;
 
     font-family: Spoqa Han Sans Neo;
     font-style: normal;
