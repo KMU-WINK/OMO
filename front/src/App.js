@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <Router>
           <Wrap>
-            <Route exact path="/main" component={Main} />
+            <Route exact path="/" component={Main} />
             <Route path="/write" component={Write} />
             <Route path="/create" component={Create} />
             <Route path="/list" component={List} />

@@ -28,7 +28,7 @@ const Footer = (props) => {
         <BackGround>
             <Wrap>
                 <HomeWrap>
-                    <div onClick={() => history.push('/main')}/>
+                    <div onClick={() => history.push('/')}/>
                     <p>홈</p>
                 </HomeWrap>
                 { props.page === "search" ?
