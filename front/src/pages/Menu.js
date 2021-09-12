@@ -25,6 +25,7 @@ import Check from '../images/blackhole/choiceButton.svg';
 import deSelect from '../images/blackhole/deSelect.svg';
 import Restore from '../images/blackhole/restore.svg';
 import Delete from '../images/list/delete.png';
+import Store from '../store';
 
 const backgroundCSS = {
     width: '100%',

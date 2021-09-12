@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import Store from './store';
 
 import Main from "./pages/Main";
 import Write from "./pages/Write";
@@ -23,9 +24,15 @@ import PasswordChange from './pages/PasswordChange';
 import LeaveTheGroup from './pages/LeaveTheGroup.';
 
 class App extends Component {
+  state = {
+    message: "김태훈",
+    name: "hi",
+  };
+
   render() {
     return (
-      <Router>
+      <Store.Provider value = {this.state}>
+        <Router>
           <Wrap>
             <Route exact path="/" component={Main} />
             <Route path="/write" component={Write} />
@@ -47,7 +54,8 @@ class App extends Component {
             <Route path="/passwordchange" component={PasswordChange}/>
             <Route path="/leavethegroup" component={LeaveTheGroup}/>
           </Wrap>
-      </Router>
+        </Router>
+      </Store.Provider>
     );
   }
 }

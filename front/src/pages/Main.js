@@ -27,6 +27,7 @@ import planet3 from "../images/common/planets/planet1_5.svg";
 import planet4 from "../images/common/planets/planet2_1.svg";
 import planet5 from "../images/common/planets/planet3_0.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
+import Store from "../store";
 
 import {useHistory} from "react-router-dom";
 
@@ -202,16 +203,16 @@ function Main(props) {
         setShowModal(!showModal);
     }
 
-    // const planets = []; //빈배열
+    const planets = []; //빈배열
     // const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
 
-    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
-        {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':32},
-        {'imgSrc':planet2, 'name':"오늘은 조금 우울해", 'count':18},
-        {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':18}
-    ];
+    // const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
+    //     {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
+    //     {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
+    //     {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':32},
+    //     {'imgSrc':planet2, 'name':"오늘은 조금 우울해", 'count':18},
+    //     {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':18}
+    // ];
     // console.log(planets);
 
     return (
@@ -242,7 +243,10 @@ function Main(props) {
                     </div>
                     <div>
                         {planets.length === 0?
-                            <Default />     // 행성이 없을 때
+                              <Store.Consumer>
+                                  { store => store.message }
+                              </Store.Consumer>
+                            // <Default />     // 행성이 없을 때
                             :
                             <Planet planets={planets}/>  // 행성이 있을 때
                         }
@@ -253,6 +257,7 @@ function Main(props) {
                     <div style={AddButton} onClick={() => history.push('/create')}> </div>
                     <div style={ListButton} onClick={() => history.push('/list')}> </div>
                 </div>
+
             </div>
         </div>
     );
