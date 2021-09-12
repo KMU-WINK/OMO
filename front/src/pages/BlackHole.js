@@ -335,7 +335,7 @@ const EditContainer = styled.div`
 const FinishButton = styled.div`
   display: flex;
   justify-content: center;
-  border: 1px solid #AD6EFD;
+  border: 1px solid #BF6DFF;
   box-sizing: border-box;
   border-radius: 10px;
   width: 38px;
@@ -347,14 +347,14 @@ const FinishButton = styled.div`
   font-size: 12px;
   line-height: 17px;
   letter-spacing: -0.025em;
-  color: #AD6EFD;
+  color: #BF6DFF;
   position: absolute;
   right: 16px;
 `
 const RestoreDelete = styled.div`
   width: 187.5px;
   height: 84px;
-  background-color: #A661FF;
+  background-color: #BF6DFF;
   border: 0;
   display: flex;
   align-items: center;

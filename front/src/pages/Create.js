@@ -7,7 +7,7 @@ import CreateComponent from "../components/create/index";
 const Create = (props) => {
     return (
         <Background>
-            <Header state={"Cancel"} next={"다음"}/>
+            <Header state={"Cancel"}/>
             <CreateComponent planets = {props.planets}/>
         </Background>
     )
