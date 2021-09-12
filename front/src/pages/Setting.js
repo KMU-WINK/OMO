@@ -24,6 +24,7 @@ const membershipWithdrawal = {
     height: '54px',
 }
 function Setting(props) {
+    const history = useHistory();
 
     return (
         <div style={allContents}>
@@ -31,8 +32,12 @@ function Setting(props) {
             <div style={{margin: '40px 24px 0 24px'}}>
                 <p style={userSetting}>사용자 설정</p>
                 <div>
-                    <ButtonSection title={"비밀번호"}/>
-                    <ButtonSection title={"리마인더 알림"}/>
+                    <div onClick={() => history.push('/passwordchange')}>
+                        <ButtonSection title={"비밀번호"}/>
+                    </div>
+                    <div onClick={() => history.push('/reminderAlarm')}>
+                        <ButtonSection title={"리마인더 알림"}/>
+                    </div>
                     <ButtonSection title={"글자크기/글씨체"}/>
                 </div>
                 <p style={userSetting}>기타</p>
