@@ -45,7 +45,7 @@ function Setting(props) {
                     <ButtonSection title={"서비스 이용약관"}/>
                     <ButtonSection title={"개인정보 처리방침"}/>
                     <ButtonSection title={"버전 정보"}/>
-                    <div style={membershipWithdrawal}>탈퇴하기</div>
+                    <div style={membershipWithdrawal} onClick={() => history.push('/leavethegroup')}>탈퇴하기</div>
                 </div>
             </div>
         </div>

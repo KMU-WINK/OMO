@@ -35,6 +35,7 @@ const inputNameBox = {
     borderRadius:' 8px',
     textAlign: 'center',
     color: 'rgba(255,255,255,0.8)',
+    marginTop: '30px',
 }
 const explainTXT = {
     fontSize: '12px',
@@ -56,7 +57,7 @@ const saveButton = {
     cursor: 'pointer',
 }
 function ModifyProfile(props) {
-    
+
     const imgInput = useRef();
     const [photoUpload, setPhotoUpload] = useState(false);
     const [imgFormData, setImgFormData] = useState({});
@@ -67,16 +68,17 @@ function ModifyProfile(props) {
     const uploadFile = async (e) => {
         const { name, files } = e.target;
         setImgValues({ ...Imgvalues, [name]: files[0] });
-        setPhotoUpload(true);
-        
+
+
         let reader = new FileReader();
         reader.onloadend = () => {
             const base64 = reader.result;
             if (base64) {
                 setImgBase64(base64.toString());
+                setPhotoUpload(true);
             }
         };
-        
+
         const imgTarget = e.target.files;
         if (imgTarget[0]) {
             reader.readAsDataURL(imgTarget[0]); // buffer에 저장함!!
@@ -92,7 +94,7 @@ function ModifyProfile(props) {
         setImgBase64("");
         setImgValues({ ...Imgvalues, ["img_url"]: {} });
     };
-    
+
     const [myName, setMyName] = useState('')
     const saveInfo = async () => {
         let myNameIs = document.getElementById('myname').value;
@@ -105,28 +107,33 @@ function ModifyProfile(props) {
             <div style={contentCSS}>
                 <div>
                     <label for={"uploadImg"}>
-                        <img src={profileImg} style={profileImgCSS}/>
-                        <img src={cameraImg} style={cameraImgCSS} />
-                    </label> 
+                        {photoUpload ? (
+                            <div style={{textAlign:'center', display:'flex', flexDirection:'column'}}>
+                                <img src={imgBase64} style={{maxWidth: '120px', margin: '54px 0px 24px'}} />
+                                <button onClick={handleImgDel}>이미지 지우기</button>
+                            </div>
+                        ) :
+                            <div>
+                                <img src={profileImg} style={profileImgCSS}/>
+                                <img src={cameraImg} style={cameraImgCSS} />
+                            </div>
+                        }
+
+                    </label>
                     <input
-                    style={{display:'none'}}
-                    accept="image/*"
-                    id="uploadImg"
-                    name="img_url"
-                    type="file"
-                    content_type="multipart/form-data"
-                    ref={imgInput}
-                    onChange={uploadFile}
+                        style={{display:'none'}}
+                        accept="image/*"
+                        id="uploadImg"
+                        name="img_url"
+                        type="file"
+                        content_type="multipart/form-data"
+                        ref={imgInput}
+                        onChange={uploadFile}
                     />
                 </div>
                 <input type="text" style={inputNameBox} id={'myname'}/>
                 <p style={explainTXT}>프로필 사진과 닉네임을 입력해주세요.</p>
-                {photoUpload ? (
-                    <div style={{textAlign:'center', display:'flex', flexDirection:'column'}}>
-                        <img src={imgBase64} style={{maxWidth: '250px'}} />
-                        <button onClick={handleImgDel}>이미지 지우기</button>
-                    </div>
-                ) : null}
+
                 <div style={saveButton} onClick={saveInfo}>완료</div>
             </div>
         </div>
