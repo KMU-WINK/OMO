@@ -32,7 +32,9 @@ function Setting(props) {
             <div style={{margin: '40px 24px 0 24px'}}>
                 <p style={userSetting}>사용자 설정</p>
                 <div>
-                    <ButtonSection title={"비밀번호"}/>
+                    <div onClick={() => history.push('/passwordchange')}>
+                        <ButtonSection title={"비밀번호"}/>
+                    </div>
                     <div onClick={() => history.push('/reminderAlarm')}>
                         <ButtonSection title={"리마인더 알림"}/>
                     </div>

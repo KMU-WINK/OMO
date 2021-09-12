@@ -19,6 +19,7 @@ import FAQ from './pages/FAQ';
 import Search from './pages/Search';
 import MoreFriends from './pages/MoreFriends';
 import ReminderAlarm from  './pages/ReminderAlarm';
+import PasswordChange from './pages/PasswordChange';
 
 class App extends Component {
   render() {
@@ -42,6 +43,7 @@ class App extends Component {
             <Route path="/search" component={Search}/>
             <Route path="/morefriends" component={MoreFriends}/>
             <Route path="/reminderAlarm" component={ReminderAlarm}/>
+            <Route path="/passwordchange" component={PasswordChange}/>
           </Wrap>
       </Router>
     );
