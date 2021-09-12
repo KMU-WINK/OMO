@@ -38,7 +38,9 @@ function Setting(props) {
                     <div onClick={() => history.push('/reminderAlarm')}>
                         <ButtonSection title={"리마인더 알림"}/>
                     </div>
-                    <ButtonSection title={"글자크기/글씨체"}/>
+                    <div onClick={() => history.push('/changethefontsize')}>
+                        <ButtonSection title={"글자크기/글씨체"}/>
+                    </div>
                 </div>
                 <p style={userSetting}>기타</p>
                 <div>

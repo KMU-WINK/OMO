@@ -21,7 +21,8 @@ import Search from './pages/Search';
 import MoreFriends from './pages/MoreFriends';
 import ReminderAlarm from  './pages/ReminderAlarm';
 import PasswordChange from './pages/PasswordChange';
-import LeaveTheGroup from './pages/LeaveTheGroup.';
+import LeaveTheGroup from './pages/LeaveTheGroup';
+import ChangeTheFontSize from './pages/ChangeTheFontSize';
 
 class App extends Component {
   state = {
@@ -53,6 +54,7 @@ class App extends Component {
             <Route path="/reminderAlarm" component={ReminderAlarm}/>
             <Route path="/passwordchange" component={PasswordChange}/>
             <Route path="/leavethegroup" component={LeaveTheGroup}/>
+            <Route path="/changethefontsize" component={ChangeTheFontSize}/>
           </Wrap>
         </Router>
       </Store.Provider>
