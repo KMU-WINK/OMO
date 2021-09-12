@@ -30,7 +30,7 @@ const Post = (props) => {
                 </Tag>
                 <Buttons>
                     <Edit onClick={() => history.push('/write')}/>
-                    <Delete />
+                    <Delete onClick={() => props.onClick()}/>
                     <Share />
                 </Buttons>
             </Wrap>
