@@ -28,6 +28,12 @@ const passwordTXT = {
     color: 'rgba(255,255,255,0.9)',
     marginRight: '6px',
 }
+const inputPasswordTXT = {
+    fontWeight:'300',
+    fontSize: '12px',
+    color: 'rgba(255,255,255,0.6)',
+    marginTop:'2px',
+}
 const searchBox = {
     width:'270px',
     height:'18px',
@@ -116,6 +122,7 @@ function PasswordChange(props) {
                     {
                         beforePassword === false ?
                             <div>
+                                <p style={inputPasswordTXT}>본인 확인을 위해 비밀번호를 입력해주세요.</p>
                                 <div style={inputPasswordBlock}>
                                     <input type={'password'}
                                            style={searchBox}
