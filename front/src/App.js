@@ -23,6 +23,7 @@ import ReminderAlarm from  './pages/ReminderAlarm';
 import PasswordChange from './pages/PasswordChange';
 import LeaveTheGroup from './pages/LeaveTheGroup';
 import ChangeTheFontSize from './pages/ChangeTheFontSize';
+import TermsAndConditions from './pages/TermsAndConditions';
 
 class App extends Component {
   state = {
@@ -55,6 +56,7 @@ class App extends Component {
             <Route path="/passwordchange" component={PasswordChange}/>
             <Route path="/leavethegroup" component={LeaveTheGroup}/>
             <Route path="/changethefontsize" component={ChangeTheFontSize}/>
+            <Route path="/termsandconditions" component={TermsAndConditions}/>
           </Wrap>
         </Router>
       </Store.Provider>
