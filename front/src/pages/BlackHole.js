@@ -17,13 +17,17 @@ import planet3 from "../images/common/planets/planet1_5.svg";
 import planet4 from "../images/common/planets/planet2_1.svg";
 import planet5 from "../images/common/planets/planet3_0.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
+import Store from "../store";
+import { useDataState } from "../store";
 
 const BlackHole = (props) => {
+    const blackholeData = useDataState();
     const [isActive1, setActive1] = useState(true);
     const [isActive2, setActive2] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [clickArray, setClickArray] = useState(false);
     const [selected, setSelected] = useState(false);
+    // const [contents, setContents] = useState(blackholeData.state);
     const [contents, setContents] = useState([
         {
             day: "20",

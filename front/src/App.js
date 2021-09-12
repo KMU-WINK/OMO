@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Store from './store';
-
+import { getAllData } from './store';
 import Main from "./pages/Main";
 import Write from "./pages/Write";
 import Create from "./pages/Create";
@@ -24,11 +24,20 @@ import PasswordChange from './pages/PasswordChange';
 
 class App extends Component {
   state = {
-    message: "김태훈",
-    name: "hi",
+    state: "",
   };
 
+  async componentDidMount() {
+    const data = await getAllData()
+    this.setState({
+      state: { ...data }
+    });
+    console.log(this.state);
+  }
+
+
   render() {
+
     return (
       <Store.Provider value = {this.state}>
         <Router>
