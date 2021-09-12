@@ -12,22 +12,28 @@ const Header = (props) => {
         <Wrap>
             {props.state==="Cancel"?
                 <CancelButton>
-                    <div onClick={() => history.push('/main')}/>
+                    <div onClick={() => history.push('/')}/>
                 </CancelButton>
                 :
                 <>
                     {props.state==="Back"?
-                        <BackButton>
-                            <div onClick={() => history.goBack()}/>
-                        </BackButton>
-                        : null
+                        props.current==="write"?
+                            <BackButton>
+                                <div onClick={props.modal}/>
+                            </BackButton>
+                        :
+                            <BackButton>
+                                <div onClick={() => history.goBack()}/>
+                            </BackButton>
+                        :
+                        null
                     }
                 </>
             }
             <Title>{props.title}</Title>
             {props.next === "저장"?
                 <Next>
-                    <div onClick={props.save}>{props.next}</div>
+                    <div onClick={props.save} style={{color: props.saveCSS}}>{props.next}</div>
                 </Next>
                 :
                 <>
@@ -102,6 +108,6 @@ const Next = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: -0.025em;
-    color: #A661FF;
+    color: rgba(255, 255, 255, 0.2);
   }
 `;
