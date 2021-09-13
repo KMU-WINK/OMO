@@ -67,15 +67,25 @@ const Planet = (props) => {
         setCheckShowButtons(!checkShowButtons)
     }
     let idx = 0;
+    let count = 0;
     return (
         <div>
             {/*<View/>*/}
             <Store.Consumer>
                 {store => {
                     return Object.keys(store.state).map(key => {
-                        if(!store.state[key].isDelete){
-                            return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].title}/>
+                        // console.log(store.state[key].id);
+                        if(count < 6){
+                            if(!store.state[key].isDelete){
+                                count++;
+                                // console.log(count);
+                                // console.log(store.state[key].id);
+                                // console.log(store.state[key].Posts.length);
+                                // console.log(Object.keys(store.state[key].Posts).length);
+                                return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].title} count={Object.keys(store.state[key].Posts).length}/>
+                            }
                         }
+
                     })
                 }}
             </Store.Consumer>

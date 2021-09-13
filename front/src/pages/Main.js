@@ -215,11 +215,11 @@ function Main(props) {
     //     {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':18}
     // ];
     // console.log(planets);
-    useEffect(() => {
-        console.log(planetData);
-        console.log(Object.keys(planetData).length);
-        console.log(Object.keys(planetData));
-    })
+    // useEffect(() => {
+    //     console.log(planetData);
+    //     console.log(Object.keys(planetData.state).length);
+    //     console.log(Object.keys(planetData));
+    // })
 
     return (
         <div style={{backgroundColor: 'black'}}>
@@ -248,7 +248,7 @@ function Main(props) {
                         <button style={NextDateButton} onClick={ChangeNextDate}/>
                     </div>
                     <div>
-                        {Object.keys(planetData).length === 0?
+                        {Object.keys(planetData.state).length === 0?
                             <Default />
                         :
                             <Planet planets={planetData.state}/>
