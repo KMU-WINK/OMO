@@ -4,22 +4,27 @@ import plus from '../../images/create/plus.png'
 import {PlanetBlock, EmptyBlock} from './PlanetBlock'
 
 import PlanetCreate from './PlanetCreate'
-import Store,{useDataState, createPlanet} from "../../store";
+import Store,{useDataState, createPlanet, getAllData} from "../../store";
 
 const CreateComponent = ()=>{
-    const planets = useDataState().state;
+    let planets = useDataState().state;
     const [planetVisible, setPlanetVisible] = React.useState(false);
+    const [subPlanet, setSubPlanet] = React.useState(null);
     const [_, reload] = React.useState(true);
     
     const subText = "나의 기록이 보관될 행성을 만들어 보세요.";
 
-    const savePlanet = (mainPlanet, mainColor, name)=>{
+    const savePlanet = async(mainPlanet, mainColor, name)=>{
         const args = {
             title: name,
             planetForm: './planets/planet' + mainPlanet + '_' + mainColor + '.svg',
         }
-        createPlanet(args);
-        reload(true);
+        
+        createPlanet(args).then(async ()=>{
+            planets = await getAllData();
+            setSubPlanet(planets[0]);
+            reload(!_);
+        });
     };
 
     return (
@@ -37,8 +42,12 @@ const CreateComponent = ()=>{
                 <SubText2>{subText}</SubText2>
                 <SelectDiv>
                     {
-                       Object.keys(planets).reverse().map(p=>(
+                       Object.keys(planets).reverse().filter(id=>planets[id].isDelete === false).map(p=>(
                         <PlanetBlock planetForm={planets[p].planetForm} name={planets[p].title} count={planets[p].Posts.length} key={planets[p].id} id={planets[p].id}/>))
+                    }
+                    {
+                        subPlanet!==null?
+                        <PlanetBlock planetForm={subPlanet.planetForm} name={subPlanet.title} count={subPlanet.Posts.length} key={subPlanet.id} id={subPlanet.id}/>:<></>
                     }
                     <EmptyBlock onClick={()=>{setPlanetVisible(true)}}/>
                 </SelectDiv>
