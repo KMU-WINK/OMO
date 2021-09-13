@@ -31,38 +31,28 @@ import planet2 from "../images/common/planets/planet0_4.svg";
 
 import {loadPlanet} from '../components/create/planets';
 import PlanetCreate from '../components/create/PlanetCreate';
+import Store, {useDataState, deletePlanet} from "../store";
 
 const List = (props) => {
     // 추후에 백엔드로 받아오기
+    const planetData = useDataState();
+
+    // 못함.
     let test2 = [
-      {title: "개웃기네", num: 3, image:star2}, 
-      {title: "배고파", num: 18, image:star4}, 
-      {title: "지치는날", num: 5, image:star3}, 
-      {title: "개웃기네", num: 3, image:star2}, 
-      {title: "배고파", num: 18, image:star4}, 
-      {title: "지치는날", num: 5, image:star3}, 
-      {title: "개웃기네", num: 3, image:star2}, 
-      {title: "배고파", num: 18, image:star4}, 
+      {title: "개웃기네", num: 3, image:star2},
+      {title: "배고파", num: 18, image:star4},
+      {title: "지치는날", num: 5, image:star3},
+      {title: "개웃기네", num: 3, image:star2},
+      {title: "배고파", num: 18, image:star4},
+      {title: "지치는날", num: 5, image:star3},
+      {title: "개웃기네", num: 3, image:star2},
+      {title: "배고파", num: 18, image:star4},
       {title: "지치는날", num: 5, image:star3},
       {title: "개웃기네", num: 3, image:star2}];
     const [test, setTest] = useState(test2);
 
-    const [planet, setPlanet] = useState([
-        {title: "개웃기네", num: 3, image:star2},
-        {title: "배고파", num: 18, image:star4},
-        {title: "지치는날", num: 5, image:star3},
-        {title: "개웃기네", num: 3, image:star2},
-        {title: "배고파", num: 18, image:star4},
-        {title: "지치는날", num: 5, image:star3},
-        {title: "개웃기네", num: 3, image:star2},
-        {title: "배고파", num: 18, image:star4},
-        {title: "지치는날", num: 5, image:star3},
-        {title: "개웃기네", num: 3, image:star2}])
-
-    // let test = []
-
     const history = useHistory();
-    const [isClickedList, setIsClickedList] = useState(Array(test.length).fill(false));
+    const [isClickedList, setIsClickedList] = useState(Array(Object.keys(planetData.state).length).fill(false));
     const [isActive, setActive] = useState(true);
     const [selectAll, setSelectAll] = useState(false);
     const [changeActive, setchangeActive] = useState(false);
@@ -96,18 +86,18 @@ const List = (props) => {
 
     const FinishEdit = () => {
         setActive(true);
-        setIsClickedList(Array(test.length).fill(false));
+        setIsClickedList(Array(Object.keys(planetData.state).length).fill(false));
         setSelectAll(false);
     }
 
     const StartEdit = () => {
-        if ( test.length !== 0 ) {
+        if ( Object.keys(planetData.state).length !== 0 ) {
             setActive(false);
         }
     };
 
     const checkAll = () => {
-        setIsClickedList(Array(test.length).fill(true));
+        setIsClickedList(Array(Object.keys(planetData.state).length).fill(true));
         setSelectAll(true);
         setSelect(true);
         console.log(isClickedList)
@@ -139,27 +129,28 @@ const List = (props) => {
         }
     }
 
-    const checkOne = (index) => {
+    const checkOne = (key) => {
         console.log(isModal);
-        if (isClickedList[index]){
-            isClickedList[index] = false;
+        if (isClickedList[key]){
+            isClickedList[key] = false;
             setClickedList([...isClickedList])
         }
         else{
-            isClickedList[index] = true;
+            isClickedList[key] = true;
             setClickedList([...isClickedList])
         }
         checkSelect();
     }
 
-    // const planets = [];
-    const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet1, 'name':"오늘은 조금 우울해", 'count':20},
-        {'imgSrc':planet5, 'name':"화가 치밀어 오른다", 'count':32},
-        {'imgSrc':planet3, 'name':"오늘은 조금 우울해", 'count':32},
-        {'imgSrc':planet6, 'name':"오늘은 조금 우울해", 'count':18},
-        {'imgSrc':planet2, 'name':"화가 치밀adsasd어 오른다", 'count':18}
-    ];
+    const realDelete = async () => {
+        for (let i = 0; i < isClickedList.length; i++){
+            if (isClickedList[i]){
+                await deletePlanet(i+1);
+            }
+        }
+        setModal(false);
+        setActive(true);
+    }
 
     return (
         <Background>
@@ -187,11 +178,11 @@ const List = (props) => {
                 }
                 <Neckbar>
                     {
-                        test.length
+                        Object.keys(planetData.state).length
                             ?
-                            <ListName active={test.length}>감정 행성</ListName>
+                            <ListName active={Object.keys(planetData.state).length}>감정 행성</ListName>
                             :
-                            <Blank active={test.length}/>
+                            <Blank active={(Object.keys(planetData.state).length)}/>
                     }
                     {
                         isActive
@@ -212,15 +203,16 @@ const List = (props) => {
                     }
                 </Neckbar>
                 <PlanetBackground>
-                    <PlusPlanet active={test.length} onClick = { () => history.push('./Create')}>
+                    <PlusPlanet active={(Object.keys(planetData.state).length)} onClick = { () => history.push('./Create')}>
                         <div className={"plus"} />
                     </PlusPlanet>
-                    {planet.map((planet, index)=> {
-                        return (
-                            <Star planet = {planet} checked={isClickedList[index]} Editmode = { isActive } onClick = {() => checkOne(index)}/>
-                        )
-                    })};
-                    {/*{setSelect(0)};*/}
+                    <Store.Consumer>
+                        { store => {
+                            return Object.keys(store.state).map(key => (
+                                <Star planet = {store.state[key]} checked={isClickedList[key]} Editmode = { isActive } num = {Object.keys(store.state[key].Posts).length} onClick = {() => checkOne(key) }/>
+                            ))
+                        }}
+                    </Store.Consumer>
                 </PlanetBackground>
             </Middle>
             {
@@ -242,10 +234,16 @@ const List = (props) => {
             }
             <Wrap>
                 <WrapMain>
-                    {planets.length === 0 ?
+                    {Object.keys(planetData.state).length === 0 ?
                         <Default/>     // 행성이 없을 때
                         :
-                        <Planet planets={planets}/>  // 행성이 있을 때
+                        <Store.Consumer>
+                            { store => {
+                                return Object.keys(store.state).map(key => (
+                                    <Planet planet = {store.state[key]}/>
+                                ))
+                            }}
+                        </Store.Consumer>  // 행성이 있을 때
                     }
                 </WrapMain>
             </Wrap>
@@ -258,7 +256,7 @@ const List = (props) => {
                                 <CancelButton onClick ={() => {setModal(false)}} >
                                     취소
                                 </CancelButton>
-                                <DeleteButton>
+                                <DeleteButton onClick = {realDelete}>
                                     삭제
                                 </DeleteButton>
                             </ButtonContaner>
