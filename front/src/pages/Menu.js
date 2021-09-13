@@ -512,21 +512,45 @@ const Menu = (props) => {
                             </div>
                         </div>
                         <div style={boxes}>
-                            {contents.map((test, index)=> {
+                            {Object.keys(props.location.state.planetPost).map(key => {
+                                // console.log(props.location.state.planetPost[key]);
+                                const date = props.location.state.planetPost[key].createdAt;
+                                // const year = date.getFullYear;
+                                const getDate = date => (([year, month, day]) => ({ year, day, month }))(date.split('-'));
+                                const getDay = date => (([day, trash]) => ({ day, trash }))(date.split('T'));
+                                const postDate = getDate(date).month + "/" + getDay(getDate(date).day).day;
+                                // console.log(getDate(date).year + "/" + getDate(date).month + "/" + getDay(getDate(date).day).day);
                                 return (
                                     <Box
-                                        planetSrc={props.location.state.planetSrc}
-                                        planetName={props.location.state.planetName}
-                                        date={test.date}
-                                        title={test.title}
-                                        content={test.content}
+                                        // planetSrc={props.location.state.planetSrc}
+                                        // planetName={props.location.state.planetName}
+
+                                        date={postDate}
+                                        title={props.location.state.planetPost[key].title}
+                                        content={props.location.state.planetPost[key].content}
+                                        planet={props.location.state}
 
                                         editMode={editMode}
-                                        isSelected={isSelected[index]}
-                                        onClick={() => changeClick(index)}
+                                        // isSelected={isSelected[index]}
+                                        onClick={() => changeClick(1)}
                                     />
                                 )
-                            })};
+                            })}
+                            {/*{contents.map((test, index)=> {*/}
+                            {/*    return (*/}
+                            {/*        <Box*/}
+                            {/*            planetSrc={props.location.state.planetSrc}*/}
+                            {/*            planetName={props.location.state.planetName}*/}
+                            {/*            date={test.date}*/}
+                            {/*            title={test.title}*/}
+                            {/*            content={test.content}*/}
+
+                            {/*            editMode={editMode}*/}
+                            {/*            isSelected={isSelected[index]}*/}
+                            {/*            onClick={() => changeClick(index)}*/}
+                            {/*        />*/}
+                            {/*    )*/}
+                            {/*})};*/}
                         </div>
                     </div>
                     {clickArray &&

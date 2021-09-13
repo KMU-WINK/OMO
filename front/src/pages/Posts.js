@@ -60,23 +60,22 @@ const Posts = (props) => {
         setDeleteModal(true);
         console.log(index);
     }
-
+    console.log(props.location.state.planet);
     return (
         <BackGround>
             <Header state={"Back"} title={props.location.state.planetName + " 행성"}/>
             <WrapPost>
-                {contents.map((test, index)=> {
-                    return (
-                        <Post
-                            planet={props.location.state.planetSrc}
-                            date={test.date}
-                            title={test.title}
-                            content={test.content}
+                {Object.keys(props.location.state.planet.planetPost).map(key => {
+                    return(<Post
+                        planet={props.location.state.planet.planetSrc}
+                        date={props.location.state.date}
+                        title={props.location.state.planet.planetPost[key].title}
+                        content={props.location.state.planet.planetPost[key].content}
 
-                            onClick = {() => clickDelete(index)}
-                        />
-                    )
-                })};
+                        onClick = {() => clickDelete(1)}
+                    />)
+                })}
+
                 {/*<Post*/}
                 {/*    date={"25. FRIDAY"}*/}
                 {/*    planet={props.location.state.planetSrc}*/}
