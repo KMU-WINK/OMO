@@ -256,7 +256,6 @@ const ContentContainer = styled.div`
   position: relative;
   width: 100%;
   height: 762px;
-  overflow: hidden;
   overflow-y: scroll;
 `
 const SelectContainer = styled.div`
@@ -288,7 +287,7 @@ const Menu = styled.div`
 const Editbutton = styled.div`
   width: 48px;
   height: 23px;
-  border: 1px solid #CBCBCB;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
   border-radius: 12px;
   display: flex;
@@ -297,7 +296,7 @@ const Editbutton = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 21px;
   margin-right: 16px;
 `
@@ -309,7 +308,7 @@ const EditText = styled.div`
   font-size: 12px;
   line-height: 23px;
   letter-spacing: -0.025em;
-  color: #686672;
+  color: rgba(255, 255, 255, 0.6);
   margin-left: 16px;
 `
 const AllChoice = styled.div`
@@ -325,9 +324,10 @@ const Text = styled.div`
   height: 30px;
   line-height: 30px;
   letter-spacing: -0.025em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
 `
 const EditContainer = styled.div`
+  font-family: Spoqa Han Sans Neo;
   width: 343px;
   height: 32px;
   display: flex;
@@ -356,6 +356,7 @@ const FinishButton = styled.div`
   right: 16px;
 `
 const RestoreDelete = styled.div`
+  font-family: Spoqa Han Sans Neo;
   width: 187.5px;
   height: 84px;
   background-color: #BF6DFF;

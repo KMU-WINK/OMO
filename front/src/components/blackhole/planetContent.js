@@ -46,6 +46,7 @@ const PlanetBase = styled.div`
 `
 
 const Dday = styled.div`
+  font-family: Spoqa Han Sans Neo;
   width: 154px;
   height: 13px;
   color: #A661FF;
@@ -56,6 +57,7 @@ const Dday = styled.div`
 `
 
 const Title = styled.div`
+  font-family: S-CoreDream-5Medium;
   color: rgba(255, 255, 255, 0.9);
   width: 100%;
   height: 14px;
@@ -67,13 +69,14 @@ const Title = styled.div`
 `
 
 const SubTitle = styled.div`
+  font-family: Spoqa Han Sans Neo;
   width: 100%;
   height: 13px;
   font-size: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: gray;
+  color: rgba(255, 255, 255, 0.6);
   position: absolute;
   top: 138px;
 `
