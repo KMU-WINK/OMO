@@ -9,7 +9,7 @@ import Store,{useDataState, createPlanet, getAllData} from "../../store";
 const CreateComponent = ()=>{
     let planets = useDataState().state;
     const [planetVisible, setPlanetVisible] = React.useState(false);
-    const [subPlanet, setSubPlanet] = React.useState(null);
+    const [subPlanets, setSubPlanets] = React.useState([]);
     const [_, reload] = React.useState(true);
     
     const subText = "나의 기록이 보관될 행성을 만들어 보세요.";
@@ -22,7 +22,7 @@ const CreateComponent = ()=>{
         
         createPlanet(args).then(async ()=>{
             planets = await getAllData();
-            setSubPlanet(planets[0]);
+            setSubPlanets(subPlanets.concat(planets[0]));
             reload(!_);
         });
     };
@@ -46,8 +46,9 @@ const CreateComponent = ()=>{
                         <PlanetBlock planetForm={planets[p].planetForm} name={planets[p].name} count={planets[p].Posts.length} key={planets[p].id} id={planets[p].id}/>))
                     }
                     {
-                        subPlanet!==null?
-                        <PlanetBlock planetForm={subPlanet.planetForm} name={subPlanet.name} count={subPlanet.Posts.length} key={subPlanet.id} id={subPlanet.id}/>:<></>
+                        subPlanets.length!==0?subPlanets.map((subPlanet)=>{
+                            return <PlanetBlock planetForm={subPlanet.planetForm} name={subPlanet.name} count={subPlanet.Posts.length} key={subPlanet.id} id={subPlanet.id}/>
+                        }):<></>
                     }
                     <EmptyBlock onClick={()=>{setPlanetVisible(true)}}/>
                 </SelectDiv>
@@ -95,7 +96,7 @@ const MainText = styled.p`
     transform: translate(-50%, 0%);
     text-align: center;
 
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -113,7 +114,7 @@ const SubText = styled.p`
     top: 460px;
     text-align: center;
 
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -129,7 +130,7 @@ const MainText2 = styled.p`
     left: 25px;
     top: 0px;
 
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
@@ -145,7 +146,7 @@ const SubText2 = styled.p`
     left: 24px;
     top: 34px;
 
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
