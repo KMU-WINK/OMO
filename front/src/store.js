@@ -73,13 +73,11 @@ export async function getAllData() {
     }
 }
 export async function deletePlanet(planetId) {
-    const planet = await getPlanet(planetId);
-    const deletePlanet = {
-        ...planet,
+    const isDelete = {
         isDelete: true,
     };
     try {
-        await baseService.patch(`/post/planet/${planetId}`, { deletePlanet });
+        await baseService.patch(`/post/planet/${planetId}`, { isDelete });
     } catch (e) {
         console.error("!", e.response.data.error);
     }

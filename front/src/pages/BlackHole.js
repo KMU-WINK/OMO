@@ -17,8 +17,7 @@ import planet3 from "../images/common/planets/planet1_5.svg";
 import planet4 from "../images/common/planets/planet2_1.svg";
 import planet5 from "../images/common/planets/planet3_0.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
-import Store from "../store";
-import { useDataState } from "../store";
+import Store, { useDataState }  from "../store";
 
 const BlackHole = (props) => {
     const blackholeData = useDataState();
@@ -27,37 +26,37 @@ const BlackHole = (props) => {
     const [editMode, setEditMode] = useState(false);
     const [clickArray, setClickArray] = useState(false);
     const [selected, setSelected] = useState(false);
-    // const [contents, setContents] = useState(blackholeData.state);
-    const [contents, setContents] = useState([
-        {
-            day: "20",
-            profileImgSrc: PlanetSvg,
-            title: "코딩 빡쳐",
-            detail: "내용이 어느정도는 나와야겠죠? ...",
-            hashtag: "침대",
-        },
-        {
-            day: "20",
-            profileImgSrc: PlanetSvg,
-            title: "코딩 빡쳐",
-            detail: "내용이 어느정도는 나와야겠죠? ...",
-            hashtag: "침대",
-        },
-        {
-            day: "20",
-            profileImgSrc: PlanetSvg,
-            title: "코딩 빡쳐",
-            detail: "내용이 어느정도는 나와야겠죠? ...",
-            hashtag: "침대",
-        },
-        {
-            day: "20",
-            profileImgSrc: PlanetSvg,
-            title: "코딩 빡쳐",
-            detail: "내용이 어느정도는 나와야겠죠? ...",
-            hashtag: "침대",
-        }
-    ]);
+    const [contents, setContents] = useState(blackholeData.state);
+    // const [contents, setContents] = useState([
+    //     {
+    //         day: "20",
+    //         profileImgSrc: PlanetSvg,
+    //         title: "코딩 빡쳐",
+    //         detail: "내용이 어느정도는 나와야겠죠? ...",
+    //         hashtag: "침대",
+    //     },
+    //     {
+    //         day: "20",
+    //         profileImgSrc: PlanetSvg,
+    //         title: "코딩 빡쳐",
+    //         detail: "내용이 어느정도는 나와야겠죠? ...",
+    //         hashtag: "침대",
+    //     },
+    //     {
+    //         day: "20",
+    //         profileImgSrc: PlanetSvg,
+    //         title: "코딩 빡쳐",
+    //         detail: "내용이 어느정도는 나와야겠죠? ...",
+    //         hashtag: "침대",
+    //     },
+    //     {
+    //         day: "20",
+    //         profileImgSrc: PlanetSvg,
+    //         title: "코딩 빡쳐",
+    //         detail: "내용이 어느정도는 나와야겠죠? ...",
+    //         hashtag: "침대",
+    //     }
+    // ]);
     const [planetContents, setPlanetContents] = useState([
         {
             profileImgSrc: starimg,
@@ -165,7 +164,6 @@ const BlackHole = (props) => {
     return (
         <Background>
             <Header state={"Back"} title={"블랙홀"}></Header>
-
             <ContentContainer>
                 {
                     editMode == false ?
