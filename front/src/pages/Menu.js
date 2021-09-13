@@ -295,31 +295,16 @@ const Menu = (props) => {
         }
     }
 
-    const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
-        {'imgSrc': planet1, 'name': "오늘은 조금 우울해", 'count': 20},
-        {'imgSrc': planet5, 'name': "화가 치밀어 오른다", 'count': 32},
-        {'imgSrc': planet3, 'name': "오늘은 조금 우울해", 'count': 32},
-        {'imgSrc': planet6, 'name': "오늘은 조금 우울해", 'count': 18},
-        {'imgSrc': planet2, 'name': "화가 치밀어 오른다", 'count': 18}
-    ];
-    // const planets = [];
+    let Possum = 0;
 
-    const [contents, setContents] = useState([
-        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/26", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/27", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/28", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/29", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/30", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/31", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
+    Object.keys(props.location.state.planetPost).map(key => {
+        Possum += 1;
+    })
 
-    ]);
     const [editMode, setEditMode] = useState(false);
     const [clickArray, setClickArray] = useState(false);
     const [selected, setSelected] = useState(false);
-    const [isSelected, setIsselected] = useState(Array(contents.length).fill(false));
+    const [isSelected, setIsselected] = useState(Array(Possum).fill(false));
     const [deleteModal, setDeleteModal] = useState(false);
 
     const allChoice = () => {
@@ -345,25 +330,23 @@ const Menu = (props) => {
         allDeselect();
     }
     const changeClick = (index) => {
-        if (editMode) {
-            if (isSelected[index]) {
-                isSelected[index] = false;
-                setIsselected([...isSelected])
-            }
-            else {
-                isSelected[index] = true;
-                setIsselected([...isSelected])
-            }
-            if (editMode && clickArray === false) {
-                setSelected(true);
-                setClickArray(true);
-            }
-            if (isSelected.every((isSelect) => isSelect === false)) {
-                setClickArray(false);
-                setSelected(false);
-            }
-            console.log(isSelected);
+        if (isSelected[index]) {
+            isSelected[index] = false;
+            setIsselected([...isSelected])
         }
+        else {
+            isSelected[index] = true;
+            setIsselected([...isSelected])
+        }
+        if (editMode && clickArray === false) {
+            setSelected(true);
+            setClickArray(true);
+        }
+        if (isSelected.every((isSelect) => isSelect === false)) {
+            setClickArray(false);
+            setSelected(false);
+        }
+        console.log(isSelected);
     }
     const checkData = useDataState();
 
@@ -550,8 +533,8 @@ const Menu = (props) => {
                                                 planet={props.location.state}
 
                                                 editMode={editMode}
-                                                // isSelected={isSelected[index]}
-                                                onClick={() => changeClick(1)}
+                                                isSelected={isSelected[key]}
+                                                onClick={() => changeClick(key)}
                                             />
                                         }
                                     </>
@@ -586,11 +569,11 @@ const Menu = (props) => {
                 :
                 <WrapModal>
                     <Modal>
-                        <Question>기록을 정말로 삭제하시겠어요?</Question>
+                        <Question>Post Page에서 지우길 바랍니당 ㅎㅎ</Question>
                         <Line />
                         <ButtonWrap>
                             <CancelButton onClick={() => setDeleteModal(false)}>취소</CancelButton>
-                            <DeleteButton onClick={() => console.log(isSelected)}>삭제</DeleteButton>
+                            {/*<DeleteButton onClick={() => console.log(isSelected)}>삭제</DeleteButton>*/}
                         </ButtonWrap>
                     </Modal>
                 </WrapModal>
