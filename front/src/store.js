@@ -32,6 +32,22 @@ export async function createPlanet(args) {
         return Number(e.message.slice(e.message.length - 3));
     }
 }
+export async function getPlanet(planetId) {
+    try {
+        const planet = await baseService.get(`/post/planet/${planetId}`)
+        return planet.data;
+    } catch (e) {
+        console.error("!", e.response.data.error);
+    }
+}
+export async function getPost(postId) {
+    try {
+        const post = await baseService.get(`/post/planet/${planetId}`)
+        return planet.data;
+    } catch (e) {
+        console.error("!", e.response.data.error);
+    }
+}
 export async function createDiary(content, image, planetId) {
     const diaryForm = new FormData();
     diaryForm.append('content', content);
@@ -57,15 +73,21 @@ export async function getAllData() {
     }
 }
 export async function deletePlanet(planetId) {
-    const { isDelete } = true;
+    const planet = await getPlanet(planetId);
+    const deletePlanet = {
+        ...planet,
+        isDelete: true,
+    };
     try {
-        await baseService.patch(`/post/planet/${planetId}`, { isDelete });
+        await baseService.patch(`/post/planet/${planetId}`, { deletePlanet });
     } catch (e) {
         console.error("!", e.response.data.error);
     }
 }
 export async function deleteDiary(diaryId) {
-    const { isDelete } = true;
+    const isDelete = {
+        isDelete: true,
+    };
     try {
         await baseService.patch(`/post/diary/${diaryId}`, { isDelete });
     } catch (e) {
