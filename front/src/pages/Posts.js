@@ -63,17 +63,19 @@ const Posts = (props) => {
     console.log(props.location.state.planet);
     return (
         <BackGround>
-            <Header state={"Back"} title={props.location.state.planetName + " 행성"}/>
+            <Header state={"Back"} title={props.location.state.planet.planetName + " 행성"}/>
             <WrapPost>
                 {Object.keys(props.location.state.planet.planetPost).map(key => {
-                    return(<Post
-                        planet={props.location.state.planet.planetSrc}
-                        date={props.location.state.date}
-                        title={props.location.state.planet.planetPost[key].title}
-                        content={props.location.state.planet.planetPost[key].content}
+                    return(
+                        <Post
+                            planet={props.location.state.planet.planetSrc}
+                            date={props.location.state.date}
+                            title={props.location.state.planet.planetPost[key].title}
+                            content={props.location.state.planet.planetPost[key].content}
 
-                        onClick = {() => clickDelete(1)}
-                    />)
+                            onClick = {() => clickDelete(1)}
+                        />
+                    )
                 })}
 
                 {/*<Post*/}
