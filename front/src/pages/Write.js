@@ -82,7 +82,7 @@ const Write = (props) => {
         if (title !== "" && contents !== "" && hashTag !== ""){
             var file = document.querySelector("#file-input");
             // console.log(props.location);
-            createDiary(title,{contents, hashTag}, file.files[0], props.location.state.id);
+            createDiary(title,{contents, hashTag}, file.files[0], props.location.state["id"]);
         }
         else {
             console.log('저장버튼활성화금지');

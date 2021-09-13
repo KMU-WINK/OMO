@@ -42,7 +42,8 @@ for(let i=0;i<colorCount;i++){
 
 for(let i=0;i<planetCount;i++){
     for(let j=0;j<colorCount;j++){
-        planetImages[i][j] = require('../../images/common/planets/planet' + i + '_' + j + '.svg').default;
+        const path = './planets/planet' + i + '_' + j + '.svg';
+        planetImages[i][j] = path;
     }
 }
 

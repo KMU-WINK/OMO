@@ -19,12 +19,12 @@ const baseService = axios.create({
 
 export async function createPlanet(args) {
     const {
-        title,
+        name,
         planetForm,
     } = args;
     try {
         const response = await baseService.post('/post/planet', {
-            title,
+            name,
             planetForm,
         })
         return response.status;
@@ -58,17 +58,35 @@ export async function getAllData() {
     }
 }
 export async function deletePlanet(planetId) {
-    const { isDelete } = true;
+    const isDelete = {
+        isDelete: true,
+    };
     try {
-        await baseService.patch(`/post/planet/${planetId}`, { isDelete });
+        await baseService.patch(`/post/planet/${planetId}`, isDelete);
     } catch (e) {
         console.error("!", e.response.data.error);
     }
 }
 export async function deleteDiary(diaryId) {
-    const { isDelete } = true;
+    const isDelete = {
+        isDelete: true,
+    };
     try {
-        await baseService.patch(`/post/diary/${diaryId}`, { isDelete });
+        await baseService.patch(`/post/diary/${diaryId}`, isDelete);
+    } catch (e) {
+        console.error("!", e.response.data.error);
+    }
+}
+export async function deleteBlackholePlanet(planetId) {
+    try {
+        await baseService.delete(`/post/planet/${planetId}`)
+    } catch (e) {
+        console.error("!", e.response.data.error);
+    }
+}
+export async function deleteBlackholeDiary(diaryId) {
+    try {
+        await baseService.delete(`/post/diary/${diaryId}`)
     } catch (e) {
         console.error("!", e.response.data.error);
     }

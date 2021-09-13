@@ -53,7 +53,7 @@ const PlanetCreate = ({onClick, visible, setVisible, top, mainText})=>{
                     <TopLine />
                     <div>
                         <MainPlanetDiv>
-                            <MainPlanet src={loadPlanet(mainPlanet%5,mainColor%6)}/>
+                            <MainPlanet src={`${loadPlanet(mainPlanet%5,mainColor%6)}`}/>
                         </MainPlanetDiv>
                         <Text left="141px" top="84px">형태</Text>
                         <ItemBlock top="100px">
@@ -120,7 +120,7 @@ const Text = styled.p`
     position: absolute;
     left: ${props => props.left};
     top: ${props => props.top};
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
