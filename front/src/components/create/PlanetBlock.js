@@ -19,8 +19,10 @@ const PlanetBlock = ({planetForm, name, count, id})=>{
     return (
         <ItemBlock onClick={()=>{history.push({
             pathname: "./write",
-            name: name,
-            id: id,
+            state:{
+                name: name,
+                id: id,
+            }
         })}}>
             <PlanetDiv>
                 <Planet src={planetForm}/>
@@ -88,7 +90,7 @@ const ItemCount = styled.p`
     left: 59px;
     top: 131px;
 
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: normal;
     font-size: 10px;

@@ -28,7 +28,7 @@ const Input = styled.input`
     left: 58px;
     top: 0px;
 
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -43,6 +43,7 @@ const Input = styled.input`
     border-left:0;
     border-top:0;
     outline:none;
+    text-align: center;
 `;
 
 const UnderLine = styled.div`
