@@ -14,19 +14,17 @@ const EmptyBlock = ({onClick})=>{
     )
 }
 
-const PlanetBlock = ({planetId, colorId, name, count})=>{
+const PlanetBlock = ({planetForm, name, count, id})=>{
     const history = useHistory();
     return (
         <ItemBlock onClick={()=>{history.push({
             pathname: "./write",
-            state: {
-                name: name,
-                planetId: planetId,
-                colorId: colorId,
-            }
+            name: name,
+            id: id,
         })}}>
             <PlanetDiv>
-                <Planet src={loadPlanet(planetId, colorId)}/>
+                {console.log(planetForm)}
+                <Planet src={planetForm}/>
             </PlanetDiv>
             <ItemName>{name}</ItemName>
             <ItemCount>{count}개의 기록</ItemCount>
@@ -58,7 +56,7 @@ const PlanetDiv = styled.div`
 
 const Planet = styled.img`
     width:auto;
-    height:45%;
+    height:70%;
 
     position: absolute;
     margin: auto;
