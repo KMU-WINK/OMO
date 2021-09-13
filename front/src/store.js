@@ -32,8 +32,9 @@ export async function createPlanet(args) {
         return Number(e.message.slice(e.message.length - 3));
     }
 }
-export async function createDiary(content, image, planetId) {
+export async function createDiary(title, content, image, planetId) {
     const diaryForm = new FormData();
+    diaryForm.append('title', title);
     diaryForm.append('content', content);
     diaryForm.append('image', image);
     diaryForm.enctype = 'multipart/form-data';
