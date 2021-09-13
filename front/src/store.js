@@ -40,7 +40,7 @@ export async function getPlanet(planetId) {
         console.error("!", e.response.data.error);
     }
 }
-export async function getPost(postId) {
+export async function getPost(planetId) {
     try {
         const planet = await baseService.get(`/post/planet/${planetId}`)
         return planet.data;
