@@ -44,6 +44,8 @@ const Posts = (props) => {
         console.log(deleteId);
         await deleteDiary(deleteId);
         setDeleteModal(false);
+
+        window.location.href = '/';
     }
     return (
         <BackGround>
@@ -60,7 +62,7 @@ const Posts = (props) => {
                                     planet={props.location.state.planet.planetSrc}
                                     date={props.location.state.date}
                                     title={props.location.state.planet.planetPost[key].title}
-                                    content={props.location.state.planet.planetPost[key].content}
+                                    content={props.location.state.content}
                                     hashTag={props.location.state.planet.planetPost[key].Hashtags}
 
                                     onClick = {() => clickDelete(props.location.state.planet.planetPost[key].id)}
