@@ -23,7 +23,6 @@ const PlanetBlock = ({planetForm, name, count, id})=>{
             id: id,
         })}}>
             <PlanetDiv>
-                {console.log(planetForm)}
                 <Planet src={planetForm}/>
             </PlanetDiv>
             <ItemName>{name}</ItemName>
@@ -56,7 +55,7 @@ const PlanetDiv = styled.div`
 
 const Planet = styled.img`
     width:auto;
-    height:70%;
+    height:60%;
 
     position: absolute;
     margin: auto;
@@ -65,7 +64,7 @@ const Planet = styled.img`
 
 const ItemName = styled.p`
     position: absolute;
-    width: 80px;
+    width: 150px;
     height: 14px;
     left: 50%;
     top: 112px;
