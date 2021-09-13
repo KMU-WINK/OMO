@@ -77,10 +77,11 @@ const Box = (props) => {
                         <div style={contentCSS}>{props.content}</div>
                     </div>
                     <div style={hashtagSET}>
-                        <HashTag hashtag={"교수님"}/>
-                        <HashTag hashtag={"ㅋㅋㅋㅋㅋ"}/>
-                        <HashTag hashtag={"ㄹㄱㄴ"}/>
-                        <HashTag hashtag={"에바임"}/>
+                        {Object.keys(props.hashTag).map(key => {
+                            return (
+                                <HashTag hashtag={props.hashTag[key].name}/>
+                            )
+                        })}
                     </div>
                 </OneBox>
             }
