@@ -26,7 +26,7 @@ const StyleButton = styled.button`
     }
 
     p{
-        font-family: Spoqa Han Sans Neo;
+        font-family: S-Core Dream;
         font-style: normal;
         font-weight: bold;
         font-size: 12px;
