@@ -16,7 +16,7 @@ const CreateComponent = ()=>{
 
     const savePlanet = async(mainPlanet, mainColor, name)=>{
         const args = {
-            title: name,
+            name: name,
             planetForm: './planets/planet' + mainPlanet + '_' + mainColor + '.svg',
         }
         
@@ -43,11 +43,11 @@ const CreateComponent = ()=>{
                 <SelectDiv>
                     {
                        Object.keys(planets).reverse().filter(id=>planets[id].isDelete === false).map(p=>(
-                        <PlanetBlock planetForm={planets[p].planetForm} name={planets[p].title} count={planets[p].Posts.length} key={planets[p].id} id={planets[p].id}/>))
+                        <PlanetBlock planetForm={planets[p].planetForm} name={planets[p].name} count={planets[p].Posts.length} key={planets[p].id} id={planets[p].id}/>))
                     }
                     {
                         subPlanet!==null?
-                        <PlanetBlock planetForm={subPlanet.planetForm} name={subPlanet.title} count={subPlanet.Posts.length} key={subPlanet.id} id={subPlanet.id}/>:<></>
+                        <PlanetBlock planetForm={subPlanet.planetForm} name={subPlanet.name} count={subPlanet.Posts.length} key={subPlanet.id} id={subPlanet.id}/>:<></>
                     }
                     <EmptyBlock onClick={()=>{setPlanetVisible(true)}}/>
                 </SelectDiv>
