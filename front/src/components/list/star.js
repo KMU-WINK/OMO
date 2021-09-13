@@ -1,12 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useHistory} from "react-router-dom";
-import Store from '../../store';
+import Store, {useDataState} from '../../store';
 
 const starCSS = {height : 100,  margin: "17px 0 0 0"}
 
 const Star = (props) => {
     const history = useHistory();
+    const checkData = useDataState();
+
+    const countPost = store => {
+        let count = 0;
+        Object.keys(store).map(key => {
+            if (!store[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
+
     const [isClicked,setClicked] = useState(props.checked);
     useEffect(() => {
         setClicked(props.checked)
@@ -34,7 +46,7 @@ const Star = (props) => {
                 })}}>
                     <img src={props.planet.planetForm} style = {starCSS}/>
                     <Title>{props.planet.name}</Title>
-                    <SubTitle>{props.num}개의 기록</SubTitle>
+                    <SubTitle>{countPost(props.planet.Posts)}개의 기록</SubTitle>
                 </PlanetBase>
         }
         </>

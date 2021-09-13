@@ -11,6 +11,16 @@ const CreateComponent = ()=>{
     const [planetVisible, setPlanetVisible] = React.useState(false);
     const [subPlanets, setSubPlanets] = React.useState([]);
     const [_, reload] = React.useState(true);
+
+    const countPost = store => {
+        let count = 0;
+        Object.keys(store).map(key => {
+            if (!store[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
     
     const subText = "나의 기록이 보관될 행성을 만들어 보세요.";
 
@@ -43,7 +53,7 @@ const CreateComponent = ()=>{
                 <SelectDiv>
                     {
                        Object.keys(planets).reverse().filter(id=>planets[id].isDelete === false).map(p=>(
-                        <PlanetBlock planetForm={planets[p].planetForm} name={planets[p].name} count={planets[p].Posts.length} key={planets[p].id} id={planets[p].id}/>))
+                        <PlanetBlock planetForm={planets[p].planetForm} name={planets[p].name} count={countPost(planets[p].Posts)} key={planets[p].id} id={planets[p].id}/>))
                     }
                     {
                         subPlanets.length!==0?subPlanets.map((subPlanet)=>{

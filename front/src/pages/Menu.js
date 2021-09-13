@@ -379,6 +379,16 @@ const Menu = (props) => {
 
     const numP = countSee(checkData);
 
+    const countPost = store => {
+        let count = 0;
+        Object.keys(store).map(key => {
+            if (!store[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
+
     return (
         <div style={backgroundCSS}>
             { checkMore ?
@@ -450,7 +460,7 @@ const Menu = (props) => {
                     <img id={"topPlanet"} src={props.location.state.planetSrc} style={planetStyle}/>
                     <div style={contentCSS} id={"countRecord"}>
                         <div style={nameCSS} >{props.location.state.planetName}</div>
-                        <div style={countCSS} id={"countcount"}>{props.location.state.planetCount}개의 기록</div>
+                        <div style={countCSS} id={"countcount"}>{countPost(props.location.state.planetPost)}개의 기록</div>
                     </div>
                 </div>
                 {showModal === true ?
