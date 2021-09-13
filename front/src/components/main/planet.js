@@ -87,7 +87,7 @@ const Planet = (props) => {
                             }
                         }
                         if(count === 0){
-                            return <Default />
+                            return <Default/>
                         }
                     })
                 }}
