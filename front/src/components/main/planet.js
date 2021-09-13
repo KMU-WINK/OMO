@@ -8,6 +8,7 @@ import moreDetailButton from '../../images/main/main_moreDetailButton.png';
 import statisticsButton from '../../images/main/main_statisticsButton.png';
 
 import Store from '../../store';
+import Default from "./default";
 
 const bbuyoCSS = {
     position: 'absolute',
@@ -82,10 +83,12 @@ const Planet = (props) => {
                                 // console.log(store.state[key].id);
                                 // console.log(store.state[key].Posts.length);
                                 // console.log(Object.keys(store.state[key].Posts).length);
-                                return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].title} count={Object.keys(store.state[key].Posts).length}/>
+                                return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].name} count={Object.keys(store.state[key].Posts).length}/>
                             }
                         }
-
+                        if(count === 0){
+                            return <Default />
+                        }
                     })
                 }}
             </Store.Consumer>
