@@ -34,6 +34,25 @@ const Write = (props) => {
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
     const [hashTag, setHashTag] = useState('');
+    const [imgBase64, setImgBase64] = useState(""); // 파일 base64
+    const [imgFile, setImgFile] = useState(null);	//파일	
+
+    const handleChangeFile = (event) => {
+      let reader = new FileReader();
+  
+      reader.onloadend = () => {
+        // 2. 읽기가 완료되면 아래코드가 실행됩니다.
+        const base64 = reader.result;
+        if (base64) {
+          setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
+        }
+      }
+      if (event.target.files[0]) {
+        reader.readAsDataURL(event.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
+        setImgFile(event.target.files[0]); // 파일 상태 업데이트
+      }
+    }
+
     const setTitleFunction = ({target}) =>{
         setTitle(target.value)
 
@@ -69,13 +88,7 @@ const Write = (props) => {
             console.log('저장버튼활성화금지');
         }
     }
-    // description={<PostCardContent postData={post.content}/>}
-    // {postData.split(/(#[^\s#]+)/g).map((v, i) => {
-    //   if(v.match(/(#[^\s#]+)/)){
-    //     return <Link href={`/hashtag/${v.slice(1)}`} key={i}><a>{v}</a></Link>
-    //   }
-    //   return v;
-    // })}
+
     const [cancelModal, setCancelModal] = useState(false);
 
     const clickCancel = () => {
@@ -91,6 +104,9 @@ const Write = (props) => {
                 <p className={"planet_name"}>{props.location.state.name}</p>
                 <input className={"input_title"} type="text" onChange = {setTitleFunction} placeholder="제목을 입력하세요"></input>
                 <textarea className={"input_contents"} type="text" maxLength="300" rows="10" onChange={setContentsFunction} placeholder="내용을 입력하세요 (최대 300자)"></textarea>
+                <div className={"image_preview"}>
+                  <img src={imgBase64} />
+                </div>
                 <div className={"tag"}>태그추가</div>
                 <input className={"input_tag"} type="text" onChange={setHashTagFunction} placeholder="검색에 활용될 태그를 입력해 주세요  (최대 5개)"></input>
                 <div className={"reminder"}>리마인더</div>
@@ -109,7 +125,7 @@ const Write = (props) => {
                       <label for="file-input">
                         <img src={albumIcon}/>
                       </label>
-                      <input id="file-input" type="file" style={{display: "none"}}/>
+                      <input id="file-input" type="file" style={{display: "none"}} onChange={handleChangeFile}/>
                     </div>
                     <div className={"i_1"}>
                       <img src={listIcon}/>
@@ -190,7 +206,6 @@ const ButtonWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 12px;
   line-height: 16px;
 `;
@@ -241,8 +256,9 @@ const Wrap = styled.div`
       font-weight: 600;
       color: rgba(255, 255, 255, 0.7);
       position:absolute;
-      top: 63px;
-      left: 45.1%
+      top: 70px;
+      left: 50%;
+      transform:translate(-50%, -50%);
   }
 
   > .input_title{
@@ -266,7 +282,7 @@ const Wrap = styled.div`
     border:0px;
     background: #000000;
     width: 306px;
-    height: 205px;
+    height: 140px;
     font-size: 12px;
     padding: 10px;
     text-align: left;
@@ -279,7 +295,6 @@ const Wrap = styled.div`
     color:white;
     font-size:14px;
     margin-left: 34px;
-    margin-top:135px;
   }
   > .input_tag{
     color: #A661FF;
@@ -406,5 +421,11 @@ const Wrap = styled.div`
     font-weight: bold;
     display: flex;
     align-items: center;
+  }
+
+  .image_preview {
+    width: 189px;
+    height: 189px;
+    margin-left: 34.5px;
   }
 `;
