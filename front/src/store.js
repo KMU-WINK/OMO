@@ -19,12 +19,12 @@ const baseService = axios.create({
 
 export async function createPlanet(args) {
     const {
-        title,
+        name,
         planetForm,
     } = args;
     try {
         const response = await baseService.post('/post/planet', {
-            title,
+            name,
             planetForm,
         })
         return response.status;
