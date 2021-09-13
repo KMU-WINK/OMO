@@ -48,7 +48,7 @@ const Box = (props) => {
             { props.editMode === false ?
                 <OneBox onClick={() => history.push({
                     pathname: '/post',
-                    state: {planetSrc: props.planetSrc, planetName: props.planetName}
+                    state: {planet: props.planet, date:props.date}
                 })}>
                     <div style={{padding:'12px 12px 0 12px'}}>
                         <div style={{display:'flex', justifyContent: 'space-between', marginBottom:'14px'}}>
