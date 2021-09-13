@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 import Content from "../components/blackhole/content";
 import Footer from "../components/common/footer";
@@ -103,6 +104,36 @@ const sortingDate = {
     color: '#969696',
     margin:'32px 0 16px 6px',
 }
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.50);
+  z-index: 1;
+`;
+
+const ModalContainer = styled.div`
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  padding: 16px;
+  background: rgba(124, 124, 124, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: 300px) {
+    width: 220px;
+    height: 220px;
+  }
+`;
 
 const Search = (props) => {
 
@@ -218,6 +249,17 @@ const Search = (props) => {
 
     return (
         <div style={allContents}>
+            {/*검색기능 임시접근제어*/}
+            {
+                <Background>
+                    <ModalContainer>
+                        <div>
+                            현재 검색 기능은 접근이 불가합니다.
+                        </div>
+                    </ModalContainer>
+                </Background>
+
+            }
             <div style={subContent}>
                 <div style={searchBlock}>
                     <img src={searchIcon} style={searchIconImg}/>
