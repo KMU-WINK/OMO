@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useHistory} from "react-router-dom";
+import Store from '../../store';
 
-const starCSS = {height : 60,  margin: "26px 0 0 0"}
+const starCSS = {height : 100,  margin: "17px 0 0 0"}
 
 const Star = (props) => {
     const history = useHistory();
@@ -15,23 +16,24 @@ const Star = (props) => {
         <>
         {
             props.Editmode === false ?
-                <PlanetBase check = { isClicked } onClick = {() => { props.onClick() }}>
-                    <img src={props.planet.image} style = {starCSS}/>
-                    <Title>{props.planet.title}</Title>
-                    <SubTitle>{props.planet.num}개의 기록</SubTitle>
+                <PlanetBase check = { isClicked } onClick = {() => { props.onClick() }} exist = {props.planet.isDelete}>
+                    <img src={props.planet.planetForm} style = {starCSS}/>
+                    <Title>{props.planet.name}</Title>
+                    <SubTitle>{props.num}개의 기록</SubTitle>
                 </PlanetBase>
                 :
-                <PlanetBase check = { isClicked } onClick = {() => { history.push({
+                <PlanetBase check = { isClicked } exist = {props.planet.isDelete} onClick = {() => { history.push({
                     pathname: '/menu',
                     state: {
-                        planetSrc: props.planet.image,
-                        planetName: props.planet.title,
-                        planetCount: props.planet.num
+                        planetSrc: props.planet.planetForm,
+                        planetName: props.planet.name,
+                        planetCount: props.num,
+                        planetId: props.planet.id,
                     }
                 })}}>
-                    <img src={props.planet.image} style = {starCSS}/>
-                    <Title>{props.planet.title}</Title>
-                    <SubTitle>{props.planet.num}개의 기록</SubTitle>
+                    <img src={props.planet.planetForm} style = {starCSS}/>
+                    <Title>{props.planet.name}</Title>
+                    <SubTitle>{props.num}개의 기록</SubTitle>
                 </PlanetBase>
         }
         </>
@@ -61,19 +63,14 @@ const PlanetBase = styled.div`
   }};
   opacity: 100%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  display: flex;
+  display: ${({ exist }) => {
+    if (exist) {
+      return "none";
+    }
+    return "flex";
+  }};
   flex-direction: column;
   align-items: center;
-`
-
-const Dday = styled.div`
-  width: 154px;
-  height: 13px;
-  color: #A661FF;
-  margin: 16px 8px 0 0;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 10px;
 `
 
 const Title = styled.div`
