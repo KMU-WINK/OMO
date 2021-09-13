@@ -73,6 +73,8 @@ const List = (props) => {
     const [isSelect, setSelect] = useState(false);
     const [isModal, setModal] = useState(false);
 
+    console.log(isClickedList);
+
     const setClickedList = (index, isClicked)=>{
       setIsClickedList(isClickedList.map((value, cindex)=>{
         return index === cindex ? isClicked : value
@@ -100,7 +102,7 @@ const List = (props) => {
 
     const FinishEdit = () => {
         setActive(true);
-        setIsClickedList(Array(Object.keys(planetData.state).length).fill(false));
+        setIsClickedList(Array(Object.keys(checkData.state).length).fill(false));
         setSelectAll(false);
     }
 
@@ -111,7 +113,7 @@ const List = (props) => {
     };
 
     const checkAll = () => {
-        setIsClickedList(Array(Object.keys(planetData.state).length).fill(true));
+        setIsClickedList(Array(Object.keys(checkData.state).length).fill(true));
         setSelectAll(true);
         setSelect(true);
         console.log(isClickedList);
