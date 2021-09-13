@@ -21,6 +21,7 @@ const PlanetBlock = ({planetForm, name, count, id})=>{
             pathname: "./write",
             state:{
                 name: name,
+                planetForm: planetForm,
                 id: id,
             }
         })}}>
@@ -85,9 +86,9 @@ const ItemName = styled.p`
 
 const ItemCount = styled.p`
     position: absolute;
-    width: 50px;
+    width: 70px;
     height: 13px;
-    left: 59px;
+    left: 48px;
     top: 131px;
 
     font-family: S-Core Dream;

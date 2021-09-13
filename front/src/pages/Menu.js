@@ -520,20 +520,31 @@ const Menu = (props) => {
                                 const getDay = date => (([day, trash]) => ({ day, trash }))(date.split('T'));
                                 const postDate = getDate(date).month + "/" + getDay(getDate(date).day).day;
                                 // console.log(getDate(date).year + "/" + getDate(date).month + "/" + getDay(getDate(date).day).day);
+
+                                const getContent = story => (([body, trash]) => ({body, trash}))(story.split('#'));
+
+                                // console.log(props.location.state.planetPost[key]);
                                 return (
-                                    <Box
-                                        // planetSrc={props.location.state.planetSrc}
-                                        // planetName={props.location.state.planetName}
+                                    <>
+                                        {props.location.state.planetPost[key].isDelete ?
+                                            <></>
+                                            :
+                                            <Box
+                                                // planetSrc={props.location.state.planetSrc}
+                                                // planetName={props.location.state.planetName}
 
-                                        date={postDate}
-                                        title={props.location.state.planetPost[key].title}
-                                        content={props.location.state.planetPost[key].content}
-                                        planet={props.location.state}
+                                                date={postDate}
+                                                title={props.location.state.planetPost[key].title}
+                                                content={getContent(props.location.state.planetPost[key].content).body}
+                                                hashTag={props.location.state.planetPost[key].Hashtags}
+                                                planet={props.location.state}
 
-                                        editMode={editMode}
-                                        // isSelected={isSelected[index]}
-                                        onClick={() => changeClick(1)}
-                                    />
+                                                editMode={editMode}
+                                                // isSelected={isSelected[index]}
+                                                onClick={() => changeClick(1)}
+                                            />
+                                        }
+                                    </>
                                 )
                             })}
                             {/*{contents.map((test, index)=> {*/}

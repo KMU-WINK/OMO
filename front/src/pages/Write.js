@@ -78,11 +78,14 @@ const Write = (props) => {
         }
     }
     const [color, setColor] = useState('rgba(255, 255, 255, 0.2)');
-    const saveBtn = () => {
+    const saveBtn = async () => {
         if (title !== "" && contents !== "" && hashTag !== ""){
-            var file = document.querySelector("#file-input");
+            let file = document.querySelector("#file-input");
             // console.log(props.location);
-            createDiary(title,{contents, hashTag}, file.files[0], props.location.state["id"]);
+            console.log(file.files[0]);
+            await createDiary(title,contents + " " + hashTag, file.files[0], props.location.state["id"]);
+
+            history.push('/');
         }
         else {
             console.log('저장버튼활성화금지');
@@ -99,7 +102,7 @@ const Write = (props) => {
         <BackGround>
             <Header state={"Back"} current={"write"} modal={clickCancel} title={year+"/"+month+"/"+day} next={"저장"} save={saveBtn} saveCSS={color}/>
             <Wrap>
-                <img className={"planet"} src={plantIcon} />
+                <img className={"planet"} src={props.location.state.planetForm} />
                 <p className={"planet_name"}>{props.location.state.name}</p>
                 <input className={"input_title"} type="text" onChange = {setTitleFunction} placeholder="제목을 입력하세요"></input>
                 <textarea className={"input_contents"} type="text" maxLength="300" rows="10" onChange={setContentsFunction} placeholder="내용을 입력하세요 (최대 300자)"></textarea>
@@ -255,7 +258,7 @@ const Wrap = styled.div`
       font-weight: 600;
       color: rgba(255, 255, 255, 0.7);
       position:absolute;
-      top: 70px;
+      top: 87px;
       left: 50%;
       transform:translate(-50%, -50%);
   }
