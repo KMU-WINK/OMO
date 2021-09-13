@@ -29,7 +29,7 @@ const Wrap = styled.div`
   width: 319px;
   height: 84px;
   background: ${(props) => props.selected===true ? 'rgba(255, 255, 255, 0.35)' : 'rgba(255, 255, 255, 0.12)'};
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 1);
   padding: 12px;
   border-radius: 10px;
   margin-top: 8px;
@@ -64,7 +64,8 @@ const Title = styled.div`
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.025em;
-  margin-bottom: 2px;
+  margin-bottom: 2px; 
+  color: rgba(255, 255, 255, 0.9);
 `;
 const Detail = styled.div`
   font-family: Spoqa Han Sans Neo;
@@ -76,7 +77,7 @@ const Detail = styled.div`
   align-items: center;
   letter-spacing: -0.025em;
   margin-bottom: 5px;
-
+  color: rgba(255, 255, 255, 0.4);
 `;
 const Hashtag = styled.div`
   display: flex;
@@ -85,13 +86,14 @@ const Hashtag = styled.div`
   justify-content: center;
   align-items: center;
   opacity: 0.6;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-sizing: border-box;
   border-radius: 12px;
   font-family: Spoqa Han Sans Neo;
   font-size: 10px;
   line-height: 13px;
   letter-spacing: -0.025em;
+  color: rgba(255, 255, 255, 0.4);
 `;
 
 
