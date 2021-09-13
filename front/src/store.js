@@ -92,3 +92,17 @@ export async function deleteDiary(diaryId) {
         console.error("!", e.response.data.error);
     }
 }
+export async function deleteBlackholePlanet(planetId) {
+    try {
+        await baseService.delete(`/post/planet/${planetId}`)
+    } catch (e) {
+        console.error("!", e.response.data.error);
+    }
+}
+export async function deleteBlackholeDiary(diaryId) {
+    try {
+        await baseService.delete(`/post/diary/${diaryId}`)
+    } catch (e) {
+        console.error("!", e.response.data.error);
+    }
+}
