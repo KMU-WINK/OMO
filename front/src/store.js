@@ -32,24 +32,9 @@ export async function createPlanet(args) {
         return Number(e.message.slice(e.message.length - 3));
     }
 }
-export async function getPlanet(planetId) {
-    try {
-        const planet = await baseService.get(`/post/planet/${planetId}`)
-        return planet.data;
-    } catch (e) {
-        console.error("!", e.response.data.error);
-    }
-}
-export async function getPost(planetId) {
-    try {
-        const planet = await baseService.get(`/post/planet/${planetId}`)
-        return planet.data;
-    } catch (e) {
-        console.error("!", e.response.data.error);
-    }
-}
-export async function createDiary(content, image, planetId) {
+export async function createDiary(title, content, image, planetId) {
     const diaryForm = new FormData();
+    diaryForm.append('title', title);
     diaryForm.append('content', content);
     diaryForm.append('image', image);
     diaryForm.enctype = 'multipart/form-data';
