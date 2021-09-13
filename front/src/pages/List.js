@@ -163,11 +163,13 @@ const List = (props) => {
         console.log(isClickedList);
         for (let i = 0; i < isClickedList.length; i++){
             if (isClickedList[i]){
-                await deletePlanet(Object.keys(planetData.state).length - i);
+                await deletePlanet(isClickedList.length - i);
             }
         }
         setModal(false);
         setActive(true);
+
+        window.location.reload();
     }
 
     return (

@@ -12,7 +12,7 @@ const Header = (props) => {
         <Wrap>
             {props.state==="Cancel"?
                 <CancelButton>
-                    <div onClick={() => history.push('/')}/>
+                    <div onClick={() => window.location.href = '/'}/>
                 </CancelButton>
                 :
                 <>

@@ -117,7 +117,7 @@ const Background = styled.div`
 const ModalContainer = styled.div`
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
   width: 280px;
   height: 280px;
@@ -251,13 +251,11 @@ const Search = (props) => {
         <div style={allContents}>
             {/*검색기능 임시접근제어*/}
             {
-                <Background>
-                    <ModalContainer>
-                        <div>
-                            현재 검색 기능은 접근이 불가합니다.
-                        </div>
-                    </ModalContainer>
-                </Background>
+                <WrapModal>
+                    <Modal>
+                        <p>💜 접근 불가 페이지입니다 💜</p>
+                    </Modal>
+                </WrapModal>
 
             }
             <div style={subContent}>
@@ -278,7 +276,7 @@ const Search = (props) => {
                     initSearch && searchHistoryLen === 0 ?
                         <div style={searchDefaultBlock}>
                             <img src={searchDefaultIcon} style={searchDefaultIconImg}/>
-                            <p style={searchDefaultTXT}>최근 검색어 내역이 없습니다.</p>
+                            {/*<p style={searchDefaultTXT}>최근 검색어 내역이 없습니다.</p>*/}
                         </div>
                         // 검색 안했고 검색기록은 있을 때
                         : initSearch && searchHistoryLen !== 0 ?
@@ -317,3 +315,32 @@ const Search = (props) => {
 }
 
 export default Search;
+
+const WrapModal = styled.div`
+   width: 375px;
+   height: 812px;
+   position: absolute;
+   top: 0;
+   background: rgba(167, 167, 167, 0.5);
+   backdrop-filter: blur(4px);
+   //overflow: hidden;
+ `;
+const Modal = styled.div`
+   width: 300px;
+   position: absolute;
+   top: 380px;
+   left: 37.5px;
+
+   background: rgba(11, 13, 24, 0.8);
+   border-radius: 16px;
+
+   font-family: Spoqa Han Sans Neo;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 18px;
+   text-align: center;
+   letter-spacing: -0.025em;
+
+   color: #FFFFFF;
+ `;

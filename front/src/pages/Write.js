@@ -85,7 +85,7 @@ const Write = (props) => {
             console.log(file.files[0]);
             await createDiary(title,contents + " " + hashTag, file.files[0], props.location.state["id"]);
 
-            history.push('/');
+            window.location.href = '/';
         }
         else {
             console.log('저장버튼활성화금지');
