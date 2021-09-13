@@ -7,7 +7,7 @@ import bbuyo from '../../images/main/main_bbuyo.png';
 import moreDetailButton from '../../images/main/main_moreDetailButton.png';
 import statisticsButton from '../../images/main/main_statisticsButton.png';
 
-import Store from '../../store';
+import Store, {useDataState} from '../../store';
 import Default from "./default";
 
 const bbuyoCSS = {
@@ -48,6 +48,7 @@ const statisticsButtonImg = {
 
 const Planet = (props) => {
     const history = useHistory();
+    const checkData = useDataState();
 
     // const View = () => {
     //     let idx = 0;
@@ -69,6 +70,18 @@ const Planet = (props) => {
     }
     let idx = 0;
     let count = 0;
+
+    const countSee = store => {
+        let count = 0;
+        Object.keys(store.state).map(key => {
+            if (!store.state[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
+
+    const numP = countSee(checkData);
     return (
         <div>
             {/*<View/>*/}
@@ -86,7 +99,7 @@ const Planet = (props) => {
                                 return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].name} count={Object.keys(store.state[key].Posts).length}/>
                             }
                         }
-                        else{
+                        if(numP === 0){
                             return <Default/>
                         }
                     })

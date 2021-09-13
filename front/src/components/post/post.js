@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -10,6 +10,9 @@ import share from "../../images/post/share.png";
 
 const Post = (props) => {
     const history = useHistory();
+
+    const [modal, setModal] = useState(false);
+
 
     return(
         <BackGround>
@@ -23,17 +26,27 @@ const Post = (props) => {
                 <Body>{props.content}</Body>
                 <Line2 />
                 <Tag>
-                    <HashTag hashtag={"교수님"}/>
-                    <HashTag hashtag={"ㅋㅋㅋㅋㅋ"}/>
-                    <HashTag hashtag={"ㄹㄱㄴ"}/>
-                    <HashTag hashtag={"에바임"}/>
+                    {Object.keys(props.hashTag).map(key => {
+                        return (
+                            <HashTag hashtag={props.hashTag[key].name}/>
+                        )
+                    })}
                 </Tag>
                 <Buttons>
-                    <Edit onClick={() => history.push('/write')}/>
+                    <Edit onClick={() => setModal(true)}/>
                     <Delete onClick={() => props.onClick()}/>
                     <Share />
                 </Buttons>
             </Wrap>
+            {modal?
+                <WrapModal>
+                    <Modal>
+                        <p>💜 접근 불가 페이지입니다 💜</p>
+                    </Modal>
+                </WrapModal>
+            :
+                <></>
+            }
         </BackGround>
     )
 }
@@ -45,6 +58,35 @@ const BackGround = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const WrapModal = styled.div`
+   width: 375px;
+   height: 812px;
+   position: absolute;
+   top: 0;
+   background: rgba(167, 167, 167, 0.5);
+   backdrop-filter: blur(4px);
+   //overflow: hidden;
+ `;
+const Modal = styled.div`
+   width: 300px;
+   position: absolute;
+   top: 380px;
+   left: 37.5px;
+
+   background: rgba(11, 13, 24, 0.8);
+   border-radius: 16px;
+
+   font-family: Spoqa Han Sans Neo;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 18px;
+   text-align: center;
+   letter-spacing: -0.025em;
+
+   color: #FFFFFF;
+ `;
 
 const Wrap = styled.div`
   width: 322px;

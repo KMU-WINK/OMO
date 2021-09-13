@@ -13,9 +13,9 @@ import planet3 from "../images/common/planets/planet1_5.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
 import planet2 from "../images/common/planets/planet0_4.svg";
 import Box from "../components/menu/box";
-import Store, {useDataState, deletePlanet, getPlanet} from "../store";
+import Store, {useDataState, deletePlanet, getPlanet, deleteDiary} from "../store";
 
-
+let deleteId = 0;
 
 const Posts = (props) => {
     const checkData = useDataState();
@@ -31,50 +31,42 @@ const Posts = (props) => {
     }
 
     const numP = countSee(checkData);
-
-    const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
-        {'imgSrc': planet1, 'name': "오늘은 조금 우울해", 'count': 20},
-        {'imgSrc': planet5, 'name': "화가 치밀어 오른다", 'count': 32},
-        {'imgSrc': planet3, 'name': "오늘은 조금 우울해", 'count': 32},
-        {'imgSrc': planet6, 'name': "오늘은 조금 우울해", 'count': 18},
-        {'imgSrc': planet2, 'name': "화가 치밀어 오른다", 'count': 18}
-    ];
-    // const planets = [];
-
-    const [contents, setContents] = useState([
-        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/26", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/27", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/28", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/29", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/30", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/31", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-        {date: "07/25", title: "ㅋㅋㅋ대박이다 아님?", content:"진짜 우리 교수님은 레전드다. ㅋㅋㅋㅋㅋㅋ 오늘 무슨일이 있었냐하면..."},
-
-    ]);
     const [deleteModal, setDeleteModal] = useState(false);
-    const [isSelected, setIsselected] = useState(Array(contents.length).fill(false));
 
     const clickDelete = (index) => {
         setDeleteModal(true);
         console.log(index);
+        deleteId = index;
     }
     console.log(props.location.state.planet);
+
+    const deletePost = async () => {
+        console.log(deleteId);
+        await deleteDiary(deleteId);
+        setDeleteModal(false);
+    }
     return (
         <BackGround>
             <Header state={"Back"} title={props.location.state.planet.planetName + " 행성"}/>
             <WrapPost>
                 {Object.keys(props.location.state.planet.planetPost).map(key => {
                     return(
-                        <Post
-                            planet={props.location.state.planet.planetSrc}
-                            date={props.location.state.date}
-                            title={props.location.state.planet.planetPost[key].title}
-                            content={props.location.state.planet.planetPost[key].content}
+                        <>
+                            {props.location.state.planet.planetPost[key].isDelete?
+                                <></>
+                            :
+                                <Post
+                                    // id={props.location.state.planet.planetPost[key].id}
+                                    planet={props.location.state.planet.planetSrc}
+                                    date={props.location.state.date}
+                                    title={props.location.state.planet.planetPost[key].title}
+                                    content={props.location.state.planet.planetPost[key].content}
+                                    hashTag={props.location.state.planet.planetPost[key].Hashtags}
 
-                            onClick = {() => clickDelete(1)}
-                        />
+                                    onClick = {() => clickDelete(props.location.state.planet.planetPost[key].id)}
+                                />
+                            }
+                        </>
                     )
                 })}
 
@@ -97,7 +89,7 @@ const Posts = (props) => {
                         <Line />
                         <ButtonWrap>
                             <CancelButton onClick={() => setDeleteModal(false)}>취소</CancelButton>
-                            <DeleteButton onClick={() => console.log(isSelected)}>삭제</DeleteButton>
+                            <DeleteButton onClick={() => deletePost()}>삭제</DeleteButton>
                         </ButtonWrap>
                     </Modal>
                 </WrapModal>
