@@ -86,7 +86,7 @@ const Planet = (props) => {
                                 return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].name} count={Object.keys(store.state[key].Posts).length}/>
                             }
                         }
-                        if(count === 0){
+                        else{
                             return <Default/>
                         }
                     })
