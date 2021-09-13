@@ -13,8 +13,25 @@ import planet3 from "../images/common/planets/planet1_5.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
 import planet2 from "../images/common/planets/planet0_4.svg";
 import Box from "../components/menu/box";
+import Store, {useDataState, deletePlanet, getPlanet} from "../store";
+
+
 
 const Posts = (props) => {
+    const checkData = useDataState();
+
+    const countSee = store => {
+        let count = 0;
+        Object.keys(store.state).map(key => {
+            if (!store.state[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
+
+    const numP = countSee(checkData);
+
     const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
         {'imgSrc': planet1, 'name': "오늘은 조금 우울해", 'count': 20},
         {'imgSrc': planet5, 'name': "화가 치밀어 오른다", 'count': 32},
@@ -86,10 +103,16 @@ const Posts = (props) => {
             }
             <Wrap>
                 <WrapMain>
-                    {planets.length === 0 ?
+                    {numP === 0 ?
                         <Default/>     // 행성이 없을 때
                         :
-                        <Planet planets={planets}/>  // 행성이 있을 때
+                        <Store.Consumer>
+                            { store => {
+                                return Object.keys(store.state).map(key => (
+                                    <Planet planet = {store.state[key]}/>
+                                ))
+                            }}
+                        </Store.Consumer>  // 행성이 있을 때
                     }
                 </WrapMain>
             </Wrap>

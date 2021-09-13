@@ -39,7 +39,6 @@ const List = (props) => {
     const [planetData, setData] = useState(useDataState());
 
 
-    
     // 못함.
     let test2 = [
       {title: "개웃기네", num: 3, image:star2},

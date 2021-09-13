@@ -25,7 +25,7 @@ import Check from '../images/blackhole/choiceButton.svg';
 import deSelect from '../images/blackhole/deSelect.svg';
 import Restore from '../images/blackhole/restore.svg';
 import Delete from '../images/list/delete.png';
-import Store from '../store';
+import Store, {useDataState} from '../store';
 
 const backgroundCSS = {
     width: '100%',
@@ -365,6 +365,19 @@ const Menu = (props) => {
             console.log(isSelected);
         }
     }
+    const checkData = useDataState();
+
+    const countSee = store => {
+        let count = 0;
+        Object.keys(store.state).map(key => {
+            if (!store.state[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
+
+    const numP = countSee(checkData);
 
     return (
         <div style={backgroundCSS}>
@@ -539,10 +552,16 @@ const Menu = (props) => {
             }
             <Wrap>
                 <WrapMain>
-                    {planets.length === 0 ?
+                    {numP === 0 ?
                         <Default/>     // 행성이 없을 때
                         :
-                        <Planet planets={planets}/>  // 행성이 있을 때
+                        <Store.Consumer>
+                            { store => {
+                                return Object.keys(store.state).map(key => (
+                                    <Planet planet = {store.state[key]}/>
+                                ))
+                            }}
+                        </Store.Consumer>  // 행성이 있을 때
                     }
                 </WrapMain>
             </Wrap>
