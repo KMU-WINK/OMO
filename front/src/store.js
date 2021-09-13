@@ -77,7 +77,7 @@ export async function deletePlanet(planetId) {
         isDelete: true,
     };
     try {
-        await baseService.patch(`/post/planet/${planetId}`, { isDelete });
+        await baseService.patch(`/post/planet/${planetId}`, isDelete);
     } catch (e) {
         console.error("!", e.response.data.error);
     }
@@ -87,7 +87,7 @@ export async function deleteDiary(diaryId) {
         isDelete: true,
     };
     try {
-        await baseService.patch(`/post/diary/${diaryId}`, { isDelete });
+        await baseService.patch(`/post/diary/${diaryId}`, isDelete);
     } catch (e) {
         console.error("!", e.response.data.error);
     }
