@@ -31,12 +31,15 @@ import planet2 from "../images/common/planets/planet0_4.svg";
 
 import {loadPlanet} from '../components/create/planets';
 import PlanetCreate from '../components/create/PlanetCreate';
-import Store, {useDataState, deletePlanet} from "../store";
+import Store, {useDataState, deletePlanet, getPlanet} from "../store";
 
 const List = (props) => {
+    const checkData = useDataState();
     // 추후에 백엔드로 받아오기
-    const planetData = useDataState();
+    const [planetData, setData] = useState(useDataState());
 
+
+    
     // 못함.
     let test2 = [
       {title: "개웃기네", num: 3, image:star2},
@@ -51,8 +54,20 @@ const List = (props) => {
       {title: "개웃기네", num: 3, image:star2}];
     const [test, setTest] = useState(test2);
 
+    const countSee = store => {
+        let count = 0;
+        Object.keys(store.state).map(key => {
+            if (!store.state[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
+
+    const numP = countSee(checkData);
+
     const history = useHistory();
-    const [isClickedList, setIsClickedList] = useState(Array(Object.keys(planetData.state).length).fill(false));
+    const [isClickedList, setIsClickedList] = useState(Array(Object.keys(checkData.state).length).fill(false));
     const [isActive, setActive] = useState(true);
     const [selectAll, setSelectAll] = useState(false);
     const [changeActive, setchangeActive] = useState(false);
@@ -64,7 +79,7 @@ const List = (props) => {
         return index === cindex ? isClicked : value
       }));
     };
-    
+
     const changePlanet = (mainPlanet, mainColor, name)=>{
       isClickedList.map((value, index)=>{
         if(value === true){
@@ -91,7 +106,7 @@ const List = (props) => {
     }
 
     const StartEdit = () => {
-        if ( Object.keys(planetData.state).length !== 0 ) {
+        if ( numP !== 0 ) {
             setActive(false);
         }
     };
@@ -100,7 +115,7 @@ const List = (props) => {
         setIsClickedList(Array(Object.keys(planetData.state).length).fill(true));
         setSelectAll(true);
         setSelect(true);
-        console.log(isClickedList)
+        console.log(isClickedList);
     }
 
     const cancelAll = () => {
@@ -125,7 +140,8 @@ const List = (props) => {
             setSelect(false);
         }
         if (count > 0){
-            setSelect(true)
+            setSelect(true);
+            isClickedList.fill(true);
         }
     }
 
@@ -143,9 +159,10 @@ const List = (props) => {
     }
 
     const realDelete = async () => {
+        console.log(isClickedList);
         for (let i = 0; i < isClickedList.length; i++){
             if (isClickedList[i]){
-                await deletePlanet(i+1);
+                await deletePlanet(Object.keys(planetData.state).length - i);
             }
         }
         setModal(false);
@@ -178,11 +195,11 @@ const List = (props) => {
                 }
                 <Neckbar>
                     {
-                        Object.keys(planetData.state).length
+                        numP
                             ?
-                            <ListName active={Object.keys(planetData.state).length}>감정 행성</ListName>
+                            <ListName active={numP}>감정 행성</ListName>
                             :
-                            <Blank active={(Object.keys(planetData.state).length)}/>
+                            <Blank active={numP}/>
                     }
                     {
                         isActive
@@ -203,7 +220,7 @@ const List = (props) => {
                     }
                 </Neckbar>
                 <PlanetBackground>
-                    <PlusPlanet active={(Object.keys(planetData.state).length)} onClick = { () => history.push('./Create')}>
+                    <PlusPlanet active={numP} onClick = { () => history.push('./Create')}>
                         <div className={"plus"} />
                     </PlusPlanet>
                     <Store.Consumer>
@@ -234,7 +251,7 @@ const List = (props) => {
             }
             <Wrap>
                 <WrapMain>
-                    {Object.keys(planetData.state).length === 0 ?
+                    {numP === 0 ?
                         <Default/>     // 행성이 없을 때
                         :
                         <Store.Consumer>

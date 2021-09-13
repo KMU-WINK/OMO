@@ -29,6 +29,7 @@ const Star = (props) => {
                         planetName: props.planet.name,
                         planetCount: props.num,
                         planetId: props.planet.id,
+                        planetPost: props.planet.post,
                     }
                 })}}>
                     <img src={props.planet.planetForm} style = {starCSS}/>
