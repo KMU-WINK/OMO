@@ -7,6 +7,8 @@ import bbuyo from '../../images/main/main_bbuyo.png';
 import moreDetailButton from '../../images/main/main_moreDetailButton.png';
 import statisticsButton from '../../images/main/main_statisticsButton.png';
 
+import Store from '../../store';
+
 const bbuyoCSS = {
     position: 'absolute',
     marginLeft: '73%',
@@ -46,12 +48,12 @@ const statisticsButtonImg = {
 const Planet = (props) => {
     const history = useHistory();
 
-    const View = () => {
-        let idx = 0;
-        return (
-            props.planets.map((planet)=><Index idx={idx++} imgSrc={planet.imgSrc} name={planet.name} count={planet.count}/>)
-        )
-    }
+    // const View = () => {
+    //     let idx = 0;
+    //     return (
+    //         props.planets.map((planet)=><Index key={planet.id} idx={idx++} imgSrc={planet.planetForm} name={planet.title} count={planet.length}/>)
+    //     )
+    // }
     const [checkShowButtons, setCheckShowButtons] = useState(false);
     const showButtons = () => {
         if(checkShowButtons === false){
@@ -64,10 +66,19 @@ const Planet = (props) => {
         }
         setCheckShowButtons(!checkShowButtons)
     }
-
+    let idx = 0;
     return (
         <div>
-            <View/>
+            {/*<View/>*/}
+            <Store.Consumer>
+                {store => {
+                    return Object.keys(store.state).map(key => {
+                        if(!store.state[key].isDelete){
+                            return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].title}/>
+                        }
+                    })
+                }}
+            </Store.Consumer>
             <img src={moreDetailButton} id={"showMoreDetailButtons"} style={moreDetailButtonImg} onClick={() => history.push('/moreDetail')}/>
             <img src={statisticsButton} id={"showStatisticsButtons"} style={statisticsButtonImg} onClick={() => history.push('/statistics')}/>
             <div style={bbuyoCSS} onClick={showButtons}>

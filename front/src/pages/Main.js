@@ -27,7 +27,7 @@ import planet3 from "../images/common/planets/planet1_5.svg";
 import planet4 from "../images/common/planets/planet2_1.svg";
 import planet5 from "../images/common/planets/planet3_0.svg";
 import planet6 from "../images/common/planets/planet4_3.svg";
-import Store from "../store";
+import Store, {useDataState} from "../store";
 
 import {useHistory} from "react-router-dom";
 
@@ -149,6 +149,7 @@ const ModalContainer = styled.div`
 
 function Main(props) {
     const history = useHistory();
+    const planetData = useDataState();
 
     const now = new Date();
     const year = now.getFullYear();
@@ -203,7 +204,7 @@ function Main(props) {
         setShowModal(!showModal);
     }
 
-    const planets = []; //빈배열
+    // const planets = []; //빈배열
     // const planets = [planet1, planet2, planet3, planet4, planet5, planet6]; //행성있 배열
 
     // const planets = [{'imgSrc':planet4, 'name':"화가 치밀어 오른다", 'count':32},
@@ -214,6 +215,11 @@ function Main(props) {
     //     {'imgSrc':planet3, 'name':"화가 치밀어 오른다", 'count':18}
     // ];
     // console.log(planets);
+    useEffect(() => {
+        console.log(planetData);
+        console.log(Object.keys(planetData).length);
+        console.log(Object.keys(planetData));
+    })
 
     return (
         <div style={{backgroundColor: 'black'}}>
@@ -242,14 +248,19 @@ function Main(props) {
                         <button style={NextDateButton} onClick={ChangeNextDate}/>
                     </div>
                     <div>
-                        {planets.length === 0?
-                              <Store.Consumer>
-                                  { store => store.message }
-                              </Store.Consumer>
-                            // <Default />     // 행성이 없을 때
-                            :
-                            <Planet planets={planets}/>  // 행성이 있을 때
+                        {Object.keys(planetData).length === 0?
+                            <Default />
+                        :
+                            <Planet planets={planetData.state}/>
                         }
+
+                        {/*<Store.Consumer>*/}
+                        {/*    {store => store.state.length === 0?*/}
+                        {/*        <Default />     // 행성이 없을 때*/}
+                        {/*        :*/}
+                        {/*        <Planet planets={store.state}/>  // 행성이 있을 때*/}
+                        {/*    }*/}
+                        {/*</Store.Consumer>*/}
                     </div>
                 </div>
                 <div style={FooterButtons}>

@@ -49,12 +49,8 @@ export async function createDiary(content, image, planetId) {
     }
 }
 export async function getAllData() {
-    console.log("1")
     try {
-        console.log()
         const result = await baseService.get(`/posts`)
-        console.log(result);
-
         return result.data;
     } catch (e) {
         console.log('!', e.response);
