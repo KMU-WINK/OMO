@@ -82,6 +82,17 @@ const Planet = (props) => {
     }
 
     const numP = countSee(checkData);
+
+    const countPost = store => {
+        let count = 0;
+        Object.keys(store).map(key => {
+            if (!store[key].isDelete){
+                count += 1;
+            }
+        })
+        return count;
+    }
+
     return (
         <div>
             {/*<View/>*/}
@@ -96,7 +107,7 @@ const Planet = (props) => {
                                 // console.log(store.state[key].id);
                                 // console.log(store.state[key].Posts.length);
                                 // console.log(Object.keys(store.state[key].Posts).length);
-                                return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].name} count={Object.keys(store.state[key].Posts).length}/>
+                                return <Index key={store.state[key].id} idx={idx++} imgSrc={store.state[key].planetForm} name={store.state[key].name} count={countPost(store.state[key].Posts)}/>
                             }
                         }
                         if(numP === 0){
