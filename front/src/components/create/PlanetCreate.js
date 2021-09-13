@@ -120,7 +120,7 @@ const Text = styled.p`
     position: absolute;
     left: ${props => props.left};
     top: ${props => props.top};
-    font-family: Spoqa Han Sans Neo;
+    font-family: S-Core Dream;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
