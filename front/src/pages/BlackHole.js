@@ -192,15 +192,15 @@ const BlackHole = (props) => {
                     }
                 </Menu>
 
-                { isActive1 ? contents.map((content, index) =>
-                    <Content editMode = { editMode } isSelected = {isSelected[index]} onClick={() => changeClick(index)} contents={content}/>
-                )
-                :  <PlanetBackground>{
-                        planetContents.map((planetContent, index) =>
-                        <Star editMode={editMode} isSelected = {isSelectedPlanet[index]} onClick={() => changeClickPlanet(index)} planetContents={ planetContent }  />
-                        )}
-                    </PlanetBackground>
-                }
+                {/*{ isActive1 ? contents.map((content, index) =>*/}
+                {/*    <Content editMode = { editMode } isSelected = {isSelected[index]} onClick={() => changeClick(index)} contents={content}/>*/}
+                {/*)*/}
+                {/*:  <PlanetBackground>{*/}
+                {/*        planetContents.map((planetContent, index) =>*/}
+                {/*        <Star editMode={editMode} isSelected = {isSelectedPlanet[index]} onClick={() => changeClickPlanet(index)} planetContents={ planetContent }  />*/}
+                {/*        )}*/}
+                {/*    </PlanetBackground>*/}
+                {/*}*/}
 
                 {clickArray &&
                 <RestoreDeleteContainer>
@@ -218,6 +218,11 @@ const BlackHole = (props) => {
                     }
                 </WrapMain>
             </Wrap>
+            <WrapModal>
+                <Modal>
+                    <p>💜 접근 불가 페이지입니다 💜</p>
+                </Modal>
+            </WrapModal>
         </Background>
     )
 }
@@ -229,6 +234,34 @@ const Background = styled.div`
   position: relative;
   background: rgba(0, 0, 0, 0.85);
 `;
+const WrapModal = styled.div`
+   width: 375px;
+   height: 812px;
+   position: absolute;
+   top: 0;
+   background: rgba(167, 167, 167, 0.5);
+   backdrop-filter: blur(4px);
+   //overflow: hidden;
+ `;
+const Modal = styled.div`
+   width: 300px;
+   position: absolute;
+   top: 380px;
+   left: 37.5px;
+
+   background: rgba(11, 13, 24, 0.8);
+   border-radius: 16px;
+
+   font-family: Spoqa Han Sans Neo;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 18px;
+   text-align: center;
+   letter-spacing: -0.025em;
+
+   color: #FFFFFF;
+ `;
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
