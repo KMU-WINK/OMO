@@ -11,9 +11,9 @@ const Star = (props) => {
     }, [props])
     return(
         <PlanetBase selected={ state } onClick={ () => props.onClick() }>
-            <img src={props.planetContents.profileImgSrc} style={starCSS}/>
-            <Title>{props.planetContents.title}</Title>
-            <SubTitle>{props.planetContents.number}개의 기록</SubTitle>
+            <img src={props.planetContents.planetForm} style={starCSS}/>
+            <Title>{props.planetContents.name}</Title>
+            <SubTitle>{props.planetContents.Posts.length}개의 기록</SubTitle>
         </PlanetBase>
     )
 }

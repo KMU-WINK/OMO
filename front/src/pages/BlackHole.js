@@ -21,8 +21,10 @@ import Store, { useDataState }  from "../store";
 
 const BlackHole = (props) => {
     const blackholeData = useDataState();
-    const [isActive1, setActive1] = useState(true);
-    const [isActive2, setActive2] = useState(false);
+    let blackholeState = [];
+    Object.keys(blackholeData.state).map(keys => blackholeState.push(blackholeData.state[keys]))
+    const [isActive1, setActive1] = useState(false);
+    const [isActive2, setActive2] = useState(true);
     const [editMode, setEditMode] = useState(false);
     const [clickArray, setClickArray] = useState(false);
     const [selected, setSelected] = useState(false);
@@ -57,46 +59,53 @@ const BlackHole = (props) => {
     //         hashtag: "침대",
     //     }
     // ]);
-    const [planetContents, setPlanetContents] = useState([
-        {
-            profileImgSrc: starimg,
-            title: "코딩 빡쳐",
-            number: "2",
-        },
-        {
-            profileImgSrc: starimg,
-            title: "코딩 빡쳐",
-            number: "2",
-        },
-        {
-            profileImgSrc: starimg,
-            title: "코딩 빡쳐",
-            number: "2",
-        },
-        {
-            profileImgSrc: starimg,
-            title: "코딩 빡쳐",
-            number: "2",
-        }
-    ])
+    // const [planetContents, setPlanetContents] = useState([
+    //     {
+    //         profileImgSrc: starimg,
+    //         title: "코딩 빡쳐",
+    //         number: "2",
+    //     },
+    //     {
+    //         profileImgSrc: starimg,
+    //         title: "코딩 빡쳐",
+    //         number: "2",
+    //     },
+    //     {
+    //         profileImgSrc: starimg,
+    //         title: "코딩 빡쳐",
+    //         number: "2",
+    //     },
+    //     {
+    //         profileImgSrc: starimg,
+    //         title: "코딩 빡쳐",
+    //         number: "2",
+    //     }
+    // ])
     const [isSelected, setIsselected] = useState(Array(contents.length).fill(false));
-    const [isSelectedPlanet, setIsselectedPlanet] = useState(Array(planetContents.length).fill(false));
-    const changeActive = () => {
-        if (isActive1) {
-            setActive2(true);
-            setActive1(false);
-        } else {
-            setActive1(true);
-            setActive2(false);
-        }
+    const [isSelectedPlanet, setIsselectedPlanet] = useState(Array(blackholeState.length).fill(false));
+    const restoreBen = () => {
+        alert("복구는 지금 안돼요 ㅠㅠ")
     }
+    const deleteBen = () => {
+        alert("삭제는 지금 안돼요 ㅠㅠ")
+    }
+    // const changeActive = () => {
+    //     if (isActive1) {
+    //         setActive2(true);
+    //         setActive1(false);
+    //     } else {
+    //         setActive1(true);
+    //         setActive2(false);
+    //     }
+    // }
     const allChoice = () => {
-        isSelected.fill(true);
-        isSelectedPlanet.fill(true);
-        setIsselected([...isSelected]);
-        setIsselectedPlanet([...isSelectedPlanet]);
-        setSelected(true);
-        setClickArray(true);
+        alert("전체 선택은 지금 안돼요 ㅠㅠ")
+        // isSelected.fill(true);
+        // isSelectedPlanet.fill(true);
+        // setIsselected([...isSelected]);
+        // setIsselectedPlanet([...isSelectedPlanet]);
+        // setSelected(true);
+        // setClickArray(true);
     }
     const allDeselect = () => {
         isSelected.fill(false);
@@ -154,13 +163,6 @@ const BlackHole = (props) => {
             }
         }
     }
-    const planets = [{'imgSrc': planet4, 'name': "화가 치밀어 오른다", 'count': 32},
-        {'imgSrc': planet1, 'name': "오늘은 조금 우울해", 'count': 20},
-        {'imgSrc': planet5, 'name': "화가 치밀어 오른다", 'count': 32},
-        {'imgSrc': planet3, 'name': "오늘은 조금 우울해", 'count': 32},
-        {'imgSrc': planet6, 'name': "오늘은 조금 우울해", 'count': 18},
-        {'imgSrc': planet2, 'name': "화가 치밀어 오른다", 'count': 18}
-    ];
     return (
         <Background>
             <Header state={"Back"} title={"블랙홀"}></Header>
@@ -168,8 +170,10 @@ const BlackHole = (props) => {
                 {
                     editMode == false ?
                         <SelectContainer>
-                            <Select onClick={() => changeActive()} active={isActive1}>기록</Select>
-                            <Select onClick={() => changeActive()} active={isActive2}>행성</Select>
+                            {/*<Select onClick={() => changeActive()} active={isActive1}>기록</Select>*/}
+                            <Select>기록</Select>
+                            <Select active={isActive2}>행성</Select>
+                            {/*<Select onClick={() => changeActive()} active={isActive2}>행성</Select>*/}
                         </SelectContainer>
                         :
                         <EditContainer>
@@ -191,7 +195,13 @@ const BlackHole = (props) => {
                                 </AllChoice>
                     }
                 </Menu>
-
+                <PlanetBackground>
+                    {
+                        blackholeState.map((planetContent, index) =>
+                        <Star editMode={editMode} isSelected = {isSelectedPlanet[index]} onClick={() => changeClickPlanet(index)} planetContents={ planetContent } ></Star>
+                        )
+                    }
+                </PlanetBackground>
                 {/*{ isActive1 ? contents.map((content, index) =>*/}
                 {/*    <Content editMode = { editMode } isSelected = {isSelected[index]} onClick={() => changeClick(index)} contents={content}/>*/}
                 {/*)*/}
@@ -204,25 +214,31 @@ const BlackHole = (props) => {
 
                 {clickArray &&
                 <RestoreDeleteContainer>
-                    <RestoreDelete><img src={Restore}/></RestoreDelete>
-                    <RestoreDelete><img src={Delete}/></RestoreDelete>
+                    <RestoreDelete onClick={() => restoreBen()}><img src={Restore}/></RestoreDelete>
+                    <RestoreDelete onClick={() => deleteBen()}><img src={Delete}/></RestoreDelete>
                 </RestoreDeleteContainer>
                 }
             </ContentContainer>
             <Wrap>
                 <WrapMain>
-                    {planets.length === 0 ?
-                        <Default/>     // 행성이 없을 때
-                        :
-                        <Planet planets={planets}/>  // 행성이 있을 때
+                    {blackholeData === 0 ?
+                      <Default/>     // 행성이 없을 때
+                      :
+                      <Store.Consumer>
+                          { store => {
+                              return Object.keys(store.state).map(key => (
+                                <Planet planet = {store.state[key]}/>
+                              ))
+                          }}
+                      </Store.Consumer>  // 행성이 있을 때
                     }
                 </WrapMain>
             </Wrap>
-            <WrapModal>
-                <Modal>
-                    <p>💜 접근 불가 페이지입니다 💜</p>
-                </Modal>
-            </WrapModal>
+            {/*<WrapModal>*/}
+            {/*    <Modal>*/}
+            {/*        <p>💜 접근 불가 페이지입니다 💜</p>*/}
+            {/*    </Modal>*/}
+            {/*</WrapModal>*/}
         </Background>
     )
 }
