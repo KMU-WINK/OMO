@@ -65,12 +65,12 @@ const Planet = styled.img`
     top:0; bottom:0; left:0; right:0;
 `;
 
-const ItemName = styled.p`
+const ItemName = styled.div`
     position: absolute;
     width: 150px;
     height: 14px;
-    left: 50%;
-    top: 112px;
+    left: 83px;
+    top: 115px;
     transform:translate(-50%, 0%);
 
     font-family: S-Core Dream;
@@ -84,12 +84,12 @@ const ItemName = styled.p`
     color: rgba(255, 255, 255, 0.9);
 `;
 
-const ItemCount = styled.p`
+const ItemCount = styled.div`
     position: absolute;
     width: 70px;
     height: 13px;
     left: 48px;
-    top: 131px;
+    top: 135px;
 
     font-family: S-Core Dream;
     font-style: normal;
@@ -104,20 +104,16 @@ const ItemCount = styled.p`
 const PlusIcon = styled.img`
     position: absolute;
     transform: translate(-50%, -50%);
-    left: 50%;
-    right: 50%;
-    top: 37.35%;
-    bottom: 46.39%;
+    left: 85px;
+    top: 70px
 `;
 
 const PlusText = styled.p`
     position: absolute;
     transform: translate(-50%, -50%);
     width:60px;
-    left: 50%;
-    right: 50%;
-    top: 61.45%;
-    bottom: 30.12%;
+    left: 85px;
+    top: 110px;
 
     font-family: S-Core Dream;
     font-style: normal;
