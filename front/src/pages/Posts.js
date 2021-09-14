@@ -64,6 +64,7 @@ const Posts = (props) => {
                                     title={props.location.state.planet.planetPost[key].title}
                                     content={props.location.state.content}
                                     hashTag={props.location.state.planet.planetPost[key].Hashtags}
+                                    image={props.location.state.planet.planetPost[key].Images}
 
                                     onClick = {() => clickDelete(props.location.state.planet.planetPost[key].id)}
                                 />

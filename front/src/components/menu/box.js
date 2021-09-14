@@ -34,6 +34,11 @@ const hashtagSET = {
     padding:'0 8px 8px 8px',
     color: 'rgba(255, 255, 255, 0.6)',
 }
+const imageCSS = {
+    height: '104px',
+    width: '168px',
+    objectFit: 'cover',
+}
 
 
 const Box = (props) => {
@@ -43,12 +48,14 @@ const Box = (props) => {
         setState(props.isSelected)
     }, [props])
 
+    let imgData = props.image;
+
     return(
         <>
             { props.editMode === false ?
                 <OneBox onClick={() => history.push({
                     pathname: '/post',
-                    state: {planet: props.planet, date:props.date, content:props.content}
+                    state: {planet: props.planet, date:props.date, content:props.content, image:imgData}
                 })}>
                     <div style={{padding:'12px 12px 0 12px'}}>
                         <div style={{display:'flex', justifyContent: 'space-between', marginBottom:'14px'}}>
@@ -58,6 +65,16 @@ const Box = (props) => {
                         <div style={titleCSS}>{props.title}</div>
                         <div style={contentCSS}>{props.content}</div>
                     </div>
+                    {
+                        props.image.length !== 0 ?
+                            <Imagespace>
+                                <img style={imageCSS} src= {props.image[0].src} />
+                            </Imagespace>
+                            :
+                            <></>
+                    }
+
+
                     <div style={hashtagSET}>
                         {Object.keys(props.hashTag).map(key => {
                             return (
@@ -98,3 +115,11 @@ const OneBox = styled.div`
   border-radius: 15px;
   margin: 4px 0;
 `;
+
+const Imagespace = styled.image`
+  height : 104px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+`
+

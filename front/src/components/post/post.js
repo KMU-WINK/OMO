@@ -13,6 +13,11 @@ const Post = (props) => {
 
     const [modal, setModal] = useState(false);
 
+    const imageCSS = {
+        height: '104px',
+        width: '168px',
+        objectFit: 'cover',
+    }
 
     return(
         <BackGround>
@@ -37,6 +42,14 @@ const Post = (props) => {
                     <Delete onClick={() => props.onClick()}/>
                     <Share />
                 </Buttons>
+                {
+                    props.image.length !== 0 ?
+                        <Imagespace>
+                            <img style={imageCSS} src= {props.image[0].src} />
+                        </Imagespace>
+                        :
+                        <></>
+                }
             </Wrap>
             {modal?
                 <WrapModal>
@@ -223,3 +236,11 @@ const Share = styled.div`
   background: url(${share}) no-repeat;
   background-size: contain;
 `;
+
+const Imagespace = styled.image`
+  height : 209px;
+  position: absolute;
+  width: 18px;
+  left: 20px;
+  top: 350px;
+`

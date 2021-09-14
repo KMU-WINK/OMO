@@ -531,6 +531,7 @@ const Menu = (props) => {
                                                 content={getContent(props.location.state.planetPost[key].content).body}
                                                 hashTag={props.location.state.planetPost[key].Hashtags}
                                                 planet={props.location.state}
+                                                image = {props.location.state.planetPost[key].Images}
 
                                                 editMode={editMode}
                                                 isSelected={isSelected[key]}
