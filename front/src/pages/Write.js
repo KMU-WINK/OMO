@@ -11,6 +11,13 @@ import albumIcon from "../images/write/album.png";
 import {useHistory} from "react-router-dom";
 import {createDiary} from "../store"
 
+const imageCSS = {
+    height: '124px',
+    width: '188px',
+    objectFit: 'cover',
+}
+
+
 const Write = (props) => {
     const history = useHistory();
 
@@ -107,7 +114,7 @@ const Write = (props) => {
                 <input className={"input_title"} type="text" onChange = {setTitleFunction} placeholder="제목을 입력하세요"></input>
                 <textarea className={"input_contents"} type="text" maxLength="300" rows="10" onChange={setContentsFunction} placeholder="내용을 입력하세요 (최대 300자)"></textarea>
                 <div className={"image_preview"}>
-                  <img src={imgBase64} />
+                  <img style = {imageCSS} src={imgBase64} />
                 </div>
                 <div className={"tag"}>태그추가</div>
                 <input className={"input_tag"} type="text" onChange={setHashTagFunction} placeholder="검색에 활용될 태그를 입력해 주세요  (최대 5개)"></input>
@@ -125,7 +132,7 @@ const Write = (props) => {
                     </div>
                     <div className={"i_1"}>
                       <label for="file-input">
-                        <img src={albumIcon}/>
+                        <img  src={albumIcon}/>
                       </label>
                       <input id="file-input" type="file" style={{display: "none"}} onChange={handleChangeFile}/>
                     </div>

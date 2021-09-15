@@ -14,8 +14,8 @@ const Post = (props) => {
     const [modal, setModal] = useState(false);
 
     const imageCSS = {
-        height: '104px',
-        width: '168px',
+        height: '124px',
+        width: '188px',
         objectFit: 'cover',
     }
 

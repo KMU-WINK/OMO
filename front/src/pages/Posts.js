@@ -62,7 +62,7 @@ const Posts = (props) => {
                                     planet={props.location.state.planet.planetSrc}
                                     date={props.location.state.date}
                                     title={props.location.state.planet.planetPost[key].title}
-                                    content={props.location.state.content}
+                                    content={props.location.state.planet.planetPost[key].content}
                                     hashTag={props.location.state.planet.planetPost[key].Hashtags}
                                     image={props.location.state.planet.planetPost[key].Images}
 
