@@ -11,7 +11,7 @@ export function useDataState() {
     }
     return state;
 }
-const baseURL = new URL("http://ec2-3-37-89-245.ap-northeast-2.compute.amazonaws.com");
+const baseURL = new URL("https://omoapi.kmuwink.net");
 const baseService = axios.create({
     baseURL: baseURL.toString(),
     'Content-Type': 'application/json',
