@@ -198,7 +198,7 @@ const BlackHole = (props) => {
                 <PlanetBackground>
                     {
                         blackholeState.map((planetContent, index) =>
-                        <Star editMode={editMode} isSelected = {isSelectedPlanet[index]} onClick={() => changeClickPlanet(index)} planetContents={ planetContent } ></Star>
+                        planetContent.isDelete && <Star editMode={editMode} isSelected = {isSelectedPlanet[index]} onClick={() => changeClickPlanet(index)} planetContents={ planetContent } ></Star>
                         )
                     }
                 </PlanetBackground>
